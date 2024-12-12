@@ -20,9 +20,16 @@ class RoomPool
         }
     }
 
-    Find()
+    Find(room)
     {
-        
+        for(let i = 0; i<this.rooms.length;i++)
+        {
+            if(room.id == this.rooms[i].id)
+            {
+                return i
+            }
+        }
+        return -1
     }
 }
 
@@ -32,6 +39,28 @@ class Room
     {
         this.id = Room.RandomId()
         this.users = []
+    }
+
+    getId(unicid)
+    {
+        if(this.users.find(value => value.unicid == unicid) && Admin.Is(unicid))
+        {
+            return this.id
+        }
+        return null
+    }
+
+    Add(name)
+    {
+        while(true)
+        {
+            const user = new Guest()
+            if(this.Find(room) == -1)
+            {
+                this.rooms.push(room)
+                return user
+            }
+        }
     }
 
     static RandomId(len)
