@@ -7,9 +7,12 @@ class User
     {
         this.name = name
         this.unicid = User.RandomId(32)
+        this.point = 0
+        this.cards = []
+        this.IsAskig = false
     }
 
-    static RandomId(len)
+    static async RandomId(len)
     {
         let temp = ""
         let prev = ""
@@ -35,7 +38,7 @@ class Admin extends User
         this.unicid += AdminKeyW
     }
 
-    static Is(unicid)
+    static async Is(unicid)
     {
         return unicid.includes(AdminKeyW)
     }
@@ -48,3 +51,4 @@ class Guest extends User
         super(name)
     }
 }
+

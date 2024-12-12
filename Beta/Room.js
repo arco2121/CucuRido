@@ -7,15 +7,15 @@ class RoomPool
         this.rooms = []
     }
 
-    Create()
+    Create(adminName)
     {
         while(true)
         {
-            const room = new Room()
+            const room = new Room(adminName)
             if(this.Find(room) == -1)
             {
                 this.rooms.push(room)
-                return
+                return room
             }
         }
     }
@@ -35,13 +35,25 @@ class RoomPool
 
 class Room
 {
-    constructor()
+    constructor(adminName)
     {
         this.id = Room.RandomId()
-        this.users = []
+        this.admin = new Admin(adminName)
+        this.users = [this.admin]
+        this.Questions = new Deck(QuestionsArr)
+        this.Answer = Deck(AnswerArr)
+        this.RoundNumber = 0
+        this.LastWon = 0;     
+        this.CurrentRound = {
+            received : 0,
+            question: null,
+            answers: [],
+            isRound : false,
+            master : 0
+        }
     }
 
-    getId(unicid)
+    async getId(unicid)
     {
         if(this.users.find(value => value.unicid == unicid) && Admin.Is(unicid))
         {
@@ -50,20 +62,14 @@ class Room
         return null
     }
 
-    Add(name)
+    async Add(name)
     {
-        while(true)
-        {
-            const user = new Guest()
-            if(this.Find(room) == -1)
-            {
-                this.rooms.push(room)
-                return user
-            }
-        }
+        const user = new Guest(name)
+        this.rooms.push(user)
+        return user
     }
 
-    static RandomId(len)
+    static async RandomId(len)
     {
         let temp = ""
         let prev = ""
@@ -79,4 +85,52 @@ class Room
         }
         return temp
     }
+
+    async Round()
+    {
+        let RecivedAnswers = 0;
+
+
+        if(this.RoundNumber == 0)
+        {
+            this.CurrentRound.master = 0
+        }
+        else
+        {
+            this.CurrentRound.master = this.LastWon
+        }
+
+        this.users[this.CurrentRound.master].IsAskig = true
+
+        this.CurrentRound.question = this.Questions.Pick(1)
+        if(this.CurrentRound.question == null)
+        {
+            // sono finite le carte :<
+        }
+
+
+    }
 }
+
+/*
+
+    Stanza
+    
+    public Giocatori[] = { ... };
+
+    public Admin = Giocatori[0]
+
+    int CurrentMaster = 0; 
+
+    if(RoundNumber == 0){
+        CurrentMaster = 0; // Giocatore nella cella 0 dell'array
+    }
+    else{
+        CurrentMaster = LastWhoWon;
+    }
+
+    Giocatori[CurrentMaster].IsAskingQuestion = true;
+
+    [["string", n]] CurrentDomanda = MazzoDomande.DammmiCarte(1);
+
+*/
