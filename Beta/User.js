@@ -52,3 +52,4 @@ class Guest extends User
     }
 }
 
+module.exports = { User, Admin, Guest }

@@ -1739,7 +1739,7 @@ const AnswerArr = [
       "Urlare 'Teresaaaa' davanti a un giornalista",
       0
     ]
-  ]
+]
 const QuestionsArr = [
     [
       "_ è buono, ma _ è molto meglio!",
@@ -2317,13 +2317,9 @@ const QuestionsArr = [
       "Hear me out! _ e _",
       2
     ]
-  ];
-
-
-
-
-
-  class Deck
+]
+  
+class Deck
 {
     constructor(arr)
     {
@@ -2351,30 +2347,12 @@ const QuestionsArr = [
         
         return toReturn
     }
+
+    async Reinsert(cards) 
+    {
+        this.cards = this.cards.concat(cards)
+        this.Shuffle()
+    }
 }
 
-
-/* qwp WuW uwu OoO 
-
-    Stanza -> 2 mazzi di carte
-    
-        piblic Deck MazzoDomande = new Deck(arrayDomande);
-
-        piblic Deck MazzoRisposte = new Deck(arrayRisposte);
-
-    Deck
-        array delle carte [ ["cagata scritta", n] ... ]
-        
-        void MescolaCarte();
-
-        [["string", n]] DammmiCarte(numeroCarte);
-
-    Utente 
-        ...
-
-        public string[] MazzoDiCarte  = [ "cagata fascista", ... ],[✨✨✨✨✨✨]]
-
-
-        MazzoRisposte.Pesca(2);
-
-*/
+module.exports = { Deck, QuestionsArr, AnswerArr };

@@ -1,3 +1,6 @@
+
+const { Deck, QuestionsArr, AnswerArr } = require('./Deck')
+const { User , Guest, Admin } = require('./User')
 const Alpha = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890"
 
 class RoomPool
@@ -12,7 +15,7 @@ class RoomPool
         while(true)
         {
             const room = new Room(adminName)
-            if(this.Find(room) == -1)
+            if(this.Find(room.id) == -1)
             {
                 this.rooms.push(room)
                 return room
@@ -20,36 +23,48 @@ class RoomPool
         }
     }
 
-    Find(room)
+    Find(roomid)
     {
         for(let i = 0; i<this.rooms.length;i++)
         {
-            if(room.id == this.rooms[i].id)
+            if(roomid == this.rooms[i].id)
             {
                 return i
             }
         }
         return -1
     }
+
+    FindRoom(roomid)
+    {
+        for(let i = 0; i<this.rooms.length;i++)
+        {
+            if(roomid == this.rooms[i].id)
+            {
+                return this.rooms[i]
+            }
+        }
+        return null
+    }
 }
 
 class Room
 {
-    constructor(adminName)
+    constructor(adminName) 
     {
-        this.id = Room.RandomId()
+        this.id = this.constructor.RandomId(16)
         this.admin = new Admin(adminName)
-        this.users = [this.admin]
+        this.users = [this.admin];
         this.Questions = new Deck(QuestionsArr)
-        this.Answer = Deck(AnswerArr)
-        this.RoundNumber = 0
-        this.LastWon = 0;     
+        this.Answers = new Deck(AnswerArr)
+        this.RoundNumber = 0;
+        this.LastWon = null;
         this.CurrentRound = {
-            received : 0,
+            received: 0,
             question: null,
             answers: [],
-            isRound : false,
-            master : 0
+            isRound: false,
+            master: 0
         }
     }
 
@@ -86,51 +101,31 @@ class Room
         return temp
     }
 
-    async Round()
+    async StartRound() 
     {
-        let RecivedAnswers = 0;
-
-
-        if(this.RoundNumber == 0)
-        {
+        if (this.RoundNumber === 0) {
             this.CurrentRound.master = 0
-        }
-        else
+        } 
+        else 
         {
-            this.CurrentRound.master = this.LastWon
+            this.CurrentRound.master = this.LastWon || 0
         }
-
-        this.users[this.CurrentRound.master].IsAskig = true
-
+    
+        const master = this.users[this.CurrentRound.master];
+        master.IsAsking = true;
+    
         this.CurrentRound.question = this.Questions.Pick(1)
-        if(this.CurrentRound.question == null)
+        if (!this.CurrentRound.question) 
         {
-            // sono finite le carte :<
+            throw new Error("Non ci sono più domande")
         }
-
-
+    }
+    
+    async ReceiveAnswer(userId, answer) 
+    {
+        this.CurrentRound.answers.push({ userId, answer })
+        this.CurrentRound.received++;
     }
 }
 
-/*
-
-    Stanza
-    
-    public Giocatori[] = { ... };
-
-    public Admin = Giocatori[0]
-
-    int CurrentMaster = 0; 
-
-    if(RoundNumber == 0){
-        CurrentMaster = 0; // Giocatore nella cella 0 dell'array
-    }
-    else{
-        CurrentMaster = LastWhoWon;
-    }
-
-    Giocatori[CurrentMaster].IsAskingQuestion = true;
-
-    [["string", n]] CurrentDomanda = MazzoDomande.DammmiCarte(1);
-
-*/
+module.exports = { Room, RoomPool, QuestionsArr, AnswerArr };
