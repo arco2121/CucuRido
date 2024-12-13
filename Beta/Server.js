@@ -7,7 +7,7 @@ const Rooms = new RoomPool()
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send('Americaya was Here')
+    res.send('Abcia2 and Arco2121 was Here')
 })
 
 app.post('/rooms/create/admin/:adminName', (req, res) => {
