@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.send('Abcia2 and Arco2121 were Here')
 })
 
-app.post('/rooms/create/admin/:adminName', (req, res) => {
+app.get('/rooms/create/:adminName', (req, res) => {
     const { adminName } = req.params
     const room = Rooms.Create(adminName)
     res.json(room)
