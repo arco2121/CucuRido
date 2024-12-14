@@ -1,0 +1,20 @@
+{
+  "name": "cucuridu",
+  "version": "1.0.0",
+  "description": "Silly card game similar to Cocorido✨",
+  "main": "Server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arco2121/CucuRidu.git"
+  },
+  "author": "Marco Colombara, Gianluca Grammatica",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arco2121/CucuRidu/issues"
+  },
+  "homepage": "https://github.com/arco2121/CucuRidu#readme"
+}
