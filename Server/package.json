@@ -1,10 +1,9 @@
 {
   "name": "cucuridu",
   "version": "1.0.0",
-  "description": "Silly card game similar to Cocorido✨",
   "main": "Server.js",
   "scripts": {
-    "test": "test",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "repository": {
@@ -16,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/arco2121/CucuRidu/issues"
   },
-  "homepage": "https://github.com/arco2121/CucuRidu#readme"
+  "homepage": "https://github.com/arco2121/CucuRidu#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "http": "^0.0.1-security",
+    "socket.io": "^4.8.1"
+  }
 }
