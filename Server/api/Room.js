@@ -1,3 +1,6 @@
+
+const {Deck,Card} = require('./Deck')
+const {Guest, Admin} = require('./User')
 const AnswerArr = [
     [
       "Una partita a Mario Cart irl con Steven Hawkins",
@@ -2318,97 +2321,239 @@ const QuestionsArr = [
       2
     ]
 ]
-  
-class Card
+const Alpha = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+const points = 5
+
+class RoomPool
 {
-    constructor(value,index,space)
+    constructor()
     {
-        this.value = value
-        this.index = index
-        this.space = space
+        this.rooms = []
     }
 
-    toJSON()
+    Create(adminName,adminid)
     {
-      return {
-        value : value,
-        index : index,
-        space : space
-      }
-    }
-
-    static FromJSON(json)
-    {
-        return new Card(json.value,json.index,json.space) || null 
-    }
-}
-class Deck
-{
-    constructor(arr)
-    {
-        this.cards = arr || []
-    }
-    
-    Shuffle()
-    {
-        this.cards.sort(() => Math.random() - 0.5)
-        this.cards.forEach((e,i) => {
-            this.cards[i].index = i
-        })
-    }
-
-    Pick(nCards)
-    {
-        if(this.cards.length <= 0)
+        while(true)
         {
-            return null
-        }
-        let toReturn = []
-        let n = 0
-        while(n < nCards)
-        {
-            toReturn.push(this.cards.pop())
-            n++
-        }
-        
-        return toReturn
-    }
-
-    PickCard(index)
-    {
-        if(this.cards.length <= 0)
-        {
-            return null
-        }
-        const h = this.cards[index]
-        this.cards[index] = null
-        let tem = []
-        let i = 0
-        this.cards.forEach(value => {
-            if(value != null)
+            const room = new Room(adminName,adminid)
+            if(this.Find(room.id) == -1)
             {
-                tem.push(new Card(value.value,i,value.space))
-                i++
+                this.rooms.push(room)
+                return room
             }
-        })
-        this.cards = tem
-        return h
+        }
     }
 
-    Insert(cards) 
+    Destroy(roomid)
     {
-        let i = this.cards.length - 1
-        let temp = []
-        cards.forEach(value => {
-            if(value != null)
+        const i = this.Find(roomid)
+        if(i != -1)
+        {
+            let temp = []
+            for(let j = 0; j<this.rooms.length;j++)
             {
-                temp.push(new Card(value.value,i,value.space))
-                i++
+                if(j != i)
+                {
+                    temp.push(this.rooms[j])
+                }
             }
-        })
-        this.cards = this.cards.concat(temp)
-        this.Shuffle()
+            this.rooms = temp
+        }
+    }
+
+    Find(roomid)
+    {
+        for(let i = 0; i<this.rooms.length;i++)
+        {
+            if(roomid == this.rooms[i].id)
+            {
+                return i
+            }
+        }
+        return -1
+    }
+
+    FindRoom(roomid)
+    {
+        for(let i = 0; i<this.rooms.length;i++)
+        {
+            if(roomid == this.rooms[i].id)
+            {
+                return this.rooms[i]
+            }
+        }
+        return null
+    }
+
+    FindRoomByUser(socketId) 
+    {
+        return this.rooms.find(room => room.users.some(user => user.id == socketId))
     }
 }
 
-module.exports = { Deck, UserDeck, QuestionsArr, AnswerArr };
+class Room
+{
+    constructor(adminName,adminid) 
+    {
+        this.id = this.constructor.RandomId(16)
+        this.admin = new Admin(adminName,adminid)
+        this.users = [this.admin]
+        this.Questions = new Deck(QuestionsArr.map(ele => new Card(ele[0],ele[1])))
+        this.Answers = new Deck(AnswerArr.map(ele => new Card(ele[0],ele[1])))
+        this.RoundNumber = 1;
+        this.Asker = this.admin
+        this.LastAsker = this.admin
+        this.CurrentRound = {
+            count: 0,
+            question: null,
+            answers: [],
+            isRound: false,
+        }
+    }
+
+    Add(name,id)
+    {
+        if(this.CurrentRound.isRound)
+        {
+            return null
+        }
+        const user = new Guest(name,id)
+        user.cards.Insert(this.Answers.Pick(11))
+        this.users.push(user)
+        return user
+    }
+
+    StartRound()
+    {
+        this.RoundNumber++
+        if(this.Questions.Empty() || this.Answers.Empty())
+        {
+            return this.ResultGame()
+        }
+        this.CurrentRound.isRound = true
+        const question = this.Questions.Pick(1)[0]
+        this.CurrentRound.question = question
+        return null
+    }
+
+    GetAnswers()
+    {
+        if(this.CurrentRound.count == this.users.length && this.CurrentRound.isRound)
+        {
+            return this.CurrentRound.answers
+        }
+        else 
+        {
+            return null
+        }
+    }
+
+    EndRound(idunic)
+    {
+        const user = this.FindUser(idunic)
+        user.point += points
+        this.Asker.IsAsking = false
+        this.LastAsker = this.Asker
+        this.Asker = user
+        this.Asker.IsAsking = true
+        this.CurrentRound = {
+            count: 0,
+            question: null,
+            answers: [],
+            isRound: true,
+        }
+    }
+
+    ResultGame()
+    {
+        const maxPoints = Math.max(...this.users.map(user => user.point))
+        return this.users.filter(user => user.point == maxPoints)
+    }
+
+    ReceiveAnswer(idunic,indexcards)
+    {
+        const use = this.FindUser(idunic)
+        if(!use || this.CurrentRound.answers.find(ele => ele[0].unicid == idunic))
+        {
+            return null
+        }
+        const card = use.cards.PickCard(indexcards)
+        const y = this.Answers.Pick(indexcards.length)
+        if(!y)
+        {
+            return null
+        }
+        use.cards.Insert(y)
+        this.CurrentRound.answers.push([use,card])
+        this.CurrentRound.count++
+    }
+
+    RandomId(len)
+    {
+        let temp = ""
+        let prev = ""
+        for(let i = 0; i<len+1;i++)
+        {
+            let letter = Alpha[Math.floor(Math.random() * Alpha.length)]
+            while(letter == prev)
+            {
+                letter = Alpha[Math.floor(Math.random() * Alpha.length)]
+            }
+            temp += letter
+            prev = letter
+        }
+        return temp
+    }
+
+    Find(userid)
+    {
+        for(let i = 0; i<this.users.length;i++)
+        {
+            if(userid == this.users[i].id)
+            {
+                return i
+            }
+        }
+        return -1
+    }
+
+    FindUser(idunic) 
+    {
+        for(let i = 0; i < this.users.length; i++) 
+        {
+            if(idunic == this.users[i].unicid) 
+            {
+                return this.users[i]
+            }
+        }
+        return null
+    }
+
+    DestroyUser(userid)
+    {
+        const i = this.Find(userid)
+        if(i != -1)
+        {
+            let temp = []
+            for(let j = 0; j<this.users.length;j++)
+            {
+                if(j != i)
+                {
+                    temp.push(this.users[j])
+                }
+            }
+            this.users = temp
+        }
+    }
+
+    infoJSON()
+    {
+        return {
+            id : this.id,
+            users : this.users.map(u => u.toJSON()),
+            asker : this.Asker.toJSON()
+        }
+    }
+}
+
+module.exports = { Room, RoomPool, QuestionsArr, AnswerArr };

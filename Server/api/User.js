@@ -9,8 +9,9 @@ class User
         this.name = name
         this.unicid = unicid
         this.point = 0
+        this.img = Math.floor(Math.random * 26)
         this.cards = new Deck()
-        this.IsAskig = false
+        this.IsAsking = false
         this.admin = false
     }
 
@@ -26,8 +27,9 @@ class User
             unicid: this.unicid,
             point: this.point,
             cards: this.cards.toJSON(),
-            IsAskig: this.IsAskig,
-            admin: this.admin
+            IsAsking: this.IsAsking,
+            admin: this.admin,
+            img : this.img
         }
     }
 
@@ -37,10 +39,10 @@ class User
         let prev = ""
         for(let i = 0; i<len+1;i++)
         {
-            let letter = Alpha[Math.floor((Math.random() + (Alpha.length-1)) - (Alpha.length-1))]
+            let letter = Alpha[Math.floor(Math.random() * Alpha.length)]
             while(letter == prev)
             {
-                letter = Alpha[Math.floor((Math.random() + (Alpha.length-1)) - (Alpha.length-1))]
+                letter = Alpha[Math.floor(Math.random() * Alpha.length)]
             }
             temp += letter
             prev = letter
@@ -53,8 +55,9 @@ class User
         const user = new User(data.name, data.unicid);
         user.point = data.point;
         user.cards = Deck.fromJSON(data.cards)
-        user.IsAskig = data.IsAskig;
+        user.IsAsking = data.IsAsking;
         user.admin = data.admin;
+        user.img = img
         return user;
     }
 }
@@ -63,6 +66,7 @@ class Admin extends User
     constructor(name,unicid)
     {
         super(name,unicid)
+        this.IsAsking = true
         this.admin = true
     }
 }
