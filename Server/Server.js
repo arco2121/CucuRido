@@ -1,6 +1,5 @@
 const express = require('express')
 const cors = require("cors")
-const file = require("fs")
 const http = require("http")
 const {Server} = require("socket.io")
 
@@ -11,7 +10,6 @@ const webserver = new Server(server)
 const port = process.env.PORT || 3000
 const {RoomPool} = require('./api/Room')
 const Rooms = new RoomPool()
-const homepage = file.readFileSync("./index.html")
 
 app.use(express.static('public'))
 app.use(cors())
