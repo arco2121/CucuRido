@@ -179,7 +179,6 @@ webserver.on("connection",(socket) => {
         {
             console.log("User : " + socket.id + " disconnected")
             const room = Rooms.FindRoomByUser(socket.id);
-            console.log(room)
             if(room) 
             {
                 room.DestroyUser(socket.id)
