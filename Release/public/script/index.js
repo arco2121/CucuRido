@@ -3,7 +3,9 @@ const colors = ["#fff5b3","#d6ebfe","#fed6e2"]
 const logoCount = 7
 let roomCode = ""
 let user = new User("default",User.RandomId(32))
-const Server = io('https://cucu-ridu.onrender.com');
+const Server = io('https://cucu-ridu.onrender.com', {
+    transports: ['websocket', 'polling']
+});
 (() => {
     const color = colors[Math.floor(Math.random() * (colors.length))]
     const logoPath = "./img/logoimg/" + Math.floor(Math.random() * (logoCount - 1) + 1) + ".png"
@@ -20,8 +22,9 @@ const Server = io('https://cucu-ridu.onrender.com');
     document.documentElement.style.setProperty("--backColor",contColor)
     document.documentElement.style.setProperty("--color",color)
     document.getElementById("logo").src = logoPath
-    Server.on("connected",()=>{
+    Server.on("connected",(data)=>{
         document.getElementById("home").style.display = "flex"
+        console.log("User : " + data)
     })
 })()
 

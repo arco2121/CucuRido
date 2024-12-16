@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 /*Gestione utente*/
 webserver.on("connection",(socket) => {
 
-    webserver.to(socket.id).emit("connected")
+    webserver.to(socket.id).emit("connected",socket.id)
     
     socket.on("createRoom",(data) => {
         try
