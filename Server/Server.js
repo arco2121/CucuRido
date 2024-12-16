@@ -182,9 +182,8 @@ webserver.on("connection",(socket) => {
             if(room) 
             {
                 webserver.to(room.id).emit('playerLeft')
-                if (room.Asker.id == socket.id || room.admin.id == socket.id) 
+                if (room.Asker.unicid == socket.id || room.admin.unicid == socket.id) 
                 {
-                    room.DestroyUser(socket.id)
                     webserver.to(room.id).emit('roomClosed')
                     Rooms.Destroy(room.id)
                     console.log("Room : " + room.id + " destroyed")
