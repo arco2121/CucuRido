@@ -44,7 +44,7 @@ webserver.on("connection",(socket) => {
             const room = Rooms.FindRoom(data.roomId)
             if(!room)
             {
-                webserver.to(socket.id).emit("error", "Not exist")
+                webserver.to(socket.id).emit("roomNotExist", "Not exist")
                 return
             }
             const user = room.Add(data.name,socket.id)

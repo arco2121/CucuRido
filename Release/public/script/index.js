@@ -50,6 +50,20 @@ Server.on("connected",(data)=>{
             Server.emit("createRoom",{name : document.getElementById("inputname").value.toString()})
         },{once : true})
     })
+
+    document.getElementById("joinRoom").addEventListener("click",()=>{
+        document.getElementById("home").style.display = "none"
+        document.getElementById("askroomcode").style.display = "flex"
+        document.getElementById("chooseRoomCode").addEventListener("click", ()=>{
+            document.getElementById("askroomcode").style.display = "none"
+            document.getElementById("askname").style.display = "flex"
+            document.getElementById("inputname").value = localStorage.getItem("lastName") || ""
+            document.getElementById("chooseName").addEventListener("click", ()=>{
+                localStorage.setItem("lastName",document.getElementById("inputname").value)
+                Server.emit("joinRoom",{name : document.getElementById("inputname").value.toString(), roomId : document.getElementById("inputroomcode").value.toString().toUpperCase()})
+            },{once : true})
+        },{once : true})
+    })
     
     /*AskName*/
     document.getElementById("randomName").addEventListener("click",()=>{
@@ -60,6 +74,7 @@ Server.on("connected",(data)=>{
     Server.on("roomCreated",(data) => {
         roomCode = data.roomId
         user = User.fromJSON(data.user)
+        document.getElementById("startRoom").style.display = "flex"
         document.getElementById("roomidview").innerText = "Room Code\n\n" + roomCode
         document.getElementById("roomidview").addEventListener("click",()=>{
             navigator.clipboard.writeText(roomCode).then(()=>{
@@ -70,5 +85,25 @@ Server.on("connected",(data)=>{
         document.getElementById("askname").style.display = "none"
         document.getElementById("roomlobby").style.display = "flex"
         document.getElementById("waittostart").style.display = "flex"
+    })
+    
+    Server.on("joinedRoom",(data) => {
+        roomCode = data.roomId
+        user = User.fromJSON(data.user)
+        document.getElementById("startRoom").style.display = "none"
+        document.getElementById("roomidview").innerText = "Room Code\n\n" + roomCode
+        document.getElementById("roomidview").addEventListener("click",()=>{
+            navigator.clipboard.writeText(roomCode).then(()=>{
+                alert("Copied to Clipboard")
+            })
+        })
+        document.getElementById("waittostart").style.display = "flex"
+        document.getElementById("askname").style.display = "none"
+        document.getElementById("roomlobby").style.display = "flex"
+        document.getElementById("waittostart").style.display = "flex"
+    })
+
+    Server.on("roomNotExist",() => {
+        alert("This Room does not exist Silly✨")
     })
 })

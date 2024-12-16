@@ -5,7 +5,7 @@ const nounsAndAdjectives = {
       "Matilda",
       "Gesù",
       "Patrizia",
-      "Anastasia ",
+      "Anastasia",
       "Tancredi",
       "Geltrude",
       "San bartolomeo",
