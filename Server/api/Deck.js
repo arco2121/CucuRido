@@ -10,9 +10,9 @@ class Card
     toJSON()
     {
       return {
-        value : value,
-        index : index,
-        space : space
+        value : this.value,
+        index : this.index,
+        space : this.space
       }
     }
 
