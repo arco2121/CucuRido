@@ -23,8 +23,11 @@ const Server = io('https://cucu-ridu.onrender.com', {
     document.documentElement.style.setProperty("--color",color)
     document.getElementById("logo").src = logoPath
     Server.on("connected",(data)=>{
-        document.getElementById("home").style.display = "flex"
         console.log("User : " + data)
+        setTimeout(()=>{
+            document.getElementById("load").style.display = "none"
+            document.getElementById("home").style.display = "flex"
+        },1000)
     })
 })()
 
