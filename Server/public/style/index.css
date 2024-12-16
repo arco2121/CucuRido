@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wdth,wght@0,101.5,100..900;1,101.5,100..900&display=swap');
 *
 {
     font-family: "Chewy";
@@ -35,4 +35,28 @@ div
     left: 50%;
     transform: translate(-50%,-50%);
     color: black;
+}
+h1
+{
+    font-family: "Sour Gummy", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style:normal;
+    font-variation-settings:
+      "wdth" 101.5;
+}
+h4
+{
+    font-family: "Sour Gummy", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style:italic;
+    font-variation-settings:
+      "wdth" 101.5;
+}
+.contorno
+{
+    border-radius: 100%;
+    padding: 20px;
+    border: solid black 5px;
 }
