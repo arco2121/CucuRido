@@ -2544,6 +2544,23 @@ class Room
             }
             this.users = temp
         }
+        if(this.CurrentRound.isRound)
+        {
+            const l = this.CurrentRound.answers.findIndex(ele => ele[0].unicid == userid)
+            if(l != -1)
+            {
+                let temp = []
+                for(let j = 0; j<this.CurrentRound.answers.length;j++)
+                {
+                    if(j != l)
+                    {
+                        temp.push(this.CurrentRound.answers[j])
+                    }
+                }
+                this.CurrentRound.answers = temp
+                this.CurrentRound.count--
+            }
+        }
     }
 
     infoJSON()
