@@ -74,7 +74,7 @@ Server.on("connected",(data)=>{
     Server.on("roomCreated",(data) => {
         roomCode = data.roomId
         user = User.fromJSON(data.user)
-        document.getElementById("startRoom").style.display = "flex"
+        document.getElementById("startRoom").style.display = "block"
         document.getElementById("roomidview").innerText = "Room Code\n\n" + roomCode
         document.getElementById("roomidview").addEventListener("click",()=>{
             navigator.clipboard.writeText(roomCode).then(()=>{
@@ -82,6 +82,7 @@ Server.on("connected",(data)=>{
             })
         })
         document.getElementById("waittostart").style.display = "flex"
+        document.getElementById("waittostart").style.justifyContent = ""
         document.getElementById("askname").style.display = "none"
         document.getElementById("roomlobby").style.display = "flex"
         document.getElementById("waittostart").style.display = "flex"
@@ -98,6 +99,7 @@ Server.on("connected",(data)=>{
             })
         })
         document.getElementById("waittostart").style.display = "flex"
+        document.getElementById("waittostart").style.justifyContent = "center"
         document.getElementById("askname").style.display = "none"
         document.getElementById("roomlobby").style.display = "flex"
         document.getElementById("waittostart").style.display = "flex"
