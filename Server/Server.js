@@ -179,17 +179,18 @@ webserver.on("connection",(socket) => {
         {
             console.log("User : " + socket.id + " disconnected")
             const room = Rooms.FindRoomByUser(socket.id)
-            console.log(room)
             if(room) 
             {
-                room.DestroyUser(socket.id)
                 webserver.to(room.id).emit('playerLeft')
                 if (room.Asker.id == socket.id || room.admin.id == socket.id) 
                 {
+                    room.DestroyUser(socket.id)
                     webserver.to(room.id).emit('roomClosed')
                     Rooms.Destroy(room.id)
                     console.log("Room : " + room.id + " destroyed")
+                    return
                 }
+                room.DestroyUser(socket.id)
             }
         }
         catch(error)

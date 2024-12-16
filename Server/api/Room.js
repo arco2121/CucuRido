@@ -2396,7 +2396,6 @@ class RoomPool
           const user = this.rooms[i].FindUser(socketId)
           if (user) 
           {
-            console.log(user)
               return this.rooms[i]
           }
       }
