@@ -48,7 +48,6 @@ Server.on("connected",(data)=>{
         document.getElementById("chooseName").addEventListener("click", ()=>{
             localStorage.setItem("lastName",document.getElementById("inputname").value)
             Server.emit("createRoom",{name : document.getElementById("inputname").value.toString()})
-            console.log("ahgoio dzrtgòua")
         },{once : true})
     })
     
@@ -60,9 +59,13 @@ Server.on("connected",(data)=>{
     /*Events*/
     Server.on("roomCreated",(data) => {
         roomCode = data.roomId
-        console.log(data.user)
         user = User.fromJSON(data.user)
-        document.getElementById("roomidview").innerText = "Room Code :\n" + roomCode
+        document.getElementById("roomidview").innerText = "Room Code\n\n" + roomCode
+        document.getElementById("roomidview").addEventListener("click",()=>{
+            navigator.clipboard.writeText(roomCode).then(()=>{
+                alert("Copied to Clipboard")
+            })
+        })
         document.getElementById("waittostart").style.display = "flex"
         document.getElementById("askname").style.display = "none"
         document.getElementById("roomlobby").style.display = "flex"

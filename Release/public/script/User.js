@@ -52,10 +52,10 @@ class User
     {
         const user = new User(data.name, data.unicid);
         user.point = data.point;
-        user.cards = Deck.fromJSON(data.cards)
+        user.cards = Deck.fromJSON(data.cards.cards)
         user.IsAsking = data.IsAsking;
         user.admin = data.admin;
-        user.img = img
+        user.img = data.img
         return user;
     }
 }
