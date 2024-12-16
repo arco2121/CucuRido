@@ -2399,7 +2399,7 @@ class Room
 {
     constructor(adminName,adminid) 
     {
-        this.id = this.constructor.RandomId(16)
+        this.id = this.RandomId(16)
         this.admin = new Admin(adminName,adminid)
         this.users = [this.admin]
         this.Questions = new Deck(QuestionsArr.map(ele => new Card(ele[0],ele[1])))
