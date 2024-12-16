@@ -2391,7 +2391,15 @@ class RoomPool
 
     FindRoomByUser(socketId) 
     {
-        return this.rooms.find(room => room.users.some(user => user.id == socketId))
+      for (let room of this.rooms)
+      {
+          const index = room.Find(socketId);
+          if (index != -1) 
+          {
+              return room
+          }
+      }
+      return null
     }
 }
 
@@ -2401,9 +2409,10 @@ class Room
     {
         this.id = this.RandomId(16)
         this.admin = new Admin(adminName,adminid)
-        this.users = [this.admin]
         this.Questions = new Deck(QuestionsArr.map(ele => new Card(ele[0],ele[1])))
         this.Answers = new Deck(AnswerArr.map(ele => new Card(ele[0],ele[1])))
+        this.admin.cards.Insert(this.Answers.Pick(11))
+        this.users = [this.admin]
         this.RoundNumber = 1;
         this.Asker = this.admin
         this.LastAsker = this.admin

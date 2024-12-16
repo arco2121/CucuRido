@@ -60,6 +60,7 @@ Server.on("connected",(data)=>{
     /*Events*/
     Server.on("roomCreated",(data) => {
         roomCode = data.roomId
+        console.log(data.user)
         user = User.fromJSON(data.user)
         document.getElementById("roomidview").innerText = "Room Code :\n" + roomCode
         document.getElementById("waittostart").style.display = "flex"
