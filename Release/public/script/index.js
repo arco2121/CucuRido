@@ -50,8 +50,7 @@ document.getElementById("createRoom").addEventListener("click",()=>{
     document.getElementById("chooseName").addEventListener("click", ()=>{
         localStorage.setItem("lastName",document.getElementById("inputname").value)
         Server.emit("createRoom",{name : document.getElementById("inputname").value.toString()})
-        document.getElementById("chooseName").dispatchEvent(new Event("click"))
-    })
+    },{once : true})
 })
 
 /*AskName*/

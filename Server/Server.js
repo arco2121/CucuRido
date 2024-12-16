@@ -34,6 +34,7 @@ webserver.on("connection",(socket) => {
         {
             const room = Rooms.Create(data.name,socket.id)
             socket.join(room.id)
+            console.log("Room : " + room.id + " created")
             webserver.to(socket.id).emit("roomCreated",{roomId : room.id, user : room.admin.toJSON()})
         }
         catch
@@ -52,6 +53,7 @@ webserver.on("connection",(socket) => {
             const user = room.Add(data.name,socket.id)
             webserver.to(room.id).emit('playerJoined')
             socket.join(room.id)
+            console.log("Room : " + room.id + " joined " + socket.id)
             webserver.to(socket.id).emit('joinedRoom', {user : user.toJSON(), roomId : room.id})
         }
         catch
@@ -77,6 +79,7 @@ webserver.on("connection",(socket) => {
             {
                 webserver.to(room.id).emit('gameEnded', {result : result.map((u) => u.toJSON())})
                 Rooms.Destroy(room.id)
+                console.log("Room : " + room.id + " destroyed")
                 return
             }
             webserver.to(room.id).emit('questionRe', {question : room.CurrentRound.question.toJSON()})
@@ -175,6 +178,7 @@ webserver.on("connection",(socket) => {
                 {
                     webserver.to(room.id).emit('roomClosed')
                     Rooms.Destroy(room.id)
+                    console.log("Room : " + room.id + " destroyed")
                 }
             }
         }
