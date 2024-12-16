@@ -2524,6 +2524,7 @@ class Room
         {
             if(userid == this.users[i].unicid)
             {
+              console.log(userid + "      " + this.users[i].unicid)
                 return i
             }
         }
