@@ -107,5 +107,7 @@ Server.on("connected",(data)=>{
 
     Server.on("roomNotExist",() => {
         alert("This Room does not exist Silly✨")
+        document.getElementById("askname").style.display = "none"
+        document.getElementById("home").style.display = "flex"
     })
 })
