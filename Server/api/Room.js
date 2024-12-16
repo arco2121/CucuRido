@@ -2391,12 +2391,13 @@ class RoomPool
 
     FindRoomByUser(socketId) 
     {
-      for (let room of this.rooms)
+      for (let i = 0; i<this.rooms.length;i++)
       {
-          const index = room.Find(socketId);
-          if (index != -1) 
+          const user = this.rooms[i].FindUser(socketId)
+          console.log(user)
+          if (user) 
           {
-              return room
+              return this.rooms[i]
           }
       }
       return null
@@ -2524,7 +2525,6 @@ class Room
         {
             if(userid == this.users[i].unicid)
             {
-              console.log(userid + "      " + this.users[i].unicid)
                 return i
             }
         }
