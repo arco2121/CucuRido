@@ -16,7 +16,7 @@
     "url": "https://github.com/arco2121/CucuRidu/issues"
   },
   "homepage": "https://github.com/arco2121/CucuRidu#readme",
-  "description": "",
+  "description": "Silly card game similar to Cocorido✨",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
