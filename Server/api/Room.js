@@ -2522,7 +2522,7 @@ class Room
     {
         for(let i = 0; i<this.users.length;i++)
         {
-            if(userid == this.users[i].id)
+            if(userid == this.users[i].unicid)
             {
                 return i
             }
