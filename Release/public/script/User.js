@@ -1,5 +1,3 @@
-const {Deck} = require("./Deck")
-
 const Alpha = "QWERTYUIOPASDFGHJKLZXCVBNM1256789qwertypaufghjklzcvbnm*/&%$!"
 
 class User
@@ -77,5 +75,3 @@ class Guest extends User
         super(name,unicid)
     }
 }
-
-module.exports = {Guest, Admin, User}

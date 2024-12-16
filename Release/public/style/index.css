@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wdth,wght@0,101.5,100..900;1,101.5,100..900&display=swap');
+*
+{
+    user-select: none;
+    -webkit-user-drag: none;
+    text-align: center;
+    font-family: "Sour Gummy", sans-serif;
+    font-optical-sizing: auto;
+    font-variation-settings:
+      "wdth" 101.5;
+    transition: all ease 0.3s;
+}
+*::-webkit-scrollbar
+{
+    display: none;
+}
+:root
+{
+    --backColor : #ffffff;
+    --color : #ffffff
+}
+
+html
+{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background: var(--backColor);
+}
+.window
+{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transform-origin: top left;
+    background: var(--backColor);
+}
+@keyframes win 
+{
+    0%
+    {
+        transform: translate(-50%,-50%);
+        scale: 0.8;
+        opacity: 0%;
+    }
+    100%
+    {
+        transform: translate(-50%,-50%);
+        scale: 1;
+        opacity: 100%;
+    }
+}
+
+#home
+{
+    display: none;
+    z-index: 1;
+    animation: win 0.2s ;
+}
+.half
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.contorno
+{
+    border-radius: 100%;
+    padding: 20px;
+    border: solid black 10px;
+    background: var(--color);
+}
+h1
+{
+    font-size: 600;
+    font-size: 50px;
+    margin: 10px;
+}
+h5
+{
+    font-size: 400;
+    font-style: italic;
+    margin: 0px;
+}
+button
+{
+    padding: 10px;
+    border: solid 5px black;
+    width: 180px;
+    border-radius: 30px;
+    height: 60px;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    background: var(--color);
+    transition: all 150ms ease;
+}
+button:active
+{
+    scale: 0.9;
+    background: transparent;
+}
+input[type="text"]
+{
+    padding: 10px;
+    border: solid 5px black;
+    width: 240px;
+    border-radius: 30px;
+    height: 60px;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    background: var(--color);
+}
+input[type="text"]:active
+{
+    scale: 0.95;
+    background: transparent;
+}
+#offline
+{
+    display: none;
+    z-index: 9999;
+    animation: win 0.2s ;
+}
+#askname
+{
+    display: none;
+    z-index: 2;
+    animation: win 0.2s ;
+}
+#roomlobby
+{
+    display: none;
+    z-index: 3;
+    animation: win 0.2s ; 
+}
+#waittostart
+{
+    display: none;
+    z-index: 4;
+    animation: win 0.2s ; 
+}
+@media (orientation : portrait) or (min-height : 400px) {
+    .window
+    {
+        flex-direction: column;
+    }
+}
