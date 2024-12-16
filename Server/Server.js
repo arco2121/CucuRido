@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 webserver.on("connection",(socket) => {
 
     webserver.to(socket.id).emit("connected",socket.id)
-    console.log("User : " + data + " connected")
+    console.log("User : " + socket.id + " connected")
     
     socket.on("createRoom",(data) => {
         try
@@ -165,7 +165,7 @@ webserver.on("connection",(socket) => {
     socket.on("disconnect",() => {
         try
         {
-            console.log("User : " + data + " disconnected")
+            console.log("User : " + socket.id + " disconnected")
             const room = Rooms.FindRoomByUser(socket.id);
             if(room) 
             {

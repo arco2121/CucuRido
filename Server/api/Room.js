@@ -7,6 +7,10 @@ const AnswerArr = [
       0
     ],
     [
+      "Il B.D.S.M occultato",
+      0
+    ]
+    [
       "Un aborto spontaneo",
       0
     ],
