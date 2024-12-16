@@ -32,8 +32,10 @@ webserver.on("connection",(socket) => {
             console.log("Room : " + room.id + " created")
             webserver.to(socket.id).emit("roomCreated",{roomId : room.id, user : room.admin.toJSON()})
         }
-        catch
-        {}
+        catch(error)
+        {
+            console.log(error)
+        }
     })
 
     socket.on("joinRoom",(data) => {
@@ -51,8 +53,10 @@ webserver.on("connection",(socket) => {
             console.log("Room : " + room.id + " joined " + socket.id)
             webserver.to(socket.id).emit('joinedRoom', {user : user.toJSON(), roomId : room.id})
         }
-        catch
-        {}
+        catch(error)
+        {
+            console.log(error)
+        }
     })
 
     socket.on("startRound", (data) => {
@@ -79,8 +83,10 @@ webserver.on("connection",(socket) => {
             }
             webserver.to(room.id).emit('questionRe', {question : room.CurrentRound.question.toJSON()})
         }
-        catch
-        {}
+        catch(error)
+        {
+            console.log(error)
+        }
     })
 
     socket.on("infoRoom",(data) => {
@@ -94,8 +100,10 @@ webserver.on("connection",(socket) => {
             }
             webserver.to(socket.id).emit('infoRoomed', {room : room.infoJSON()})
         }
-        catch
-        {}
+        catch(error)
+        {
+            console.log(error)
+        }
     })
 
     socket.on("getAnswers",(data) => {
@@ -118,8 +126,10 @@ webserver.on("connection",(socket) => {
                 resu[1].map((card) => card.toJSON())
             ])})
         }
-        catch
-        {}
+        catch(error)
+        {
+            console.log(error)
+        }
     })
 
     socket.on("endRound",(data) => {
@@ -139,8 +149,10 @@ webserver.on("connection",(socket) => {
             room.EndRound(data.id)
             webserver.to(room.id).emit('whoWon', {winner : room.Asker.toJSON(), lastwinner : room.LastAsker.toJSON()})
         }
-        catch
-        {}
+        catch(error)
+        {
+            console.log(error)
+        }
     })
 
     socket.on("receiveAnswer",(data) => {
@@ -156,8 +168,10 @@ webserver.on("connection",(socket) => {
             const user = room.FindUser(socket.id)
             webserver.to(socket.id).emit('receivedAnswer', {user : user.toJSON()})
         }
-        catch
-        {}
+        catch(error)
+        {
+            console.log(error)
+        }
     })
 
     socket.on("disconnect",() => {
@@ -177,8 +191,10 @@ webserver.on("connection",(socket) => {
                 }
             }
         }
-        catch
-        {}
+        catch(error)
+        {
+            console.log(error)
+        }
     })
 
 })
