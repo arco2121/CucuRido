@@ -5,14 +5,20 @@ const {Server} = require("socket.io")
 
 const app = express()
 const server = http.createServer(app)
-const webserver = new Server(server)
+const webserver = new Server(server,{cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+}})
 
 const port = process.env.PORT || 3000
 const {RoomPool} = require('./api/Room')
 const Rooms = new RoomPool()
 
+app.use(cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+}))
 app.use(express.static('public'))
-app.use(cors())
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html')
 })
