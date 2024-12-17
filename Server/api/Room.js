@@ -2325,7 +2325,7 @@ const QuestionsArr = [
       2
     ]
 ]
-const Alpha = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+const Alpha = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890"
 const points = 5
 
 class RoomPool
@@ -2407,7 +2407,7 @@ class Room
 {
     constructor(adminName,adminid) 
     {
-        this.id = this.RandomId(16)
+        this.id = this.RandomId(32)
         this.admin = new Admin(adminName,adminid)
         this.Questions = new Deck(QuestionsArr.map(ele => new Card(ele[0],ele[1])))
         this.Answers = new Deck(AnswerArr.map(ele => new Card(ele[0],ele[1])))

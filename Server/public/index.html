@@ -21,7 +21,7 @@
         document.documentElement.style.setProperty("--backColor",colors[Math.floor(Math.random() * (colors.length))])
         document.getElementById("imgl").src = path
         let Playing = true
-        document.getElementById("imgl").addEventListener("click",()=>{
+        document.getElementById("logo").addEventListener("click",()=>{
             if(Playing)
             {
                 document.getElementById("music").play()
@@ -31,6 +31,19 @@
             {
                 document.getElementById("music").pause()
                 Playing = true
+            }
+        })
+        document.addEventListener('visibilitychange',()=>{
+            if (document.hidden) 
+            {
+                document.getElementById("music").pause()
+            }
+            else
+            {
+                if(!Playing)
+                {
+                    document.getElementById("music").play()
+                }
             }
         })
     </script>

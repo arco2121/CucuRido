@@ -38,59 +38,87 @@ Server.on("connected",(data)=>{
         {
             document.getElementById("offline").style.display = "flex"
         }
-    },100)
+    },100);
     
     /*Homepage*/
-    let Playing = true
-    document.getElementById("logo").addEventListener("click",()=>{
-        if(Playing)
-        {
-            document.getElementById("music").play()
-            Playing = false
-        }
-        else
-        {
-            document.getElementById("music").pause()
-            Playing = true
-        }
-    })
-    window.addEventListener("focusout",()=>{
-        if(!Playing)
-        {
-            document.getElementById("music").pause()
-            Playing = true
-        }
-    })
-    window.addEventListener("focusin",()=>{
-        if(Playing)
-        {
-            document.getElementById("music").play()
-            Playing = false
-        }
-    })
+    (() => {
+        let Playing = true
+        document.getElementById("logo").addEventListener("click",()=>{
+            if(Playing)
+            {
+                document.getElementById("music").play()
+                Playing = false
+            }
+            else
+            {
+                document.getElementById("music").pause()
+                Playing = true
+            }
+        })
+        document.addEventListener('visibilitychange',()=>{
+            if (document.hidden) 
+            {
+                document.getElementById("music").pause()
+            }
+            else
+            {
+                if(!Playing)
+                {
+                    document.getElementById("music").play()
+                }
+            }
+        })
+    })()
 
     document.getElementById("createRoom").addEventListener("click",()=>{
         document.getElementById("home").style.display = "none"
         document.getElementById("askname").style.display = "flex"
         document.getElementById("inputname").value = localStorage.getItem("lastName") || ""
-        document.getElementById("chooseName").addEventListener("click", ()=>{
-            localStorage.setItem("lastName",document.getElementById("inputname").value)
-            Server.emit("createRoom",{name : document.getElementById("inputname").value.toString()})
-        },{once : true})
+        const temp = ()=>{
+            if(document.getElementById("inputname").value != "")
+            {
+                localStorage.setItem("lastName",document.getElementById("inputname").value)
+                Server.emit("createRoom",{name : document.getElementById("inputname").value.toString()})
+                document.getElementById("chooseName").removeEventListener("click",temp)
+            }
+            else
+            {
+                alert("Say something... I can't... Then you have forced my hands...Eurilicus...")
+            }
+        }
+        document.getElementById("chooseName").addEventListener("click", temp)
     })
 
     document.getElementById("joinRoom").addEventListener("click",()=>{
         document.getElementById("home").style.display = "none"
-        document.getElementById("askroomcode").style.display = "flex"
-        document.getElementById("chooseRoomCode").addEventListener("click", ()=>{
-            document.getElementById("askroomcode").style.display = "none"
-            document.getElementById("askname").style.display = "flex"
-            document.getElementById("inputname").value = localStorage.getItem("lastName") || ""
-            document.getElementById("chooseName").addEventListener("click", ()=>{
-                localStorage.setItem("lastName",document.getElementById("inputname").value)
-                Server.emit("joinRoom",{name : document.getElementById("inputname").value.toString(), roomId : document.getElementById("inputroomcode").value.toString().toUpperCase()})
-            },{once : true})
-        },{once : true})
+        document.getElementById("askroomcode").style.display = "flex";
+        const tempora = ()=>{
+            if(document.getElementById("inputroomcode").value != "" && document.getElementById("inputroomcode").value.length == 16)
+            {
+                document.getElementById("askroomcode").style.display = "none"
+                document.getElementById("askname").style.display = "flex"
+                document.getElementById("inputname").value = localStorage.getItem("lastName") || ""
+                const temp = ()=>{
+                    if(document.getElementById("inputname").value != "")
+                    {
+                        localStorage.setItem("lastName",document.getElementById("inputname").value)
+                        Server.emit("joinRoom",{name : document.getElementById("inputname").value.toString(), roomId : document.getElementById("inputroomcode").value.toString().toUpperCase()})
+                        document.getElementById("chooseName").removeEventListener("click",temp)
+                    }
+                    else
+                    {
+                        alert("Say something... I can't... Then you have forced my hands...Eurilicus...")
+                    }
+                }
+                document.getElementById("chooseName").addEventListener("click",temp)
+                document.getElementById("chooseRoomCode").removeEventListener("click",tempora)
+            }
+            else
+            {
+                alert("Say something... 16 at least...")
+            }
+        }
+        document.getElementById("chooseRoomCode").addEventListener("click", tempora)
     })
     
     /*AskName*/
