@@ -18,10 +18,13 @@ class Card
         text.classList.add("quest")
         const space = document.createElement("h3")
         space.classList.add("spaces")
+        const div1 = document.createElement("div")
+        div1.classList.add("semi")
         space.innerText = this.space
         const tit = document.createElement("h3")
         tit.innerText = title
-        card.appendChild(tit)
+        div1.appendChild(tit)
+        card.appendChild(div1)
         div.appendChild(text)
         card.appendChild(div)
         card.appendChild(space)

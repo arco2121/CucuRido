@@ -223,19 +223,39 @@ input[type="text"]:active
 {
     display: flex;
     flex-direction: column;
-    width: 175px;
-    height: 250px;
+    width: 150px;
+    height: 225px;
     justify-content: space-between;
     align-items: flex-end;
     padding: 20px;
-    border-radius: 25px;
+    border-radius: 20px;
     background-color: var(--color);
     border: solid 5px black;
-    margin: 20px;
+    margin: 15px;
     object-fit: contain;
     transition: all 200ms ease;
 }
 .card:active
+{
+    scale: 0.95;
+}
+.cardmini
+{
+    display: flex;
+    flex-direction: column;
+    width: 125px;
+    height: 170px;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: var(--color);
+    border: solid 5px black;
+    margin: 15px;
+    object-fit: contain;
+    transition: all 200ms ease;
+}
+.cardmini:active
 {
     scale: 0.95;
 }
@@ -252,6 +272,25 @@ input[type="text"]:active
 .spaces
 {
     z-index: 2;
+}
+.taguser
+{
+    position: fixed;
+    display: none;
+    flex-direction: row;
+    top: 1%;
+    left: 95%;
+    width: max-content;
+    transform: translate(-95%,-1%);
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+}
+#userimg
+{
+    border-radius: 100%;
+    border: solid 2.5px black;
+    margin: 10px;
 }
 .cardimg
 {

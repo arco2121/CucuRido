@@ -3,6 +3,10 @@ const colors = ["#fff5b3","#d6ebfe","#fed6e2"]
 const logoCount = 7
 let roomCode = ""
 let user = new User("default",User.RandomId(32))
+const imgUserPath = (n) => {
+    const est = n < 26 ? ".jpg" : ".png"
+    return "./img/userimg/" + n + est
+}
 const Server = io("https://cucu-ridu.onrender.com");
 (() => {
     const color = colors[Math.floor(Math.random() * (colors.length))]
@@ -177,11 +181,14 @@ Server.on("connected",(data)=>{
 
     Server.on("questionRe",(data)=>{
         document.getElementById("waittostart").style.display = "none"
+        document.getElementById("userimg").src = imgUserPath(user.img)
+        document.getElementById("username").innerText = user.name
+        document.getElementById("usert").style.display = "flex"
         if(user.IsAsking)
         {
             const card = Card.FromJSON(data.question)
             console.log(card,data)
-            document.getElementById("cardcontainer").appendChild(card.toHTML("Question 🩷"))
+            document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Question"))
             document.getElementById("askerview").style.display = "flex"
         }
         else 
