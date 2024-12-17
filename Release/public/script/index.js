@@ -29,7 +29,7 @@ Server.on("connected",(data)=>{
         document.getElementById("home").style.display = "flex"
     },1000)
 
-    setInterval(()=>{
+    const internet = setInterval(()=>{
         if(navigator.onLine)
         {
             document.getElementById("offline").style.display = "none"
@@ -41,6 +41,34 @@ Server.on("connected",(data)=>{
     },100)
     
     /*Homepage*/
+    let Playing = true
+    document.getElementById("logo").addEventListener("click",()=>{
+        if(Playing)
+        {
+            document.getElementById("music").play()
+            Playing = false
+        }
+        else
+        {
+            document.getElementById("music").pause()
+            Playing = true
+        }
+    })
+    window.addEventListener("focusout",()=>{
+        if(!Playing)
+        {
+            document.getElementById("music").pause()
+            Playing = true
+        }
+    })
+    window.addEventListener("focusin",()=>{
+        if(Playing)
+        {
+            document.getElementById("music").play()
+            Playing = false
+        }
+    })
+
     document.getElementById("createRoom").addEventListener("click",()=>{
         document.getElementById("home").style.display = "none"
         document.getElementById("askname").style.display = "flex"
@@ -106,7 +134,7 @@ Server.on("connected",(data)=>{
     })
 
     Server.on("roomNotExist",() => {
-        alert("This Room does not exist Silly✨")
+        alert("This Room does not exist, Silly✨")
         document.getElementById("askname").style.display = "none"
         document.getElementById("home").style.display = "flex"
     })

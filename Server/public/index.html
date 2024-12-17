@@ -14,11 +14,25 @@
         <br>
         <h5>Running at the moment...</h5>
     </div>
+    <audio style="display: none;" src="audio/lobby.mp3" id="music"></audio>
     <script>
         const colors = ["#fff5b3","#d6ebfe","#fed6e2"]
         const path = "./img/" + Math.floor(Math.random() * (7 - 1) + 1) + ".png"
         document.documentElement.style.setProperty("--backColor",colors[Math.floor(Math.random() * (colors.length))])
         document.getElementById("imgl").src = path
+        let Playing = true
+        document.getElementById("imgl").addEventListener("click",()=>{
+            if(Playing)
+            {
+                document.getElementById("music").play()
+                Playing = false
+            }
+            else
+            {
+                document.getElementById("music").pause()
+                Playing = true
+            }
+        })
     </script>
 </body>
 </html>
