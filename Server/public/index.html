@@ -21,7 +21,7 @@
         document.documentElement.style.setProperty("--backColor",colors[Math.floor(Math.random() * (colors.length))])
         document.getElementById("imgl").src = path
         let Playing = true
-        document.getElementById("logo").addEventListener("click",()=>{
+        document.getElementById("imgl").addEventListener("click",()=>{
             if(Playing)
             {
                 document.getElementById("music").play()
