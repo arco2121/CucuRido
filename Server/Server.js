@@ -85,6 +85,7 @@ webserver.on("connection",(socket) => {
                 return
             }
             webserver.to(room.id).emit('questionRe', {question : room.CurrentRound.question.toJSON()})
+            console.log("Room : " + room.id + " round started")
         }
         catch(error)
         {
