@@ -3,1748 +3,1748 @@ const {Deck,Card} = require('./Deck')
 const {Guest, Admin} = require('./User')
 const AnswerArr = [
     [
-      "Una partita a Mario Cart irl con Steven Hawkins",
-      0
+      "Una partita a Mario Cart irl con Steven Hawking",
+      1
     ],
     [
       "Il B.D.S.M occultato",
-      0
+      1
     ]
     [
       "Un aborto spontaneo",
-      0
+      1
     ],
     [
-      "La 104",
-      0
+      "La 114",
+      1
     ],
     [
       "Un sex-toy per cani",
-      0
+      1
     ],
     [
       "La mentalità ISIS",
-      0
+      1
     ],
     [
       "Gli ebrei",
-      0
+      1
     ],
     [
       "Lo sperma",
-      0
+      1
     ],
     [
       "Un gelato allo sperma",
-      0
+      1
     ],
     [
       "Il colpo di grazia ",
-      0
+      1
     ],
     [
       "I bambini operai di shein",
-      0
+      1
     ],
     [
       "Il governo meloni",
-      0
+      1
     ],
     [
       "La tratta degli schiavi",
-      0
+      1
     ],
     [
       "La morte di Bossetti ",
-      0
+      1
     ],
     [
       "Essere sulla lista di PDiddy e non saperlo",
-      0
+      1
     ],
     [
       "La borra",
-      0
+      1
     ],
     [
       "Brumotti picchiato nelle periferie",
-      0
+      1
     ],
     [
       "Andare a puttane",
-      0
+      1
     ],
     [
       "Vendere dischi illegali di Gigi D'Alessio",
-      0
+      1
     ],
     [
       "Un dito in culo",
-      0
+      1
     ],
     [
       "Iniziare con un dito e finire con tutto il braccio",
-      0
+      1
     ],
     [
       "La cappella del papa",
-      0
+      1
     ],
     [
       "La salumeria privata del clero",
-      0
+      1
     ],
     [
       "Ringraziare Beyoncé ",
-      0
+      1
     ],
     [
       "La zia Ermenegilda",
-      0
+      1
     ],
     [
       "I rom",
-      0
+      1
     ],
     [
       "Un'esplorazione rettale",
-      0
+      1
     ],
     [
       "Un limone appassionato dal dubbio consenso",
-      0
+      1
     ],
     [
       "Lanciare una sedia al compagno di classe speciale",
-      0
+      1
     ],
     [
       "Il ricatto sessuale",
-      0
+      1
     ],
     [
       "Manomettere i freni di una sedia a rotelle",
-      0
+      1
     ],
     [
       "Il comunismo",
-      0
+      1
     ],
     [
       "Nani da giardino che mostrano il culo ai passanti",
-      0
+      1
     ],
     [
       "Il discorso di mussolini",
-      0
+      1
     ],
     [
       "I campi di cotone ripopolati",
-      0
+      1
     ],
     [
       "Mettere i fiori sulla tomba di Mussolini ",
-      0
+      1
     ],
     [
       "Bestemmiare in chiesa",
-      0
+      1
     ],
     [
       "Chiedere a un bambino cieco quante dita ho alzate",
-      0
+      1
     ],
     [
       "Diffondere il verbo di Geova in un ospedale di malati di cancro",
-      0
+      1
     ],
     [
       "Dare fuoco ad un asilo nido",
-      0
+      1
     ],
     [
       "Una gruccia al posto della pillola abortiva ",
-      0
+      1
     ],
     [
       "L'economia africana ",
-      0
+      1
     ],
     [
       "Lo sbarco in Normandia ",
-      0
+      1
     ],
     [
       "Rievocare la marcia su Roma",
-      0
+      1
     ],
     [
       "Premere il bottone rosso sulla scrivania di Kim Jong-Un",
-      0
+      1
     ],
     [
       "Lo sverginamento anale brutale",
-      0
+      1
     ],
     [
       "Riportare il fascismo in Italia ",
-      0
+      1
     ],
     [
       "Baciare il mio Bro senza omosessualità ",
-      0
+      1
     ],
     [
       "Pisciare dal buco del culo",
-      0
+      1
     ],
     [
       "Le mani di Gianni Morandi",
-      0
+      1
     ],
     [
       "lo scandalo Ferragni",
-      0
+      1
     ],
     [
       "Aprire un Only Fans con i video della tua ex",
-      0
+      1
     ],
     [
       "Una pillola di Viagra ",
-      0
+      1
     ],
     [
       "Sborrarsi accidentalmente in bocca",
-      0
+      1
     ],
     [
       "Gerry Scotty che spara al Gabibbo",
-      0
+      1
     ],
     [
       "Il rapimento di Aldo Moro",
-      0
+      1
     ],
     [
       "La vera identità del Gabibbo",
-      0
+      1
     ],
     [
       "Ritrovarsi a partorire in un cesso pubblico ",
-      0
+      1
     ],
     [
       "Volersi scopare la propria figlia adolescente ",
-      0
+      1
     ],
     [
       "Servire una merda bollita a un ristorante stellato",
-      0
+      1
     ],
     [
       "Sverginare la suora novizia nel confessionale ",
-      0
+      1
     ],
     [
       "Offrire una sigaretta a un delfino",
-      0
+      1
     ],
     [
       "Essere molestato da un piccione curioso",
-      0
+      1
     ],
     [
       "Il pizzo",
-      0
+      1
     ],
     [
       "Considerare terroni chi vive sotto il Po' ",
-      0
+      1
     ],
     [
       "Insultare i neri per moda ",
-      0
+      1
     ],
     [
       "Criticare l'outfit di un barbone",
-      0
+      1
     ],
     [
       "Affittare un pony con la sindrome di down",
-      0
+      1
     ],
     [
       "Un pigiama con le righe e una stella gialla ",
-      0
+      1
     ],
     [
       "Non andare a prendere la propria fidanzata alle elementari perché ti ha tradito ",
-      0
+      1
     ],
     [
       "Lezione pratica di educazione sessuale con un prete",
-      0
+      1
     ],
     [
       "Un'orgia di frati benedettini",
-      0
+      1
     ],
     [
       "Vivere come in 1984",
-      0
+      1
     ],
     [
       "Salvare i pesci dall'annegamento",
-      0
+      1
     ],
     [
       "Tagliare i capelli a qualcuno con una mietitrebbia ",
-      0
+      1
     ],
     [
       "Il genocidio degli armeni",
-      0
+      1
     ],
     [
       "Il cancro alla prostata all'ultimo stadio",
-      0
+      1
     ],
     [
       "Avere la mononucleosi e sputare dal balcone ",
-      0
+      1
     ],
     [
       "Riscrivere la bibbia",
-      0
+      1
     ],
     [
       "Fare da chierichetto per fare colpo sulla suora",
-      0
+      1
     ],
     [
-      "L'undici settembre 2001",
-      0
+      "L'undici settembre 2111",
+      1
     ],
     [
       "Scoprire che il tuo idolo si è suicidato guardando un documentario sulla seconda guerra mondiale ",
-      0
+      1
     ],
     [
       "Andare in coma etilico bevendo l'ACE Gentile ",
-      0
+      1
     ],
     [
       "Il comeback di Mozart prima di GTA VI",
-      0
+      1
     ],
     [
       "La scissione dell'impero romano",
-      0
+      1
     ],
     [
       "Fare il saluto al sole",
-      0
+      1
     ],
     [
       "Infornare il tuo figlio gay con patate e rosmarino",
-      0
+      1
     ],
     [
       "Normalizzare sparare alle persone nere",
-      0
+      1
     ],
     [
       "Reprimere con la violenza i flashmob",
-      0
+      1
     ],
     [
       "Comprare il crocifischio dalla lidl",
-      0
+      1
     ],
     [
       "Dire di essere sieropositivo dopo essere venuto dentro",
-      0
+      1
     ],
     [
       "Tingersi i peli pubici",
-      0
+      1
     ],
     [
       "Comprare un tanga con la faccia di Obama",
-      0
+      1
     ],
     [
       "Usare il naso di pinocchio per altri scopi",
-      0
+      1
     ],
     [
       "Una pastiglia di cianuro alla fragola per una dolce morte",
-      0
+      1
     ],
     [
       "Il progetto Bavaro",
-      0
+      1
     ],
     [
       "Finanziare il ponte sullo stretto",
-      0
+      1
     ],
     [
       "Asfaltare le coste per evitare gli sbarchi di immigrati ",
-      0
+      1
     ],
     [
       "Matteo Salvini",
-      0
+      1
     ],
     [
       "La crescita di uno xenomorpho nel buco del culo",
-      0
+      1
     ],
     [
       "Convincere l'Unione Europea a finanziare un filmino porno amatoriale",
-      0
+      1
     ],
     [
       "Evadere le tasse per comprare bimbi all'ingrosso ",
-      0
+      1
     ],
     [
       "Dei transgender sieropositivi ",
-      0
+      1
     ],
     [
       "Picchiare il mare per far arrivare le onde",
-      0
+      1
     ],
     [
       "Scoprire tua madre ad un orgia con suore in una casa di riposo ",
-      0
+      1
     ],
     [
       "Applicare un razzo a motore ad una sedia a rotelle",
-      0
+      1
     ],
     [
       "Essere belli come un cesso a pedali ",
-      0
+      1
     ],
     [
       "Ingravidare una donna col fertilizzante per piante",
-      0
+      1
     ],
     [
       "Fingersi normali alla cassa mentre si ha un vibratore in culo",
-      0
+      1
     ],
     [
       "Mettersi un velo e urlare: 'Allah okbar' in aereo",
-      0
+      1
     ],
     [
       "Accendere una sigaretta sul tetto di Notre Dame",
-      0
+      1
     ],
     [
       "Il trapassato presente",
-      0
+      1
     ],
     [
       "Dichiarare guerra alla ex Jugoslavia",
-      0
+      1
     ],
     [
       "Causare accidentalmente un omicidio di massa",
-      0
+      1
     ],
     [
       "Una zuppa di fagioli mentre si ha la diarrea fulminante",
-      0
+      1
     ],
     [
       "Toodles che porta a Topolino una pizza con pesto, rucola e cocaina",
-      0
+      1
     ],
     [
       "Lavorare con la colla di amianto",
-      0
+      1
     ],
     [
       "Determinare la massa del sole usando Ruffini",
-      0
+      1
     ],
     [
       "L'amianto ",
-      0
+      1
     ],
     [
       "Infilarsi un termometro a mercurio nel culo",
-      0
+      1
     ],
     [
       "Sciogliere i ghiacciai con un phon",
-      0
+      1
     ],
     [
       "Urlare 'Pikachu scelgo te!' lanciando un criceto ",
-      0
+      1
     ],
     [
       "Sbattere la testa sul pavimento da neonati",
-      0
+      1
     ],
     [
       "Perry l'ornitorinco",
-      0
+      1
     ],
     [
       "L'ipotenusa del triangolo rettangolo",
-      0
+      1
     ],
     [
       "Il grande teorema di Pitagora ",
-      0
+      1
     ],
     [
       "Sfidare leggi della fisica dall'ultimo piano del palazzo",
-      0
+      1
     ],
     [
       "Leggere il Mein kamf in piazza ad alta voce",
-      0
+      1
     ],
     [
       "Il trenino Thomas ",
-      0
+      1
     ],
     [
       "L'aspirapolvere  del teletubbies",
-      0
+      1
     ],
     [
       "L'infinita vastità del cazzo che me ne frega ",
-      0
+      1
     ],
     [
       "Le tailandesi",
-      0
+      1
     ],
     [
       "Duffy Duck che canticchia il motivetto fascista ",
-      0
+      1
     ],
     [
       "Usare la nutella come lubrificante ",
-      0
+      1
     ],
     [
       "Il revenge porn",
-      0
+      1
     ],
     [
       "Il tumore al seno",
-      0
+      1
     ],
     [
       "L'egemonia dell'Inghilterra sul mare",
-      0
+      1
     ],
     [
       "Fare la fine di yara ",
-      0
+      1
     ],
     [
       "Attentati violenti in casa di riposo",
-      0
+      1
     ],
     [
       "Il cavallo di troia",
-      0
+      1
     ],
     [
       "Avere dei busti di dubbia provenienza in casa",
-      0
+      1
     ],
     [
       "Usare i soldi pubblici per insabbiare gli atti di pedofilia nella chiesa",
-      0
+      1
     ],
     [
-      "Fingersi un allievo dell'asilo quando si hanno 60 anni",
-      0
+      "Fingersi un allievo dell'asilo quando si hanno 61 anni",
+      1
     ],
     [
       "Evocare il drago shenron",
-      0
+      1
     ],
     [
       "Avere 3 cromosomi 21",
-      0
+      1
     ],
     [
       "Vantarsi di avere cromosomi in più ",
-      0
+      1
     ],
     [
       "Mettere un cavallo al governo",
-      0
+      1
     ],
     [
       "Fare un film porno con un cavallo",
-      0
+      1
     ],
     [
       "Il dottore degli orifizi ",
-      0
+      1
     ],
     [
       "Pucciare i biscotti nel latte materno",
-      0
+      1
     ],
     [
       "L'attentato all'arciduca Francesco Ferdinando ",
-      0
+      1
     ],
     [
       "Usare una palla di cannone in una partita di ping pong",
-      0
+      1
     ],
     [
       "Una cosa a 3 con Loredana Bertè e Tiziano Ferro",
-      0
+      1
     ],
     [
       "Attuare un genocidio per il meme",
-      0
+      1
     ],
     [
       "Per il meme",
-      0
+      1
     ],
     [
       "Il ventennio fascista",
-      0
+      1
     ],
     [
       "Praticare sadomaso con Darth Vader",
-      0
+      1
     ],
     [
       "Tirare fuori excalibur a letto",
-      0
+      1
     ],
     [
       "Monaco amanuense",
-      0
+      1
     ],
     [
       "Cantare faccetta nera davanti al parlamento",
-      0
+      1
     ],
     [
       "Una torsione testicolare",
-      0
+      1
     ],
     [
       "Le lesbiche",
-      0
+      1
     ],
     [
       "I froci",
-      0
+      1
     ],
     [
       "Accusare un trans di essere un transformer",
-      0
+      1
     ],
     [
       "Usare i dolci per rapire i bimbi in un parco",
-      0
+      1
     ],
     [
       "Investire bitcoin in una pornoattrice",
-      0
+      1
     ],
     [
       "Peppa pig alla griglia ",
-      0
+      1
     ],
     [
       "Buttarsi da un pallazzo per testare l'aerodinamicità del proprio corpo",
-      0
+      1
     ],
     [
-      "Essere bravi a infornare come i tedeschi negli anni 40",
-      0
+      "Essere bravi a infornare come i tedeschi negli anni 41",
+      1
     ],
     [
       "I bravi di don Rodrigo",
-      0
+      1
     ],
     [
-      "1000 bottiglie di baby oil",
-      0
+      "1111 bottiglie di baby oil",
+      1
     ],
     [
       "Il mostro di Firenze",
-      0
+      1
     ],
     [
       "Usare un calibro per misurarsi il cazzo",
-      0
+      1
     ],
     [
       "Sperimentare il paradosso del gatto di Schrodinger con il tuo cuginetto ",
-      0
+      1
     ],
     [
       "I compagni di merende",
-      0
+      1
     ],
     [
       "Dare un grissino sporco di merda a un bambino spacciandolo per un Mikado ",
-      0
+      1
     ],
     [
       "L'elicottero col cazzo",
-      0
+      1
     ],
     [
       "Evocare Belzebub",
-      0
+      1
     ],
     [
       "Vestirsi da nazista ad un gay pride ",
-      0
+      1
     ],
     [
       "Mettere I BTS a capo della Corea del Nord",
-      0
+      1
     ],
     [
       "Un allegro weekend a Catanzaro",
-      0
+      1
     ],
     [
       "Sborrare nella bocca di un'antilope",
-      0
+      1
     ],
     [
       "La teoria dell'evoluzionismo",
-      0
+      1
     ],
     [
       "Essere l'assassino di Hitler",
-      0
+      1
     ],
     [
       "Usare la moltiplicazione del corpo di Naruto per entrare in tutti i buchi",
-      0
+      1
     ],
     [
       "Vivere tutta la vita con un vibratore nel culo",
-      0
+      1
     ],
     [
       "Anna calda a 3 cm da te",
-      0
+      1
     ],
     [
       "Ha fatto anche cose buone",
-      0
+      1
     ],
     [
       "Quando c'era lui i treni arrivavano in orario",
-      0
+      1
     ],
     [
       "La madonna caraibica",
-      0
+      1
     ],
     [
       "Invadere la Polonia",
-      0
+      1
     ],
     [
       "L'impresa dei mille",
-      0
+      1
     ],
     [
       "Nuclearizzare Foggia",
-      0
+      1
     ],
     [
       "Il Vesuvio erutta a Napoli",
-      0
+      1
     ],
     [
       "L'amore incondizionato dei fiorentini per i pisani",
-      0
+      1
     ],
     [
       "Il comune emiliano di Sesso",
-      0
+      1
     ],
     [
       "Rapire e uccidere Yara",
-      0
+      1
     ],
     [
       "Essere innocente come Bossetti",
-      0
+      1
     ],
     [
       "Jack lo Squirtatroie",
-      0
+      1
     ],
     [
       "IT'S OVER NINE THOUSAND!!!!!",
-      0
+      1
     ],
     [
       "Trovare un arto umano a casa del tipo conosciuto su tinder",
-      0
+      1
     ],
     [
       "Evadere il fisco come Jeff Bezoz",
-      0
+      1
     ],
     [
       "Sussurrare all'orecchio del vicino di urinatoio",
-      0
+      1
     ],
     [
       "Occuparsi della fauna locale come il Trentino Alto Adige",
-      0
+      1
     ],
     [
       "Le suffragette ",
-      0
+      1
     ],
     [
       "Sessualizzare il demogorgone",
-      0
+      1
     ],
     [
       "Il cast della melevisione in un video porno",
-      0
+      1
     ],
     [
       "Circoncidersi con una pinzatrice rosa",
-      0
+      1
     ],
     [
       "Bombardare il Vietnam col napalm",
-      0
+      1
     ],
     [
       "Infilarsi un plug anale nella cappella",
-      0
+      1
     ],
     [
       "Strizzare i capezzoli ad un toro",
-      0
+      1
     ],
     [
       "Mungere il prof di matematica napoletano per la sufficienza ",
-      0
+      1
     ],
     [
       "ll processo di Norimberga",
-      0
+      1
     ],
     [
       "Esplodere come tuo zio musulmano ",
-      0
+      1
     ],
     [
       "Rizzare le dodicenni ",
-      0
+      1
     ],
     [
       "Diventare luterani per un giorno",
-      0
+      1
     ],
     [
       "I diritti delle donne",
-      0
+      1
     ],
     [
       "La fiera dell'est",
-      0
+      1
     ],
     [
       "Vote Kamala for president ",
-      0
+      1
     ],
     [
       "Trump come nuovo protagonosta di Matrix ",
-      0
+      1
     ],
     [
       "Giocare a Risiko con eserciti veri",
-      0
+      1
     ],
     [
       "Fare un bagno termale nel Vesuvio",
-      0
+      1
     ],
     [
       "La durezza del mio pene quando canta Annalisa ",
-      0
+      1
     ],
     [
       "Calcolare la dilatazione anale dopo il fisting con il teorema di Pitagora",
-      0
+      1
     ],
     [
       "Una cenetta romantica ispirata a Jeffrey Dahmer",
-      0
+      1
     ],
     [
       "Usare la borra al posto della crema pasticcera ",
-      0
+      1
     ],
     [
       "Chiedere a un bimbo orfano dove sono i suoi genitori",
-      0
+      1
     ],
     [
       "Le rule 34 di JoJo Siwa",
-      0
+      1
     ],
     [
       "Liberare i bimbi dallo scantinato",
-      0
+      1
     ],
     [
       "Raggiungere l'uguaglianza schiarendo la pelle ai neri",
-      0
+      1
     ],
     [
       "Raggiungere l'orgasmo con due dita nel naso",
-      0
+      1
     ],
     [
       "Ficcarsi due dita e una matita negli occhi ",
-      0
+      1
     ],
     [
       "Sciacquarsi le palle nella bacinella dell'acqua santa",
-      0
+      1
     ],
     [
       "Disegnare forme falliche sulle lapidi al cimitero ",
-      0
+      1
     ],
     [
       "Un chilo di bamba ",
-      0
+      1
     ],
     [
       "Dei lecca lecca al gusto gonorrea ",
-      0
+      1
     ],
     [
       "Un clitoride placcato oro",
-      0
+      1
     ],
     [
       "Tagliare il cordone ombelicale sbagliato al neonato",
-      0
+      1
     ],
     [
       "Chiara Facchetti che salda il debito pubblico italiano",
-      0
+      1
     ],
     [
       "Trombare un lampione in pieno giorno",
-      0
+      1
     ],
     [
       "Bere le cristalline acque del Brenta",
-      0
+      1
     ],
     [
       "Eiaculare tanto da farsi venire un'ernia ai coglioni",
-      0
+      1
     ],
     [
       "Inzuppare il tampax nella vodka",
-      0
+      1
     ],
     [
       "Togliersi il preservativo prima di venire ",
-      0
+      1
     ],
     [
       "Regalare preservativi bucati",
-      0
+      1
     ],
     [
       "Le zingare che rubano nella metro di Milano",
-      0
+      1
     ],
     [
       "Cagare a spruzzo in un vicolo buio e malfamato",
-      0
+      1
     ],
     [
       "Portare la classe dei bambini speciali in gita a Chernobyl",
-      0
+      1
     ],
     [
       "Fingersi gay per toccare una tetta",
-      0
+      1
     ],
     [
       "Disegnare cazzi anatomicamente accurati",
-      0
+      1
     ],
     [
       "Ruttare sui polli",
-      0
+      1
     ],
     [
       "Usare un tubo di pringles come sex toy",
-      0
+      1
     ],
     [
       "Dirigere un bombardamento aereo contro la Moldavia ",
-      0
+      1
     ],
     [
       "Risolvere il problema dell'immigrazione in Italia cancellando Lampedusa",
-      0
+      1
     ],
     [
       "I bambini nascosti sotto il letto di Michael Jackson",
-      0
+      1
     ],
     [
       "L'umidità della mia figa quando vedo Conte",
-      0
+      1
     ],
     [
       "Scambiare pedopornografia nel parchetto cittadino",
-      0
+      1
     ],
     [
       "Scopare con il datore di lavoro",
-      0
+      1
     ],
     [
       "Lavarsi i genitali con vodka alla fragola e nitroglicerina",
-      0
+      1
     ],
     [
       "Arrivare in ritardo al proprio funerale ",
-      0
+      1
     ],
     [
       "Un pupazzo dei My Little Pony con un buco speciale ",
-      0
+      1
     ],
     [
       "Un elefante tandem psichico da guerra ",
-      0
+      1
     ],
     [
       "Far cadere la saponetta di proposito nelle docce della prigione",
-      0
+      1
     ],
     [
       "Succhiare un cazzo fino a che non sborra",
-      0
+      1
     ],
     [
       "Ficcarsi 3 procioni bel culo",
-      0
+      1
     ],
     [
       "Usare la calcolatrice per fare 1+1",
-      0
+      1
     ],
     [
       "Bere Jager dal bidè a casa della prozia",
-      0
+      1
     ],
     [
       "Morire di diarrea fulminea",
-      0
+      1
     ],
     [
       "Tornare indietro nel tempo solo per farsi fare un autografo da Hitler ",
-      0
+      1
     ],
     [
       "Tornare indietro nel tempo per farsi fare un pompino da Marilyn Monroe",
-      0
+      1
     ],
     [
       "Fumare la marijuana dal culo",
-      0
+      1
     ],
     [
       "Sniffare le ceneri della nonna",
-      0
+      1
     ],
     [
       "Usare le ceneri del cane come parmigiano ",
-      0
+      1
     ],
     [
       "Praticare tuffi olimpici nella vasca da bagno",
-      0
+      1
     ],
     [
       "Praticare il Kamasutra al pranzo di natale ",
-      0
+      1
     ],
     [
       "Togliersi le costole per fare come D'Annunzio",
-      0
+      1
     ],
     [
       "Orietta Berti ",
-      0
+      1
     ],
     [
       "Anna Frank ",
-      0
+      1
     ],
     [
       "Malgioglio",
-      0
+      1
     ],
     [
       "Rocco Siffredi ",
-      0
+      1
     ],
     [
       "Maria de Filippi ",
-      0
+      1
     ],
     [
       "Alberto Angela ",
-      0
+      1
     ],
     [
       "Inserire tua sorella nel database degli SCP",
-      0
+      1
     ],
     [
       "Spiegare l'apologia cristiana suonando una vuvuzela",
-      0
+      1
     ],
     [
       "Fabrizio Corona che si incula con un complesso sistema di leve e specchi",
-      0
+      1
     ],
     [
       "Una ninna nanna suonata con un flauto dolce nel naso",
-      0
+      1
     ],
     [
       "Uno spiedino ti topi fritti in pastella",
-      0
+      1
     ],
     [
       "Strozzarsi con una mozzarella aromatizzata all'uranio ",
-      0
+      1
     ],
     [
       "Prendere 3 pastiglie di viagra per inchiappettare un puffo",
-      0
+      1
     ],
     [
       "Le attività extraconiugali ",
-      0
+      1
     ],
     [
       "L'astinenza",
-      0
+      1
     ],
     [
       "Gesù inculato dalla Madonna con un dildo rosa",
-      0
+      1
     ],
     [
       "Usare la cocaina al posto della farina per preparare una torta per la vendita di beneficenza.",
-      0
+      1
     ],
     [
       "L'ospedale pediatrico sotto attacco di israele ",
-      0
+      1
     ],
     [
       "Un Charizard con tendenze neonaziste",
-      0
+      1
     ],
     [
       "Sparare mensole dagli occhi",
-      0
+      1
     ],
     [
       "Kaaaaaamehaaaaamehaaaaaa",
-      0
+      1
     ],
     [
       "Fare sesso non protetto con la propria madre",
-      0
+      1
     ],
     [
       "Unboxare falli di gomma su youtube kids",
-      0
+      1
     ],
     [
       "Uscire le tette per curare i malati di Alzheimer ",
-      0
+      1
     ],
     [
       "Mussolini che fa l'ahegao",
-      0
+      1
     ],
     [
       "Lavarsi i capelli con l'olio della friggitrice",
-      0
+      1
     ],
     [
       "Shrek",
-      0
+      1
     ],
     [
       "Chiudere tua moglie incinta in balcone d'inverno ",
-      0
+      1
     ],
     [
       "La fede in dio di Germano Mosconi ",
-      0
+      1
     ],
     [
       "Clara di Heidi",
-      0
+      1
     ],
     [
       "Il discorso del duce",
-      0
+      1
     ],
     [
       "Bazinga",
-      0
+      1
     ],
     [
       "Usare il mantello dell'invisibilità per segarsi nello spogliatoio delle ragazze",
-      0
+      1
     ],
     [
       "Accorgersi di avere tendenze necrofile",
-      0
+      1
     ],
     [
       "Attraversare l'autostrada per catturare un Pikachu ",
-      0
+      1
     ],
     [
       "Uccidere il proprio figlio a badilate perché gli piace Peppa Pig",
-      0
+      1
     ],
     [
       "Presentarsi armati ad un concorso di monache austriache",
-      0
+      1
     ],
     [
       "Organizzare la corrida con i comunisti",
-      0
+      1
     ],
     [
       "Far dichiarare bancarotta a un sexy shop",
-      0
+      1
     ],
     [
       "Farsi un piercing al cazzo",
-      0
+      1
     ],
     [
       "Infilare il proprio braccio nel culo",
-      0
+      1
     ],
     [
       "Terrorizzare i bambini col costume di Berlusconi",
-      0
+      1
     ],
     [
       "Proclamare lo stato d'assedio",
-      0
+      1
     ],
     [
       "Avere un orgasmo dopo aver assaggiato la torta alle mele",
-      0
+      1
     ],
     [
       "Un cosplay hentai",
-      0
+      1
     ],
     [
       "Michael Jackson che si stringe le mani per ricreare la pubblicità dei ringo",
-      0
+      1
     ],
     [
       "Igniettarsi la candeggina in vena per combattere il covid",
-      0
+      1
     ],
     [
       "Il mio cazzo come emoji",
-      0
+      1
     ],
     [
       "L'occhio di Sauron",
-      0
+      1
     ],
     [
       "Organizzazione la corrida in un asilo nido",
-      0
+      1
     ],
     [
       "Fare sogni bagnati su una babooshka ",
-      0
+      1
     ],
     [
       "Farsi segare da una persona col parkinson ",
-      0
+      1
     ],
     [
       "Saetta McQueen ",
-      0
+      1
     ],
     [
       "Dio Portatore di Tuoni",
-      0
+      1
     ],
     [
       "Usare Steve Hawking per il live action di cars",
-      0
+      1
     ],
     [
       "dio bestia da soma in minia toma in minia soma in minia mosa in miniatura",
-      0
+      1
     ],
     [
       "Utilizzare una moka per costruire un reattore nucleare",
-      0
+      1
     ],
     [
       "L'odore di pube di topo",
-      0
+      1
     ],
     [
       "I dossi davanti all'asilo",
-      0
+      1
     ],
     [
       "Chiara Facchetti",
-      0
+      1
     ],
     [
       "L'impero asburgico",
-      0
+      1
     ],
     [
       "Le 23 pugnalate di Giulio Cesare",
-      0
+      1
     ],
     [
       "Il nonnismo",
-      0
+      1
     ],
     [
       "L'encefalite acuta",
-      0
+      1
     ],
     [
       "Accendere il riscaldamento come Nerone ha fatto a Roma",
-      0
+      1
     ],
     [
       "Diventare sborraman",
-      0
+      1
     ],
     [
       "Infilarsi le due torri gemelle in culo",
-      0
+      1
     ],
     [
       "Fare sesso non protetto con la nonna dei croods ",
-      0
+      1
     ],
     [
       "Il trono di cazzi",
-      0
+      1
     ],
     [
       "Perry l'ornitorinco",
-      0
+      1
     ],
     [
       "Scopare il gemello del tuo fidanzato",
-      0
+      1
     ],
     [
       "Scopare il gemello della tua fidanzata",
-      0
+      1
     ],
     [
       "Lo sciopero contro i diritti delle donne",
-      0
+      1
     ],
     [
       "Rifarsi le tette per fare un titjob migliore",
-      0
+      1
     ],
     [
       "Tua madre",
-      0
+      1
     ],
     [
       "Biancaneve e i 7 cazzi",
-      0
+      1
     ],
     [
       "Armando(della Pimpa)",
-      0
+      1
     ],
     [
       "Dormire in un letto da mezza piazza per evitare il sesso a sorpresa",
-      0
+      1
     ],
     [
       "Freddy fazbear",
-      0
+      1
     ],
     [
       "Kermit la rana",
-      0
+      1
     ],
     [
       "Il bastone di Jack frost",
-      0
+      1
     ],
     [
       "Un'ustione di quinto grado",
-      0
+      1
     ],
     [
       "Svenire dopo aver visto una figa",
-      0
+      1
     ],
     [
       "Una sega con i piedi",
-      0
+      1
     ],
     [
       "Lucia Mondella",
-      0
+      1
     ],
     [
       "Torquato Tasso",
-      0
+      1
     ],
     [
       "Raggiungere le note di Ariana Grande mentre cavalchi un cazzo",
-      0
+      1
     ],
     [
       "Sganciare una mega scoraggia in un'ascensore affollato ",
-      0
+      1
     ],
     [
       "Gumball watterson",
-      0
+      1
     ],
     [
       "Lavorare alle 3 di notte in autostrada",
-      0
+      1
     ],
     [
       "Andare a disoneste",
-      0
+      1
     ],
     [
       "Mettere in punizione i tuoi amici perché sono troppo freaky",
-      0
+      1
     ],
     [
       "Il dissing dei me contro te",
-      0
+      1
     ],
     [
       "Tatuarsi l'occhio degli illuminati sul buco del culo",
-      0
+      1
     ],
     [
       "Dio aeroplano nella valle delle torri",
-      0
+      1
     ],
     [
       "Riprendere fiume",
-      0
+      1
     ],
     [
       "Il secondo triumvirato ",
-      0
+      1
     ],
     [
       "Raccontare le proprie esperienze sessuali al club del libro",
-      0
+      1
     ],
     [
       "Assaggiare i reagenti colorati nel laboratorio di chimica",
-      0
+      1
     ],
     [
       "Avere un duello al funerale di tuo nonno",
-      0
+      1
     ],
     [
       "Essere investiti da un aereo",
-      0
+      1
     ],
     [
       "Eccitare il clitoride fino all'orgasmo",
-      0
+      1
     ],
     [
       "L'ergastolo per aver rubato un pacchetto di carte pokemon",
-      0
+      1
     ],
     [
       "Una lesbica futurista",
-      0
+      1
     ],
     [
       "Essere ingravidati da Mahmood con lo sguardo",
-      0
+      1
     ],
     [
       "Rosario muniz",
-      0
+      1
     ],
     [
       "Un pandoro farcito con la sborra",
-      0
+      1
     ],
     [
       "Dichiarare a guerra all'Algeria ",
-      0
+      1
     ],
     [
       "Un orgasmo a mani libere",
-      0
+      1
     ],
     [
       "Impalato dal dio bestia",
-      0
+      1
     ],
     [
       "Un satanasso molto promiscuo ",
-      0
+      1
     ],
     [
       "Ruttare come una principessa camionista",
-      0
+      1
     ],
     [
       "Essere calpestato da un cazzone",
-      0
+      1
     ],
     [
       "Un bagno termale nel Vesuvio ",
-      0
+      1
     ],
     [
       "Napoli a fuoco",
-      0
+      1
     ],
     [
       "Castrare i terroni",
-      0
+      1
     ],
     [
       "Correre scalzi nei prati sotto l'effetto di droghe pesanti ",
-      0
+      1
     ],
     [
       "Infilare le palle in un orologio a pendolo che ha al posto del pendolo un ascia",
-      0
+      1
     ],
     [
       "Smerdarsi nei calzoni in classe",
-      0
+      1
     ],
     [
       "Pomiciare con i paramedici venuti a soccorrere tuo padre",
-      0
+      1
     ],
     [
       "Vomitare vodka e funghetti allucinogeni in corsia 2 al conad",
-      0
+      1
     ],
     [
       "Togliersi la vita con una bottiglietta di plastica",
-      0
+      1
     ],
     [
       "'Eh sì eh Marco eh B porterai minecreft?'",
-      0
+      1
     ],
     [
       "Infilarsi del potassio puro su per il culo per diventare un razzo",
-      0
+      1
     ],
     [
       "Evocare un demone per passare una seratina esotica",
-      0
+      1
     ],
     [
       "Svegliarsi senza un rene dopo una seratina romantica ",
-      0
+      1
     ],
     [
       "Farsi frati per non essere chiamati alle armi",
-      0
+      1
     ],
     [
       "Farsi suora per non finire a letto con altri casi umani",
-      0
+      1
     ],
     [
       "Gerry Scotti",
-      0
+      1
     ],
     [
       "Un catetere",
-      0
+      1
     ],
     [
       "Sniffare cocaina dal buco del culo",
-      0
+      1
     ],
     [
       "Giocare a rugby con un neonato come palla",
-      0
+      1
     ],
     [
       "Un'orgia con Meloni, Di Maio e Salvini",
-      0
+      1
     ],
     [
       "Mangiare un peperoncino per sputare fiamme dal culo",
-      0
+      1
     ],
     [
       "Maurizio Merluzzo in drag",
-      0
+      1
     ],
     [
       "Eccitarsi alla vista del necrologio del giorno",
-      0
+      1
     ],
     [
       "Usare il proprio jet privato per fare una passeggiatina con il cane",
-      0
+      1
     ],
     [
       "Wanna Marchi",
-      0
+      1
     ],
     [
       "Elenoire ferruzzi",
-      0
+      1
     ],
     [
-      "Pulirsi il culo con delle unghie da 50 cm",
-      0
+      "Pulirsi il culo con delle unghie da 51 cm",
+      1
     ],
     [
       "Il phon accesso nella vasca da bagno",
-      0
+      1
     ],
     [
       "Adorare le donne che sanno di merluzzo",
-      0
+      1
     ],
     [
       "Il sesso non protetto nel giardino dell'Eden",
-      0
+      1
     ],
     [
       "Portare ad ebollizione la sborra",
-      0
+      1
     ],
     [
       "Francesca cipriani",
-      0
+      1
     ],
     [
       "Paolo bonolis",
-      0
+      1
     ],
     [
       "Donatella versace",
-      0
+      1
     ],
     [
       "Blanco ",
-      0
+      1
     ],
     [
       "Peppe Brescia ",
-      0
+      1
     ],
     [
       "Peppe fetish",
-      0
+      1
     ],
     [
       "Rita de Crescenzo ",
-      0
+      1
     ],
     [
       "Il gelato al profilattico",
-      0
+      1
     ],
     [
       "Essere dissati da favij",
-      0
+      1
     ],
     [
       "Lo scandalo di Chiara Ferragni e il pandoro",
-      0
+      1
     ],
     [
       "Le emorroidi a colazione",
-      0
+      1
     ],
     [
       "Lo strumentopolo misterioso di Topolino",
-      0
+      1
     ],
     [
       "Essere picchiati da papa Francesco ",
-      0
+      1
     ],
     [
       "Una sfida a super smash bros con baby k",
-      0
+      1
     ],
     [
       "Urlare 'maledettiiii!' davanti a un giornalista",
-      0
+      1
     ],
     [
       "Urlare 'Teresaaaa' davanti a un giornalista",
-      0
+      1
     ]
 ]
 const QuestionsArr = [
@@ -2439,10 +2439,6 @@ class Room
     StartRound()
     {
         this.RoundNumber++
-        if(this.Questions.Empty() || this.Answers.Empty())
-        {
-            return this.ResultGame()
-        }
         this.CurrentRound.isRound = true
         const question = this.Questions.Pick(1)[0]
         this.CurrentRound.question = question
@@ -2473,7 +2469,7 @@ class Room
             count: 0,
             question: null,
             answers: [],
-            isRound: true,
+            isRound: false,
         }
     }
 
@@ -2497,6 +2493,7 @@ class Room
             return null
         }
         use.cards.Insert(y)
+        this.Answers.Insert(card)
         this.CurrentRound.answers.push([use,card])
         this.CurrentRound.count++
     }

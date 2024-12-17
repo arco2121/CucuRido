@@ -22,7 +22,7 @@
 :root
 {
     --backColor : #ffffff;
-    --color : #ffffff
+    --color : #ffffff;
 }
 
 html
@@ -30,6 +30,7 @@ html
     width: 100%;
     height: 100%;
     margin: 0 auto;
+    background: var(--backColor);
 }
 body
 {
@@ -94,6 +95,13 @@ body
 {
     scale: 0.95;
 }
+.contornomini
+{
+    border-radius: 100%;
+    border: solid black 10px;
+    background: var(--color);
+    transition: all 150ms ease;
+}
 h1
 {
     font-size: 600;
@@ -103,8 +111,21 @@ h1
 h2
 {
     font-size: 600;
-    font-size: 30px;
+    font-size: 25px;
     margin: 10px;
+}
+h3
+{
+    font-size: 400;
+    font-size: 25px;
+    margin: 0px;
+}
+h4
+{
+    font-size: 400;
+    font-size: 18px;
+    font-style: italic;
+    margin: 0px;
 }
 h5
 {
@@ -185,6 +206,56 @@ input[type="text"]:active
 {
     z-index: 0;
     animation: win 0.2s ;
+}
+.card
+{
+    display: flex;
+    flex-direction: column;
+    width: 175px;
+    height: 250px;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px;
+    border-radius: 25px;
+    background-color: var(--color);
+    border: solid 5px black;
+    margin: 20px;
+    object-fit: contain;
+    transition: all 200ms ease;
+}
+.card:active
+{
+    scale: 0.95;
+}
+.semi
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    z-index: 2;
+}
+.spaces
+{
+    z-index: 2;
+}
+.cardimg
+{
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    align-self: center;
+    justify-self: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transform-origin: top left;
+    z-index: 0;
+    object-fit: cover;
+    display: flex;
+    opacity: 25%;
 }
 @media (orientation : portrait) or (min-height : 400px) {
     .window

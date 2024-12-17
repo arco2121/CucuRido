@@ -9,7 +9,7 @@
 </head>
 <body>
   <div id="load" class="window">
-    <img src="img/loading.gif" width="100" height="100" class="contorno">
+    <img src="img/loading.gif" width="100" height="100" class="contornomini">
     <h3>Get ready for...</h3>
   </div>
   <div id="offline" class="window">
@@ -22,8 +22,8 @@
       <h5>Just beat me at the...  ✨🎶</h5>
     </div>
     <div class="half">
-      <button class="buttonbegin" id="createRoom">Create</button>
-      <button class="buttonbegin" id="joinRoom">Join</button>
+      <button class="buttonbegin" id="createRoom">Create a Room</button>
+      <button class="buttonbegin" id="joinRoom">Join a Room</button>
     </div>
   </div>
   <div class="window" id="askname">
@@ -58,14 +58,25 @@
       <div class="half">
         <h2 id="roomidview"></h2>
         <h5>Wait (🖐️🎵🤟) for others...</h5>
-        <h5>Tap the code to copy it</h5>
+        <h5>Tap on the code to copy it</h5>
       </div>
       <div class="half">
         <button id="startRoom">Start</button>
       </div>
     </div>
+    <div class="window" id="waitround"></div>
+    <div class="window" id="askerview">
+      <div class="half">
+        <div id="cardcontainer"></div>
+        <h5>Wait (🖐️🎵🤟) for others to answer....</h5>
+      </div>
+      <div class="half">
+        <button id="getAnswers">Get Answers</button>
+      </div>
+    </div>
+    <div class="window" id="notaskerview"></div>
   </div>
-  <audio src="audio/client.mp3" id="music"></audio>
+  <audio src="audio/client.mp3" loop id="music"></audio>
   <script type="module" src="script/FireConfig.js"></script>
   <script src="script/randomNames.js"></script>
   <script src="script/Deck.js"></script>

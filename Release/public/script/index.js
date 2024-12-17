@@ -29,14 +29,25 @@ Server.on("connected",(data)=>{
         document.getElementById("home").style.display = "flex"
     },1500)
 
+    let check = false
+    let time = 0
     const internet = setInterval(()=>{
         if(navigator.onLine)
         {
-            document.getElementById("offline").style.display = "none"
+            if(check)
+            {
+                clearInterval(internet)
+                window.location.reload()
+                time = 15000
+            }
+            setTimeout(()=>{
+                document.getElementById("offline").style.display = "none"
+            },time)
         }
         else
         {
             document.getElementById("offline").style.display = "flex"
+            check = true
         }
     },100);
     
@@ -102,7 +113,7 @@ Server.on("connected",(data)=>{
                     if(document.getElementById("inputname").value != "")
                     {
                         localStorage.setItem("lastName",document.getElementById("inputname").value)
-                        Server.emit("joinRoom",{name : document.getElementById("inputname").value.toString(), roomId : document.getElementById("inputroomcode").value.toString().toUpperCase()})
+                        Server.emit("joinRoom",{name : document.getElementById("inputname").value.toString(), roomId : document.getElementById("inputroomcode").value.toString()})
                         document.getElementById("chooseName").removeEventListener("click",temp)
                     }
                     else
@@ -115,7 +126,7 @@ Server.on("connected",(data)=>{
             }
             else
             {
-                alert("Almost all of whom were slaughtered by your hand... Sixteen strike 👊")
+                alert("Almost all of whom were slaughtered by your hand... Sixhundred (more likely 20) strike 👊")
             }
         }
         document.getElementById("chooseRoomCode").addEventListener("click", tempora)
@@ -124,6 +135,11 @@ Server.on("connected",(data)=>{
     /*AskName*/
     document.getElementById("randomName").addEventListener("click",()=>{
         document.getElementById("inputname").value = getRandomNamea()
+    })
+
+    /*StartRound*/
+    document.getElementById("startRound").addEventListener("click",()=>{
+        Server.emit("startRound")
     })
     
     /*Events*/
@@ -137,7 +153,6 @@ Server.on("connected",(data)=>{
                 alert("Copied to Clipboard")
             })
         })
-        document.getElementById("waittostart").style.display = "flex"
         document.getElementById("waittostart").style.justifyContent = ""
         document.getElementById("askname").style.display = "none"
         document.getElementById("roomlobby").style.display = "flex"
@@ -154,11 +169,23 @@ Server.on("connected",(data)=>{
                 alert("Copied to Clipboard")
             })
         })
-        document.getElementById("waittostart").style.display = "flex"
         document.getElementById("waittostart").style.justifyContent = "center"
         document.getElementById("askname").style.display = "none"
         document.getElementById("roomlobby").style.display = "flex"
         document.getElementById("waittostart").style.display = "flex"
+    })
+
+    Server.on("questionRe",(data)=>{
+        document.getElementById("waittostart").style.display = "none"
+        if(user.IsAsking)
+        {
+            document.getElementById("cardcontainer").appendChild(Card.FromJSON(data.question).toHTML())
+            document.getElementById("askerview").style.display = "flex"
+        }
+        else 
+        {
+            document.getElementById("notaskerview").style.display = "flex"
+        }
     })
 
     Server.on("roomNotExist",() => {

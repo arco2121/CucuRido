@@ -7,6 +7,27 @@ class Card
         this.space = space
     }
 
+    toHTML(title)
+    {
+        const card = document.createElement("div")
+        card.classList.add("card")
+        const div = document.createElement("div")
+        div.classList.add("semi")
+        const text = document.createElement("h4")
+        text.innerText = this.value
+        text.classList.add("quest")
+        const space = document.createElement("h3")
+        space.classList.add("spaces")
+        space.innerText = this.space
+        const tit = document.createElement("h3")
+        tit.innerText = title
+        card.appendChild(tit)
+        div.appendChild(text)
+        card.appendChild(div)
+        card.appendChild(space)
+        return card
+    }
+
     toJSON()
     {
       return {
