@@ -2421,6 +2421,8 @@ class Room
           temp[i] = new Card(AnswerArr[i][0],i,AnswerArr[i][1])
         }
         this.Answers = new Deck(temp)
+        this.Questions.Shuffle()
+        this.Answers.Shuffle()
         this.admin.cards.Insert(this.Answers.Pick(11))
         this.users = [this.admin]
         this.RoundNumber = 1;
