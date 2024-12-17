@@ -2409,16 +2409,18 @@ class Room
     {
         this.id = this.RandomId(20)
         this.admin = new Admin(adminName,adminid)
-        let i = 0
-        this.Questions = new Deck(QuestionsArr.map(ele => {
-          new Card(ele[0],i,ele[1]);
-          i++;
-        }));
-        i = 0;
-        this.Answers = new Deck(AnswerArr.map(ele => {
-          new Card(ele[0],i,ele[1]);
-          i++;
-        }))
+        let temp = []
+        for(let i = 0; i<QuestionsArr.length;i++)
+        {
+          temp[i] = new Card(QuestionsArr[i][0],i,QuestionsArr[i][1])
+        }
+        this.Questions = new Deck(temp)
+        temp = []
+        for(let i = 0; i<AnswerArr.length;i++)
+        {
+          temp[i] = new Card(AnswerArr[i][0],i,AnswerArr[i][1])
+        }
+        this.Answers = new Deck(temp)
         this.admin.cards.Insert(this.Answers.Pick(11))
         this.users = [this.admin]
         this.RoundNumber = 1;
