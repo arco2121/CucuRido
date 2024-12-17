@@ -138,7 +138,7 @@ Server.on("connected",(data)=>{
     })
 
     /*StartRound*/
-    document.getElementById("startRound").addEventListener("click",()=>{
+    document.getElementById("startRoom").addEventListener("click",()=>{
         Server.emit("startRound")
     })
     
@@ -179,7 +179,9 @@ Server.on("connected",(data)=>{
         document.getElementById("waittostart").style.display = "none"
         if(user.IsAsking)
         {
-            document.getElementById("cardcontainer").appendChild(Card.FromJSON(data.question).toHTML())
+            const card = Card.FromJSON(data.question)
+            console.log(card,data)
+            document.getElementById("cardcontainer").appendChild(card.toHTML("Question 🩷"))
             document.getElementById("askerview").style.display = "flex"
         }
         else 
@@ -188,8 +190,18 @@ Server.on("connected",(data)=>{
         }
     })
 
+    Server.on("alreadyRound",()=>{
+        alert("Wait for the current round of the room to finish... Silly✨")
+        document.getElementById("askname").style.display = "none"
+        document.getElementById("home").style.display = "flex"
+    })
+
+    Server.on("downUsers",()=>{
+        alert("Wait for some others... Silly✨")
+    })
+
     Server.on("roomNotExist",() => {
-        alert("This Room does not exist, Silly✨")
+        alert("This Room does not exist... Silly✨")
         document.getElementById("askname").style.display = "none"
         document.getElementById("home").style.display = "flex"
     })

@@ -207,6 +207,18 @@ input[type="text"]:active
     z-index: 0;
     animation: win 0.2s ;
 }
+#askerview
+{
+    display: none;
+    z-index: 6;
+    animation: win 0.2s ; 
+}
+#notaskerview
+{
+    display: none;
+    z-index: 6;
+    animation: win 0.2s ; 
+}
 .card
 {
     display: flex;

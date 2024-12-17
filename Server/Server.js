@@ -78,7 +78,12 @@ webserver.on("connection",(socket) => {
                 webserver.to(socket.id).emit("error", "No you idiot")
                 return
             }
-            room.StartRound()
+            const resp = room.StartRound()
+            if(!resp)
+            {
+                webserver.to(socket.id).emit("downUsers", "Not now")
+                return
+            }
             webserver.to(room.id).emit('questionRe', {question : room.CurrentRound.question.toJSON()})
         }
         catch(error)

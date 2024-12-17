@@ -2409,8 +2409,16 @@ class Room
     {
         this.id = this.RandomId(20)
         this.admin = new Admin(adminName,adminid)
-        this.Questions = new Deck(QuestionsArr.map(ele => new Card(ele[0],ele[1])))
-        this.Answers = new Deck(AnswerArr.map(ele => new Card(ele[0],ele[1])))
+        let i = 0
+        this.Questions = new Deck(QuestionsArr.map(ele => {
+          new Card(ele[0],i,ele[1]);
+          i++;
+        }));
+        i = 0;
+        this.Answers = new Deck(AnswerArr.map(ele => {
+          new Card(ele[0],i,ele[1]);
+          i++;
+        }))
         this.admin.cards.Insert(this.Answers.Pick(11))
         this.users = [this.admin]
         this.RoundNumber = 1;
@@ -2438,11 +2446,18 @@ class Room
 
     StartRound()
     {
-        this.RoundNumber++
-        this.CurrentRound.isRound = true
-        const question = this.Questions.Pick(1)[0]
-        this.CurrentRound.question = question
-        return null
+        if(this.users.length > 2)
+        {
+          this.RoundNumber++
+          this.CurrentRound.isRound = true
+          const question = this.Questions.Pick(1)[0]
+          this.CurrentRound.question = question
+          return true
+        }
+        else
+        {
+          return false
+        }
     }
 
     GetAnswers()
