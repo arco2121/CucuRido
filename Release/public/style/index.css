@@ -181,6 +181,11 @@ input[type="text"]:active
     z-index: 2;
     animation: win 0.2s ;
 }
+#load
+{
+    z-index: 0;
+    animation: win 0.2s ;
+}
 @media (orientation : portrait) or (min-height : 400px) {
     .window
     {

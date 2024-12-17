@@ -27,7 +27,7 @@ Server.on("connected",(data)=>{
     setTimeout(()=>{
         document.getElementById("load").style.display = "none"
         document.getElementById("home").style.display = "flex"
-    },1000)
+    },1500)
 
     const internet = setInterval(()=>{
         if(navigator.onLine)
@@ -93,7 +93,7 @@ Server.on("connected",(data)=>{
         document.getElementById("home").style.display = "none"
         document.getElementById("askroomcode").style.display = "flex";
         const tempora = ()=>{
-            if(document.getElementById("inputroomcode").value != "" && document.getElementById("inputroomcode").value.length == 16)
+            if(document.getElementById("inputroomcode").value != "" && document.getElementById("inputroomcode").value.length >= 20)
             {
                 document.getElementById("askroomcode").style.display = "none"
                 document.getElementById("askname").style.display = "flex"
@@ -107,7 +107,7 @@ Server.on("connected",(data)=>{
                     }
                     else
                     {
-                        alert("Say something... I can't... Then you have forced my hands...Eurilicus...")
+                        alert("Say something... I can't... Then you have forced my hands...Eurilicus... 🪓")
                     }
                 }
                 document.getElementById("chooseName").addEventListener("click",temp)
@@ -115,7 +115,7 @@ Server.on("connected",(data)=>{
             }
             else
             {
-                alert("Say something... 16 at least...")
+                alert("Almost all of whom were slaughtered by your hand... Sixteen strike 👊")
             }
         }
         document.getElementById("chooseRoomCode").addEventListener("click", tempora)

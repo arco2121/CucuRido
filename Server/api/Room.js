@@ -2407,7 +2407,7 @@ class Room
 {
     constructor(adminName,adminid) 
     {
-        this.id = this.RandomId(16)
+        this.id = this.RandomId(20)
         this.admin = new Admin(adminName,adminid)
         this.Questions = new Deck(QuestionsArr.map(ele => new Card(ele[0],ele[1])))
         this.Answers = new Deck(AnswerArr.map(ele => new Card(ele[0],ele[1])))
@@ -2505,7 +2505,7 @@ class Room
     {
         let temp = ""
         let prev = ""
-        for(let i = 0; i<len+1;i++)
+        for(let i = 0; i<len;i++)
         {
             let letter = Alpha[Math.floor(Math.random() * Alpha.length)]
             while(letter == prev)
