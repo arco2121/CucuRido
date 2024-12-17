@@ -2452,7 +2452,7 @@ class Room
         {
           this.RoundNumber++
           this.CurrentRound.isRound = true
-          const question = this.Questions.Pick(1)
+          const question = this.Questions.Pick(1)[0]
           console.log(question)
           this.CurrentRound.question = question
           return true
