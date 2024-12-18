@@ -193,6 +193,11 @@ Server.on("connected",(data)=>{
         }
         else 
         {
+            const card = Card.FromJSON(data.question)
+            document.getElementById("questioncontainer").appendChild(card.toHTML("♥ Question"))
+            user.cards.cards.forEach(ele => {
+                document.getElementById("cardscon").appendChild(ele.toHTML("✦ Answer",true))
+            })
             document.getElementById("notaskerview").style.display = "flex"
         }
     })

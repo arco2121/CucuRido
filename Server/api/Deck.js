@@ -38,7 +38,7 @@ class Deck
 
     Pick(nCards)
     {
-        if(this.cards.length <= 0)
+        if(this.cards.length - nCards <= 0)
         {
             return null
         }
@@ -53,9 +53,16 @@ class Deck
         return toReturn
     }
 
+    PickAll()
+    {   
+        const u = this.cards
+        this.cards = []
+        return u
+    }
+
     PickCard(index)
     {
-        if(this.cards.length <= 0)
+        if(this.cards.length - index.length <= 0)
         {
             return null
         }
@@ -76,11 +83,6 @@ class Deck
         })
         this.cards = tem
         return t
-    }
-
-    Empty()
-    {
-        return this.cards.length <= 0
     }
 
     Insert(cards) 

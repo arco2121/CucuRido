@@ -13,21 +13,26 @@ class Card
         card.classList.add("card")
         const div = document.createElement("div")
         div.classList.add("semi")
-        const text = document.createElement("h4")
+        const text = document.createElement("h3")
         text.innerText = this.value
+        text.style.textAlign = "left"
         text.classList.add("quest")
-        const space = document.createElement("h3")
+        const space = document.createElement("h4")
         space.classList.add("spaces")
         const div1 = document.createElement("div")
         div1.classList.add("semi")
         space.innerText = this.space
-        const tit = document.createElement("h3")
+        const tit = document.createElement("h4")
+        const div2 = document.createElement("div")
+        div2.classList.add("semi")
+        div2.style.alignItems = "flex-end"
+        div2.appendChild(space)
         tit.innerText = title
         div1.appendChild(tit)
         card.appendChild(div1)
         div.appendChild(text)
         card.appendChild(div)
-        card.appendChild(space)
+        card.appendChild(div2)
         return card
     }
 

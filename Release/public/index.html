@@ -35,7 +35,7 @@
         <input id="inputname" type="text">
       </div>
       <div class="half">
-        <button id="chooseName">Choose</button>
+        <button id="chooseName">Confirm</button>
         <button id="randomName">Random</button>
       </div>
     </div>
@@ -55,8 +55,8 @@
   </div>
   <div class="window" id="roomlobby">
     <div id="usert" class="taguser">
-      <img id="userimg" width="30px" height="30px">
       <h5 id="username"></h5>
+      <img id="userimg" width="30px" height="30px">
     </div>
     <div class="window" id="waittostart">
       <div class="half">
@@ -70,15 +70,20 @@
     </div>
     <div class="window" id="waitround"></div>
     <div class="window" id="askerview">
-      <div class="half">
+      <div class="half nodo">
         <div id="cardcontainer"></div>
         <h5>Wait (🖐️🎵🤟) for others to answer....</h5>
       </div>
+    </div>
+    <div class="window" id="notaskerview">
       <div class="half">
-        <button id="getAnswers">Get Answers</button>
+        <div id="questioncontainer"></div>
+      </div>
+      <div class="half">
+        <div id="cardscon"></div>
+        <button id="replyCard">Done</button>
       </div>
     </div>
-    <div class="window" id="notaskerview"></div>
   </div>
   <audio src="audio/client.mp3" loop id="music"></audio>
   <script type="module" src="script/FireConfig.js"></script>

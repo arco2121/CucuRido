@@ -114,16 +114,16 @@ h2
     font-size: 25px;
     margin: 10px;
 }
-h3
-{
-    font-size: 400;
-    font-size: 25px;
-    margin: 0px;
-}
 h4
 {
     font-size: 400;
-    font-size: 18px;
+    font-size: 13px;
+    margin: 0px;
+}
+h3
+{
+    font-size: 400;
+    font-size: 17px;
     font-style: italic;
     margin: 0px;
 }
@@ -160,7 +160,7 @@ input[type="text"]
     padding: 10px;
     border: solid 5px black;
     width: 240px;
-    border-radius: 30px;
+    border-radius: 25px;
     height: 60px;
     margin: 10px;
     font-size: 20px;
@@ -223,10 +223,10 @@ input[type="text"]:active
 {
     display: flex;
     flex-direction: column;
-    width: 150px;
-    height: 225px;
-    justify-content: space-between;
-    align-items: flex-end;
+    width: 80%;
+    height: auto;
+    justify-content: space-around;
+    align-items: center;
     padding: 20px;
     border-radius: 20px;
     background-color: var(--color);
@@ -239,35 +239,28 @@ input[type="text"]:active
 {
     scale: 0.95;
 }
-.cardmini
+#cardcontainer
 {
     display: flex;
-    flex-direction: column;
-    width: 125px;
-    height: 170px;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 20px;
-    border-radius: 20px;
-    background-color: var(--color);
-    border: solid 5px black;
-    margin: 15px;
-    object-fit: contain;
-    transition: all 200ms ease;
+    align-items: center;
+    justify-content: center;
+    width: 98%;
 }
-.cardmini:active
+.nodo
 {
-    scale: 0.95;
+    width: 100%;
 }
 .semi
 {
     display: flex;
     flex-direction: column;
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
+    text-align: left;
     justify-content: center;
     text-align: left;
     z-index: 2;
+    margin: 10px;
 }
 .spaces
 {
@@ -313,4 +306,11 @@ input[type="text"]:active
     {
         flex-direction: column;
     }
+}
+@media (orientation : landscape) and (min-height : 600px)
+{
+    .nodo
+    {
+        width: 50%;
+    }    
 }

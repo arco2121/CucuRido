@@ -79,10 +79,17 @@ webserver.on("connection",(socket) => {
                 return
             }
             const resp = room.StartRound()
-            if(!resp)
+            if(resp == false)
             {
                 webserver.to(socket.id).emit("downUsers", "Not now")
                 return
+            }
+            else if(resp == null)
+            {
+                const result = room.ResultGame()
+                webserver.to(room.id).emit('gameEnded', {result : result.map((u) => u.toJSON())})
+                Rooms.Destroy(room.id)
+                console.log("Room : " + room.id + " destroyed")
             }
             webserver.to(room.id).emit('questionRe', {question : room.CurrentRound.question.toJSON()})
             console.log("Room : " + room.id + " round started")

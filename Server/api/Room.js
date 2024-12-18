@@ -2428,6 +2428,7 @@ class Room
         this.RoundNumber = 1;
         this.Asker = this.admin
         this.LastAsker = this.admin
+        this.Bin = new Deck()
         this.CurrentRound = {
             count: 0,
             question: null,
@@ -2454,8 +2455,12 @@ class Room
         {
           this.RoundNumber++
           this.CurrentRound.isRound = true
-          const question = this.Questions.Pick(1)[0]
-          this.CurrentRound.question = question
+          const question = this.Questions.Pick(1)
+          if(!question)
+          {
+            return null
+          }
+          this.CurrentRound.question = question[0]
           return true
         }
         else
@@ -2506,13 +2511,19 @@ class Room
             return null
         }
         const card = use.cards.PickCard(indexcards)
-        const y = this.Answers.Pick(indexcards.length)
+        let y = this.Answers.Pick(indexcards.length)
+        if(!y)
+        {
+            this.Answers.Insert(this.Bin.PickAll())
+            this.Answers.Shuffle()
+            y = this.Answers.Pick(indexcards)
+        }
         if(!y)
         {
             return null
         }
         use.cards.Insert(y)
-        this.Answers.Insert(card)
+        this.Bin.Insert(card)
         this.CurrentRound.answers.push([use,card])
         this.CurrentRound.count++
     }
