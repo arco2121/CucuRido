@@ -70,6 +70,19 @@ body
         opacity: 100%;
     }
 }
+@keyframes subwin 
+{
+    0%
+    {
+        scale: 0.8;
+        opacity: 0%;
+    }
+    100%
+    {
+        scale: 1;
+        opacity: 100%;
+    }
+}
 
 #home
 {
@@ -195,36 +208,36 @@ input[type="text"]:active
 {
     display: none;
     z-index: 4;
-    animation: win 0.2s ; 
+    animation: subwin 0.2s ; 
 }
 #waitround
 {
     display: none;
     z-index: 6;
-    animation: win 0.2s ; 
+    animation: subwin 0.2s ; 
 }
 #askroomcode
 {
     display: none;
     z-index: 2;
-    animation: win 0.2s ;
+    animation: subwin 0.2s ;
 }
 #load
 {
     z-index: 0;
-    animation: win 0.2s ;
+    animation: subwin 0.2s ;
 }
 #askerview
 {
     display: none;
     z-index: 6;
-    animation: win 0.2s ; 
+    animation: subwin 0.2s ; 
 }
 #notaskerview
 {
     display: none;
     z-index: 6;
-    animation: win 0.2s ; 
+    animation: subwin 0.2s ; 
 }
 .card
 {
@@ -338,24 +351,19 @@ input[type="text"]:active
 .scroll
 {
     flex-direction: column;
-    min-height: 300px;
+    max-height: 230px;
     justify-content: flex-start;
     overflow-y: scroll;
-    border-radius: 60px;
+    border-radius: 30px;
     padding: 5px;
     margin-top: 10px;
-}
-#replyCard
-{
-    margin-top: 10px;
-    min-height: 60px;
 }
 #onkai
 {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 80px;
+    margin-top: 10px;
 }
 .reversecard
 {
@@ -377,4 +385,16 @@ input[type="text"]:active
     {
         width: 50%;
     }    
+}
+@media(orientation: landscape) and (max-height : 600px)
+{
+    #roomlobby
+    {
+        flex-direction: column;
+    }
+    .scroll
+    {
+        min-height: auto;
+        max-height: 150px;
+    }
 }

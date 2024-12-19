@@ -105,9 +105,7 @@ Server.on("connected",(data)=>{
             {
                 localStorage.setItem("lastName",document.getElementById("inputname").value)
                 document.getElementById("chooseName").removeEventListener("click",temp)
-                setTimeout(async () => {
-                    await Server.emit("createRoom",{name : document.getElementById("inputname").value.toString()})
-                },100)
+                Server.emit("createRoom",{name : document.getElementById("inputname").value.toString()})
             }
             else
             {
@@ -131,9 +129,7 @@ Server.on("connected",(data)=>{
                     {
                         localStorage.setItem("lastName",document.getElementById("inputname").value)
                         document.getElementById("chooseName").removeEventListener("click",temp)
-                        setTimeout(async ()=>{
-                            await Server.emit("joinRoom",{name : document.getElementById("inputname").value.toString(), roomId : document.getElementById("inputroomcode").value.toString().toUpperCase()})
-                        },100)
+                        Server.emit("joinRoom",{name : document.getElementById("inputname").value.toString(), roomId : document.getElementById("inputroomcode").value.toString().toUpperCase()})
                     }
                     else
                     {
@@ -197,6 +193,7 @@ Server.on("connected",(data)=>{
 
     Server.on("questionRe",(data)=>{
         document.getElementById("waittostart").style.display = "none"
+        document.getElementById("startRoom").disabled = false
         document.getElementById("userimg").src = imgUserPath(user.img)
         document.getElementById("username").innerText = user.name
         document.getElementById("usert").style.display = "flex"
