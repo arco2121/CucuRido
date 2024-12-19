@@ -21,8 +21,19 @@ const Server = io("https://cucu-ridu.onrender.com");
             }
         }
     })()
+    const revColor = (() => {
+        while(true)
+        {
+            const temp = colors[Math.floor(Math.random() * (colors.length))]
+            if(temp != color && temp != contColor)
+            {
+                return temp
+            }
+        }
+    })()
     document.documentElement.style.setProperty("--backColor",contColor)
     document.documentElement.style.setProperty("--color",color)
+    document.documentElement.style.setProperty("--revcolor",revColor)
     document.getElementById("logo").src = logoPath
 })()
 
@@ -93,8 +104,10 @@ Server.on("connected",(data)=>{
             if(document.getElementById("inputname").value != "")
             {
                 localStorage.setItem("lastName",document.getElementById("inputname").value)
-                Server.emit("createRoom",{name : document.getElementById("inputname").value.toString()})
                 document.getElementById("chooseName").removeEventListener("click",temp)
+                setTimeout(async () => {
+                    await Server.emit("createRoom",{name : document.getElementById("inputname").value.toString()})
+                },100)
             }
             else
             {
@@ -108,7 +121,7 @@ Server.on("connected",(data)=>{
         document.getElementById("home").style.display = "none"
         document.getElementById("askroomcode").style.display = "flex";
         const tempora = ()=>{
-            if(document.getElementById("inputroomcode").value != "" && document.getElementById("inputroomcode").value.length >= 20)
+            if(document.getElementById("inputroomcode").value != "" && document.getElementById("inputroomcode").value.length >= 6)
             {
                 document.getElementById("askroomcode").style.display = "none"
                 document.getElementById("askname").style.display = "flex"
@@ -117,8 +130,10 @@ Server.on("connected",(data)=>{
                     if(document.getElementById("inputname").value != "")
                     {
                         localStorage.setItem("lastName",document.getElementById("inputname").value)
-                        Server.emit("joinRoom",{name : document.getElementById("inputname").value.toString(), roomId : document.getElementById("inputroomcode").value.toString()})
                         document.getElementById("chooseName").removeEventListener("click",temp)
+                        setTimeout(async ()=>{
+                            await Server.emit("joinRoom",{name : document.getElementById("inputname").value.toString(), roomId : document.getElementById("inputroomcode").value.toString().toUpperCase()})
+                        },100)
                     }
                     else
                     {
@@ -144,6 +159,7 @@ Server.on("connected",(data)=>{
     /*StartRound*/
     document.getElementById("startRoom").addEventListener("click",()=>{
         Server.emit("startRound")
+        document.getElementById("startRoom").disabled = true
     })
     
     /*Events*/
@@ -188,15 +204,15 @@ Server.on("connected",(data)=>{
         {
             const card = Card.FromJSON(data.question)
             console.log(card,data)
-            document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Question"))
+            document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Question",true))
             document.getElementById("askerview").style.display = "flex"
         }
         else 
         {
             const card = Card.FromJSON(data.question)
-            document.getElementById("questioncontainer").appendChild(card.toHTML("♥ Question"))
+            document.getElementById("questioncontainer").appendChild(card.toHTML("♥ Question",true))
             user.cards.cards.forEach(ele => {
-                document.getElementById("cardscon").appendChild(ele.toHTML("✦ Answer",true))
+                document.getElementById("cardscon").appendChild(ele.toHTML("✦ Answer",true,true))
             })
             document.getElementById("notaskerview").style.display = "flex"
         }
@@ -210,6 +226,7 @@ Server.on("connected",(data)=>{
 
     Server.on("downUsers",()=>{
         alert("Wait for some others... Silly✨")
+        document.getElementById("startRoom").disabled = false
     })
 
     Server.on("roomNotExist",() => {

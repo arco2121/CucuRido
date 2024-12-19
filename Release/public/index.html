@@ -54,11 +54,13 @@
     </div>
   </div>
   <div class="window" id="roomlobby">
-    <div id="usert" class="taguser">
-      <h5 id="username"></h5>
-      <img id="userimg" width="30px" height="30px">
+    <div class="endhalf">
+      <div id="usert" class="taguser">
+        <h5 id="username"></h5>
+        <img id="userimg" width="30px" height="30px">
+      </div>
     </div>
-    <div class="window" id="waittostart">
+    <div class="sub-window" id="waittostart">
       <div class="half">
         <h2 id="roomidview"></h2>
         <h5>Wait (🖐️🎵🤟) for others...</h5>
@@ -68,20 +70,22 @@
         <button id="startRoom">Start</button>
       </div>
     </div>
-    <div class="window" id="waitround"></div>
-    <div class="window" id="askerview">
+    <div class="sub-window" id="waitround"></div>
+    <div class="sub-window" id="askerview">
       <div class="half nodo">
-        <div id="cardcontainer"></div>
+        <div class="container" id="cardcontainer"></div>
         <h5>Wait (🖐️🎵🤟) for others to answer....</h5>
       </div>
     </div>
-    <div class="window" id="notaskerview">
-      <div class="half">
-        <div id="questioncontainer"></div>
+    <div class="sub-window" id="notaskerview">
+      <div class="half fullwidth morte">
+        <div class="container" id="questioncontainer"></div>
       </div>
-      <div class="half">
-        <div id="cardscon"></div>
-        <button id="replyCard">Done</button>
+      <div class="half fullwidth">
+        <div class="container scroll" id="cardscon"></div>
+        <div id="onkai">
+          <button id="replyCard">Done</button>
+        </div>
       </div>
     </div>
   </div>

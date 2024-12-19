@@ -7,17 +7,21 @@ class Card
         this.space = space
     }
 
-    toHTML(title)
+    toHTML(title,shownumber,answer)
     {
         const card = document.createElement("div")
         card.classList.add("card")
+        if(answer == true && answer != null)
+        {
+            card.classList.add("reversecard")
+        }
         const div = document.createElement("div")
         div.classList.add("semi")
         const text = document.createElement("h3")
         text.innerText = this.value
         text.style.textAlign = "left"
         text.classList.add("quest")
-        const space = document.createElement("h4")
+        const space = document.createElement("h3")
         space.classList.add("spaces")
         const div1 = document.createElement("div")
         div1.classList.add("semi")
@@ -32,7 +36,10 @@ class Card
         card.appendChild(div1)
         div.appendChild(text)
         card.appendChild(div)
-        card.appendChild(div2)
+        if(shownumber != true && shownumber == null)
+        {
+            card.appendChild(div2)
+        }
         return card
     }
 
@@ -67,7 +74,7 @@ class Deck
 
     Pick(nCards)
     {
-        if(this.cards.length <= 0)
+        if(this.cards.length - nCards <= 0)
         {
             return null
         }
@@ -82,9 +89,16 @@ class Deck
         return toReturn
     }
 
+    PickAll()
+    {   
+        const u = this.cards
+        this.cards = []
+        return u
+    }
+
     PickCard(index)
     {
-        if(this.cards.length <= 0)
+        if(this.cards.length - index.length <= 0)
         {
             return null
         }
@@ -105,11 +119,6 @@ class Deck
         })
         this.cards = tem
         return t
-    }
-
-    Empty()
-    {
-        return this.cards.length <= 0
     }
 
     Insert(cards) 

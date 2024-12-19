@@ -23,6 +23,7 @@
 {
     --backColor : #ffffff;
     --color : #ffffff;
+    --revcolor : #ffffff;
 }
 
 html
@@ -41,7 +42,7 @@ body
 }
 .window
 {
-    position: fixed;
+    position: absolute;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -165,7 +166,7 @@ input[type="text"]
     margin: 10px;
     font-size: 20px;
     font-weight: 500;
-    background: var(--color);
+    background: var(--revcolor);
 }
 input[type="text"]:active
 {
@@ -194,6 +195,12 @@ input[type="text"]:active
 {
     display: none;
     z-index: 4;
+    animation: win 0.2s ; 
+}
+#waitround
+{
+    display: none;
+    z-index: 6;
     animation: win 0.2s ; 
 }
 #askroomcode
@@ -227,19 +234,20 @@ input[type="text"]:active
     height: auto;
     justify-content: space-around;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     border-radius: 20px;
     background-color: var(--color);
     border: solid 5px black;
-    margin: 15px;
+    margin: 5px;
     object-fit: contain;
     transition: all 200ms ease;
+    min-height: fit-content;
 }
 .card:active
 {
     scale: 0.95;
 }
-#cardcontainer
+.container
 {
     display: flex;
     align-items: center;
@@ -268,13 +276,9 @@ input[type="text"]:active
 }
 .taguser
 {
-    position: fixed;
     display: none;
     flex-direction: row;
-    top: 1%;
-    left: 95%;
     width: max-content;
-    transform: translate(-95%,-1%);
     z-index: 10;
     align-items: center;
     justify-content: center;
@@ -284,6 +288,11 @@ input[type="text"]:active
     border-radius: 100%;
     border: solid 2.5px black;
     margin: 10px;
+    transition: all 150ms ease;
+}
+#userimg:active
+{
+    scale: 0.9;
 }
 .cardimg
 {
@@ -301,8 +310,63 @@ input[type="text"]:active
     display: flex;
     opacity: 25%;
 }
+.sub-window
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    background: var(--backColor);
+}
+.endhalf
+{
+    display: flex;
+    width: 100%;
+    padding: 2px;
+    justify-content: flex-end;
+}
+.fullwidth
+{
+    width: 100%;
+}
+.morte
+{
+    min-height: fit-content;
+}
+.scroll
+{
+    flex-direction: column;
+    min-height: 300px;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    border-radius: 60px;
+    padding: 5px;
+    margin-top: 10px;
+}
+#replyCard
+{
+    margin-top: 10px;
+    min-height: 60px;
+}
+#onkai
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+}
+.reversecard
+{
+    background-color: var(--revcolor);
+}
 @media (orientation : portrait) or (min-height : 400px) {
     .window
+    {
+        flex-direction: column;
+    }
+    .sub-window
     {
         flex-direction: column;
     }

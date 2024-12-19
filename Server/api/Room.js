@@ -2325,7 +2325,7 @@ const QuestionsArr = [
       2
     ]
 ]
-const Alpha = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890"
+const Alpha = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890"
 const points = 5
 
 class RoomPool
@@ -2407,7 +2407,7 @@ class Room
 {
     constructor(adminName,adminid) 
     {
-        this.id = this.RandomId(20)
+        this.id = this.RandomId(6)
         this.admin = new Admin(adminName,adminid)
         let temp = []
         for(let i = 0; i<QuestionsArr.length;i++)
