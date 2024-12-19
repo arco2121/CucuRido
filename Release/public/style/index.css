@@ -351,7 +351,7 @@ input[type="text"]:active
 .scroll
 {
     flex-direction: column;
-    max-height: 230px;
+    height:-webkit-fill-available;
     justify-content: flex-start;
     overflow-y: scroll;
     border-radius: 30px;
@@ -363,7 +363,7 @@ input[type="text"]:active
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
+    margin: 20px;
 }
 .reversecard
 {
@@ -394,7 +394,6 @@ input[type="text"]:active
     }
     .scroll
     {
-        min-height: auto;
         max-height: 150px;
     }
 }
