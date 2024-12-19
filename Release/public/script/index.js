@@ -4,8 +4,17 @@ const logoCount = 7
 let roomCode = ""
 let user = new User("default",User.RandomId(32))
 const imgUserPath = (n) => {
-    const est = n < 26 ? ".jpg" : ".png"
-    return "./img/userimg/" + n + est
+    return "./img/userimg/" + n + '.jpg'
+}
+const PushToNull = (arr,value) => {
+    for(let i = 0;i<arr.length;i++)
+    {
+        if(arr[i] == null)
+        {
+            arr[i] = value
+            return arr
+        }
+    }
 }
 const Server = io("https://cucu-ridu.onrender.com");
 (() => {
@@ -40,6 +49,7 @@ const Server = io("https://cucu-ridu.onrender.com");
 Server.on("connected",(data)=>{
     console.log("User : " + data)
     setTimeout(()=>{
+        document.getElementById("inputname").value = getRandomNamea()
         document.getElementById("load").style.display = "none"
         document.getElementById("home").style.display = "flex"
     },1500)
@@ -133,7 +143,7 @@ Server.on("connected",(data)=>{
                     }
                     else
                     {
-                        alert("Say something... I can't... Then you have forced my hands...Eurilicus... 🪓")
+                        alert("Inserisci qualcosa scem* ❤️")
                     }
                 }
                 document.getElementById("chooseName").addEventListener("click",temp)
@@ -141,7 +151,7 @@ Server.on("connected",(data)=>{
             }
             else
             {
-                alert("Almost all of whom were slaughtered by your hand... Sixhundred (more likely 20) strike 👊")
+                alert("Inserisci almeno 6 caratteri scem* 😞🫠")
             }
         }
         document.getElementById("chooseRoomCode").addEventListener("click", tempora)
@@ -179,7 +189,7 @@ Server.on("connected",(data)=>{
         roomCode = data.roomId
         user = User.fromJSON(data.user)
         document.getElementById("startRoom").style.display = "none"
-        document.getElementById("roomidview").innerText = "Room Code\n\n" + roomCode
+        document.getElementById("roomidview").innerText = "Codice Stanza\n\n" + roomCode
         document.getElementById("roomidview").addEventListener("click",()=>{
             navigator.clipboard.writeText(roomCode).then(()=>{
                 alert("Copied to Clipboard")
@@ -201,33 +211,51 @@ Server.on("connected",(data)=>{
         {
             const card = Card.FromJSON(data.question)
             console.log(card,data)
-            document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Question",true))
+            document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Frase",true))
             document.getElementById("askerview").style.display = "flex"
         }
         else 
         {
+            let answers = []
             const card = Card.FromJSON(data.question)
-            document.getElementById("questioncontainer").appendChild(card.toHTML("♥ Question",true))
+            document.getElementById("questioncontainer").appendChild(card.toHTML("♥ Frase",true))
             user.cards.cards.forEach(ele => {
-                document.getElementById("cardscon").appendChild(ele.toHTML("✦ Answer",true,true))
+                const apt = ele.toHTML("✦ Risposta",null,true)
+                document.getElementById("cardscon").appendChild(apt)
+                let selected = false
+                apt.addEventListener("click",()=>{
+                    if(!selected)
+                    {
+                        if(answers.length >= card.space)
+                            return
+                        PushToNull(answers,ele.index)
+                        selected = true
+                    }
+                    else
+                    {
+                        const i = answers.indexOf(ele.index)
+                        answers[i] = null
+                        selected = false
+                    }
+                })
             })
             document.getElementById("notaskerview").style.display = "flex"
         }
     })
 
     Server.on("alreadyRound",()=>{
-        alert("Wait for the current round of the room to finish... Silly✨")
+        alert("Attendi che il round attuale sia finito... Silly✨")
         document.getElementById("askname").style.display = "none"
         document.getElementById("home").style.display = "flex"
     })
 
     Server.on("downUsers",()=>{
-        alert("Wait for some others... Silly✨")
+        alert("Aspetta ci sia qualcuno... Silly✨")
         document.getElementById("startRoom").disabled = false
     })
 
     Server.on("roomNotExist",() => {
-        alert("This Room does not exist... Silly✨")
+        alert("Quest stanza non esiste... Silly✨")
         document.getElementById("askname").style.display = "none"
         document.getElementById("home").style.display = "flex"
     })
