@@ -117,10 +117,10 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("getAnswers",(data) => {
+    socket.on("getAnswers",() => {
         try
         {
-            const room = Rooms.FindRoom(data.roomId)
+            const room = Rooms.FindRoomByUser(socket.id)
             if(!room)
             {
                 webserver.to(socket.id).emit("error", "Not exist")
@@ -129,7 +129,7 @@ webserver.on("connection",(socket) => {
             const result = room.GetAnswers()
             if(!result)
             {
-                webserver.to(socket.id).emit("error", "Not now")
+                webserver.to(socket.id).emit("answersYet", "Not now")
                 return
             }
             webserver.to(socket.id).emit('gettedAnswers', {answers : result.map((resu) => [

@@ -3,6 +3,7 @@ const colors = ["#fff5b3","#d6ebfe","#fed6e2"]
 const logoCount = 7
 let roomCode = ""
 let userPfp = 1
+let GetAnsw
 let user = new User("default",User.RandomId(32))
 const imgUserPath = (n) => {
     return "./img/userimg/" + n + '.jpg'
@@ -205,7 +206,10 @@ Server.on("connected",(data)=>{
         if(user.IsAsking)
         {
             const card = Card.FromJSON(data.question)
-            document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Frase",true))
+            document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Frase"))
+            GetAnsw = setInterval(()=>{
+                Server.emit("getAnswers",)
+            },1600)
             document.getElementById("askerview").style.display = "flex"
         }
         else 
@@ -260,7 +264,7 @@ Server.on("connected",(data)=>{
     })
 
     Server.on("downUsers",()=>{
-        alert("Aspetta ci sia qualcuno... Silly✨")
+        alert("Aspetta che entrino altre persone... Silly✨")
         document.getElementById("startRoom").disabled = false
     })
 
