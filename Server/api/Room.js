@@ -2451,7 +2451,7 @@ class Room
 
     StartRound()
     {
-        if(this.users.length > 0)
+        if(this.users.length > 2)
         {
           this.RoundNumber++
           this.CurrentRound.isRound = true

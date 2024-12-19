@@ -217,7 +217,7 @@ Server.on("connected",(data)=>{
                 const apt = ele.toHTML("✦ Risposta",null,true)
                 document.getElementById("cardscon").appendChild(apt)
                 const SelectedCards = (cardElement, card) => {
-                    const cardIndex = answers.indexOf(card);
+                    const cardIndex = answers.indexOf(card.index);
                     if (cardIndex != -1) 
                     {
                         answers[cardIndex] = null
@@ -239,14 +239,16 @@ Server.on("connected",(data)=>{
                     SelectedCards(apt,ele)
                 })
             })
-            document.getElementById("replyCard").addEventListener("click",() => {
+            const tem = () => {
                 if(answers.includes(null))
                 {
                     alert("Completa la selezione delle risposte abort* ✨")
                     return
                 }
                 Server.emit("receiveAnswer",{indexcards : answers})
-            })
+                document.getElementById("replyCard").removeEventListener("click",tem)
+            }
+            document.getElementById("replyCard").addEventListener("click",tem)
             document.getElementById("notaskerview").style.display = "flex"
         }
     })

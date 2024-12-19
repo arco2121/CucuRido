@@ -177,6 +177,7 @@ webserver.on("connection",(socket) => {
             }
             room.ReceiveAnswer(socket.id,data.indexcards)
             const user = room.FindUser(socket.id)
+            console.log("User : " + socket.id + " replyed")
             webserver.to(socket.id).emit('receivedAnswer', {user : user.toJSON()})
         }
         catch(error)
