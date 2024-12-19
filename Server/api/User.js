@@ -4,12 +4,12 @@ const Alpha = "QWERTYUIOPASDFGHJKLZXCVBNM1256789qwertypaufghjklzcvbnm*/&%$!"
 
 class User
 {
-    constructor(name, unicid)
+    constructor(name, unicid,pfp)
     {
         this.name = name
         this.unicid = unicid
         this.point = 0
-        this.img = Math.floor(Math.random() * (36-1) + 1)
+        this.img = pfp
         this.cards = new Deck()
         this.IsAsking = false
         this.admin = false
@@ -63,18 +63,18 @@ class User
 }
 class Admin extends User
 {
-    constructor(name,unicid)
+    constructor(name,unicid,pfp)
     {
-        super(name,unicid)
+        super(name,unicid,pfp)
         this.IsAsking = true
         this.admin = true
     }
 }
 class Guest extends User
 {
-    constructor(name,unicid)
+    constructor(name,unicid,pfp)
     {
-        super(name,unicid)
+        super(name,unicid,pfp)
     }
 }
 

@@ -2,6 +2,7 @@
 const colors = ["#fff5b3","#d6ebfe","#fed6e2"]
 const logoCount = 7
 let roomCode = ""
+let userPfp = 1
 let user = new User("default",User.RandomId(32))
 const imgUserPath = (n) => {
     return "./img/userimg/" + n + '.jpg'
@@ -50,6 +51,8 @@ Server.on("connected",(data)=>{
     console.log("User : " + data)
     setTimeout(()=>{
         document.getElementById("inputname").value = getRandomNamea()
+        userPfp = getRandomPfp()
+        document.getElementById("imguserk").src = imgUserPath(userPfp)
         document.getElementById("load").style.display = "none"
         document.getElementById("home").style.display = "flex"
     },1500)
@@ -115,7 +118,7 @@ Server.on("connected",(data)=>{
             {
                 localStorage.setItem("lastName",document.getElementById("inputname").value)
                 document.getElementById("chooseName").removeEventListener("click",temp)
-                Server.emit("createRoom",{name : document.getElementById("inputname").value.toString()})
+                Server.emit("createRoom",{name : document.getElementById("inputname").value.toString(), img : userPfp})
             }
             else
             {
@@ -134,12 +137,12 @@ Server.on("connected",(data)=>{
                 document.getElementById("askroomcode").style.display = "none"
                 document.getElementById("askname").style.display = "flex"
                 document.getElementById("inputname").value = localStorage.getItem("lastName") || ""
-                const temp = ()=>{
+                const temp = () => {
                     if(document.getElementById("inputname").value != "")
                     {
                         localStorage.setItem("lastName",document.getElementById("inputname").value)
                         document.getElementById("chooseName").removeEventListener("click",temp)
-                        Server.emit("joinRoom",{name : document.getElementById("inputname").value.toString(), roomId : document.getElementById("inputroomcode").value.toString().toUpperCase()})
+                        Server.emit("joinRoom",{name : document.getElementById("inputname").value.toString(), roomId : document.getElementById("inputroomcode").value.toString().toUpperCase(),img : userPfp})
                     }
                     else
                     {
@@ -160,6 +163,8 @@ Server.on("connected",(data)=>{
     /*AskName*/
     document.getElementById("randomName").addEventListener("click",()=>{
         document.getElementById("inputname").value = getRandomNamea()
+        userPfp = getRandomPfp()
+        document.getElementById("imguserk").src = imgUserPath(userPfp)
     })
 
     /*StartRound*/
@@ -216,13 +221,15 @@ Server.on("connected",(data)=>{
         }
         else 
         {
-            let answers = []
             const card = Card.FromJSON(data.question)
             document.getElementById("questioncontainer").appendChild(card.toHTML("♥ Frase",true))
             user.cards.cards.forEach(ele => {
                 const apt = ele.toHTML("✦ Risposta",null,true)
                 document.getElementById("cardscon").appendChild(apt)
                 let selected = false
+                setInterval(()=>{
+                    console.log(answers)
+                })
                 apt.addEventListener("click",()=>{
                     if(!selected)
                     {

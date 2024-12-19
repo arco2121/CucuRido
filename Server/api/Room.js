@@ -2437,13 +2437,13 @@ class Room
         }
     }
 
-    Add(name,id)
+    Add(name,id,pfp)
     {
         if(this.CurrentRound.isRound)
         {
             return null
         }
-        const user = new Guest(name,id)
+        const user = new Guest(name,id, pfp)
         user.cards.Insert(this.Answers.Pick(11))
         this.users.push(user)
         return user
