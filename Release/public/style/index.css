@@ -369,6 +369,10 @@ input[type="text"]:active
 {
     background-color: var(--revcolor);
 }
+.selectd
+{
+    background-color: #b8ffb0;
+}
 @media (orientation : portrait) or (min-height : 400px) {
     .window
     {

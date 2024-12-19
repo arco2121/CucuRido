@@ -7,16 +7,6 @@ let user = new User("default",User.RandomId(32))
 const imgUserPath = (n) => {
     return "./img/userimg/" + n + '.jpg'
 }
-const PushToNull = (arr,value) => {
-    for(let i = 0;i<arr.length;i++)
-    {
-        if(arr[i] == null)
-        {
-            arr[i] = value
-            return arr
-        }
-    }
-}
 const Server = io("https://cucu-ridu.onrender.com");
 (() => {
     const color = colors[Math.floor(Math.random() * (colors.length))]
@@ -178,7 +168,7 @@ Server.on("connected",(data)=>{
         roomCode = data.roomId
         user = User.fromJSON(data.user)
         document.getElementById("startRoom").style.display = "block"
-        document.getElementById("roomidview").innerText = "Room Code\n\n" + roomCode
+        document.getElementById("roomidview").innerText = "Codice Stanza\n\n" + roomCode
         document.getElementById("roomidview").addEventListener("click",()=>{
             navigator.clipboard.writeText(roomCode).then(()=>{
                 alert("Copied to Clipboard")
@@ -215,35 +205,39 @@ Server.on("connected",(data)=>{
         if(user.IsAsking)
         {
             const card = Card.FromJSON(data.question)
-            console.log(card,data)
             document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Frase",true))
             document.getElementById("askerview").style.display = "flex"
         }
         else 
         {
             const card = Card.FromJSON(data.question)
+            let answers = Array(card.space).fill(null)
             document.getElementById("questioncontainer").appendChild(card.toHTML("♥ Frase",true))
             user.cards.cards.forEach(ele => {
                 const apt = ele.toHTML("✦ Risposta",null,true)
                 document.getElementById("cardscon").appendChild(apt)
-                let selected = false
-                setInterval(()=>{
+                const SelectedCards = (cardElement, card) => {
+                    const cardIndex = answers.indexOf(card);
+                    if (cardIndex != -1) 
+                    {
+                        answers[cardIndex] = null
+                        cardElement.classList.remove("selectd")
+                        cardElement.querySelector("#spaces").innerText = 0
+                    } 
+                    else 
+                    {
+                        const firstEmptyIndex = answers.indexOf(null);
+                        if (firstEmptyIndex != -1) 
+                        {
+                            answers[firstEmptyIndex] = card;
+                            cardElement.classList.add("selectd")
+                            cardElement.querySelector("#spaces").innerText = firstEmptyIndex + 1
+                        }
+                    }
                     console.log(answers)
-                })
+                }
                 apt.addEventListener("click",()=>{
-                    if(!selected)
-                    {
-                        if(answers.length >= card.space)
-                            return
-                        PushToNull(answers,ele.index)
-                        selected = true
-                    }
-                    else
-                    {
-                        const i = answers.indexOf(ele.index)
-                        answers[i] = null
-                        selected = false
-                    }
+                    SelectedCards(apt,ele)
                 })
             })
             document.getElementById("notaskerview").style.display = "flex"

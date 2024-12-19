@@ -9,7 +9,6 @@ class Card
 
     toHTML(title,shownumber,answer)
     {
-        `codice html`
         const card = document.createElement("div")
         card.classList.add("card")
         if(answer == true && answer != null)
