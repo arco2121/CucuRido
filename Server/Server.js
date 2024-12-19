@@ -27,7 +27,7 @@ webserver.on("connection",(socket) => {
     socket.on("createRoom",(data) => {
         try
         {
-            const room = Rooms.Create(data.name,socket.id,data.pfp)
+            const room = Rooms.Create(data.name,socket.id,data.img)
             socket.join(room.id)
             console.log("Room : " + room.id + " created")
             webserver.to(socket.id).emit("roomCreated",{roomId : room.id, user : room.admin.toJSON()})
@@ -47,7 +47,7 @@ webserver.on("connection",(socket) => {
                 webserver.to(socket.id).emit("roomNotExist", "Not exist")
                 return
             }
-            const user = room.Add(data.name,socket.id,data.pfp)
+            const user = room.Add(data.name,socket.id,data.img)
             if(!user)
             {
                 webserver.to(socket.id).emit("alreadyRound", "Not now")

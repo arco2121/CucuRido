@@ -2335,11 +2335,11 @@ class RoomPool
         this.rooms = []
     }
 
-    Create(adminName,adminid)
+    Create(adminName,adminid,img)
     {
         while(true)
         {
-            const room = new Room(adminName,adminid)
+            const room = new Room(adminName,adminid,img)
             if(this.Find(room.id) == -1)
             {
                 this.rooms.push(room)
@@ -2405,10 +2405,10 @@ class RoomPool
 
 class Room
 {
-    constructor(adminName,adminid) 
+    constructor(adminName,adminid,img) 
     {
         this.id = this.RandomId(6)
-        this.admin = new Admin(adminName,adminid)
+        this.admin = new Admin(adminName,adminid,img)
         let temp = []
         for(let i = 0; i<QuestionsArr.length;i++)
         {
