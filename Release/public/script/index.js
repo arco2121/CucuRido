@@ -222,23 +222,30 @@ Server.on("connected",(data)=>{
                     {
                         answers[cardIndex] = null
                         cardElement.classList.remove("selectd")
-                        cardElement.querySelector("#spaces").innerText = 0
+                        ele.spacehtml.innerText = 0
                     } 
                     else 
                     {
                         const firstEmptyIndex = answers.indexOf(null);
                         if (firstEmptyIndex != -1) 
                         {
-                            answers[firstEmptyIndex] = card;
+                            answers[firstEmptyIndex] = card.index;
                             cardElement.classList.add("selectd")
-                            cardElement.querySelector("#spaces").innerText = firstEmptyIndex + 1
+                            ele.spacehtml.innerText = firstEmptyIndex + 1
                         }
                     }
-                    console.log(answers)
                 }
                 apt.addEventListener("click",()=>{
                     SelectedCards(apt,ele)
                 })
+            })
+            document.getElementById("replyCard").addEventListener("click",() => {
+                if(answers.includes(null))
+                {
+                    alert("Completa la selezione delle risposte abort* ✨")
+                    return
+                }
+                Server.emit("receiveAnswer",{indexcards : answers})
             })
             document.getElementById("notaskerview").style.display = "flex"
         }
@@ -259,5 +266,11 @@ Server.on("connected",(data)=>{
         alert("Quest stanza non esiste... Silly✨")
         document.getElementById("askname").style.display = "none"
         document.getElementById("home").style.display = "flex"
+    })
+
+    Server.on("receivedAnswer",(data) => {
+        user = User.fromJSON(data.user)
+        document.getElementById("notaskerview").style.display = "none"
+        document.getElementById("waitround").style.display = "flex"
     })
 })

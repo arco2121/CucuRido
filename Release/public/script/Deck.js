@@ -40,6 +40,7 @@ class Card
         {
             card.appendChild(div2)
         }
+        this.spacehtml = space
         return card
     }
 
