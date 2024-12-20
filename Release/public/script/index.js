@@ -4,6 +4,7 @@ const logoCount = 7
 let roomCode = ""
 let userPfp = 1
 let GetAnsw
+let backtime = 1500
 let user = new User("default",User.RandomId(32))
 const imgUserPath = (n) => {
     return "./img/userimg/" + n + '.jpg'
@@ -208,8 +209,8 @@ Server.on("connected",(data)=>{
             const card = Card.FromJSON(data.question)
             document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Frase"))
             GetAnsw = setInterval(()=>{
-                Server.emit("getAnswers",)
-            },1600)
+                Server.emit("getAnswers")
+            },backtime)
             document.getElementById("askerview").style.display = "flex"
         }
         else 
@@ -278,5 +279,18 @@ Server.on("connected",(data)=>{
         user = User.fromJSON(data.user)
         document.getElementById("notaskerview").style.display = "none"
         document.getElementById("waitround").style.display = "flex"
+    })
+
+    Server.on("answersYet",()=>{
+        backtime = Math.random() * (2001 - 1500) + 1500
+    })
+    Server.on("gettedAnswers",(data) => {
+        let answers = data.answers.map((resu) => [
+            User.fromJSON(resu[0].toJSON()),
+            resu[1].map((card) => Card.FromJSON(card.toJSON()))
+        ])
+        console.log(answers)
+        document.getElementById("askerview").style.display = "none"
+        document.getElementById("choosewinner").style.display = "flex"
     })
 })
