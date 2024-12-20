@@ -113,7 +113,6 @@ body
 {
     border-radius: 100%;
     /*padding: 20px;*/
-    width: 50%;
     border: solid black 10px;
     background: var(--color);
     transition: all 150ms ease;

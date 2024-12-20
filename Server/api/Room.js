@@ -2619,7 +2619,7 @@ class Room
 
     GetAnswers()
     {
-        if(this.CurrentRound.count == this.users.length && this.CurrentRound.isRound)
+        if(this.CurrentRound.count == this.users.length-1 && this.CurrentRound.isRound)
         {
             return this.CurrentRound.answers
         }
