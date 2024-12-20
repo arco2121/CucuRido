@@ -109,6 +109,19 @@ body
 {
     scale: 0.95;
 }
+.UserPFP
+{
+    border-radius: 100%;
+    /*padding: 20px;*/
+    width: 50%;
+    border: solid black 10px;
+    background: var(--color);
+    transition: all 150ms ease;
+}
+.UserPFP:active
+{
+    scale: 0.95;
+}
 .contornomini
 {
     border-radius: 100%;

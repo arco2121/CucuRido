@@ -156,5 +156,5 @@ const getRandomNamea = () => {
 }
 
 const getRandomPfp = () => {
-    return Math.floor(Math.random() * (36-1) + 1)
+    return Math.floor(Math.random() * (37-1) + 1)
 }
