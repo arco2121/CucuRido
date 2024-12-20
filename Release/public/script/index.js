@@ -335,7 +335,7 @@ Server.on("connected",(data)=>{
     Server.on("whoWon",(data) => {
         if(user.IsAsking)
         {
-            document.getElementById("askerview").style.display = "none"
+            document.getElementById("choosewinner").style.display = "none"
             document.getElementById("winround").style.display = "flex"
         }
         else
@@ -352,7 +352,7 @@ Server.on("connected",(data)=>{
         }
         else
         {
-             document.getElementById("restartRoom").style.display = "none"
+            document.getElementById("restartRoom").style.display = "none"
         }
     })
 

@@ -158,12 +158,12 @@ webserver.on("connection",(socket) => {
                 return
             }
             const op = room.EndRound(data.id)
-            if(op == true)
+            if(!op)
             {
                 webserver.to(socket.id).emit("NotPossibleUser","Die")
                 return
             }
-            webserver.to(room.id).emit('whoWon', {user : room.FindUser(socket.id).toJSON(), winner : room.Asker.name, lastwinner : room.LastAsker.name})
+            webserver.to(room.id).emit('whoWon', {user : op.toJSON(), winner : room.Asker.name, lastwinner : room.LastAsker.name})
         }
         catch(error)
         {

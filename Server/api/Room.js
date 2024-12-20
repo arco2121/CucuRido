@@ -2634,19 +2634,20 @@ class Room
         const user = this.FindUser(idunic)
         if(!user)
         {
-          return true
+          return null
         }
         user.point += points
         this.Asker.IsAsking = false
         this.LastAsker = this.Asker
+        user.IsAsking = true
         this.Asker = user
-        this.Asker.IsAsking = true
         this.CurrentRound = {
             count: 0,
             question: null,
             answers: [],
             isRound: false,
         }
+        return this.Asker
     }
 
     ResultGame()
