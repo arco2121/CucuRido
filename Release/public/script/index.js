@@ -343,8 +343,8 @@ Server.on("connected",(data)=>{
             document.getElementById("waitround").style.display = "none"
             document.getElementById("winround").style.display = "flex"
         }
-        document.getElementById("whowon").innerText = data.winner + " + 5✨" 
-        document.getElementById("whomess").innerText = data.lastwinner + "lo ha scelto come vincitore"
+        document.getElementById("whowon").innerText = data.winner + "\n+ 5✨" 
+        document.getElementById("whomess").innerText = data.lastwinner + "ha decretato ellæ come vincitore"
         user = User.fromJSON(data.user)
         if(user.IsAsking)
         {
