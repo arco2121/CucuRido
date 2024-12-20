@@ -164,6 +164,7 @@ webserver.on("connection",(socket) => {
                 return
             }
             const user = room.FindUser(socket.id)
+            console.log(room)
             webserver.to(room.id).emit('whoWon', {user : user.toJSON(), winner : room.Asker.name, lastwinner : room.LastAsker.name})
         }
         catch(error)
