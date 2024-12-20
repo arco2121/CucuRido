@@ -2632,6 +2632,10 @@ class Room
     EndRound(idunic)
     {
         const user = this.FindUser(idunic)
+        if(!user)
+        {
+          return true
+        }
         user.point += points
         this.Asker.IsAsking = false
         this.LastAsker = this.Asker

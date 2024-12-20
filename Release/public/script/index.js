@@ -5,6 +5,7 @@ let roomCode = ""
 let userPfp = 1
 let GetAnsw
 let backtime = 1500
+let quest
 let user = new User("default",User.RandomId(32))
 document.getElementById("inputname").value = getRandomNamea()
 const imgUserPath = (n) => {
@@ -105,7 +106,7 @@ Server.on("connected",(data)=>{
     document.getElementById("createRoom").addEventListener("click",()=>{
         document.getElementById("home").style.display = "none"
         document.getElementById("askname").style.display = "flex"
-        //document.getElementById("inputname").value = localStorage.getItem("lastName") || ""
+        document.getElementById("inputname").value = localStorage.getItem("lastName") || getRandomNamea()
         const temp = ()=>{
             if(document.getElementById("inputname").value != "")
             {
@@ -129,7 +130,7 @@ Server.on("connected",(data)=>{
             {
                 document.getElementById("askroomcode").style.display = "none"
                 document.getElementById("askname").style.display = "flex"
-                document.getElementById("inputname").value = localStorage.getItem("lastName") || ""
+                document.getElementById("inputname").value = localStorage.getItem("lastName") || getRandomNamea()
                 const temp = () => {
                     if(document.getElementById("inputname").value != "")
                     {
@@ -164,6 +165,11 @@ Server.on("connected",(data)=>{
     document.getElementById("startRoom").addEventListener("click",()=>{
         Server.emit("startRound")
         document.getElementById("startRoom").disabled = true
+    })
+
+    document.getElementById("restartRoom").addEventListener("click",() => {
+        Server.emit("startRound")
+        document.getElementById("restartRoom").disabled = true
     })
     
     /*Events*/
@@ -205,19 +211,18 @@ Server.on("connected",(data)=>{
         document.getElementById("userimg").src = imgUserPath(user.img)
         document.getElementById("username").innerText = user.name
         document.getElementById("usert").style.display = "flex"
+        const card = Card.FromJSON(data.question)
+        quest = card
         if(user.IsAsking)
         {
-            const card = Card.FromJSON(data.question)
             document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Frase"))
             GetAnsw = setInterval(()=>{
                 Server.emit("getAnswers")
-                console.log("crgf")
             },backtime)
             document.getElementById("askerview").style.display = "flex"
         }
         else 
         {
-            const card = Card.FromJSON(data.question)
             let answers = Array(card.space).fill(null)
             document.getElementById("questioncontainer").appendChild(card.toHTML("♥ Frase",true))
             user.cards.cards.forEach(ele => {
@@ -286,14 +291,77 @@ Server.on("connected",(data)=>{
     Server.on("answersYet",()=>{
         backtime = Math.random() * (2001 - 1500) + 1500
     })
+
     Server.on("gettedAnswers",(data) => {
         clearInterval(GetAnsw)
         let answers = data.answers.map((resu) => [
-            User.fromJSON(resu[0].toJSON()),
-            resu[1].map((card) => Card.FromJSON(card.toJSON()))
+            User.fromJSON(resu[0]),
+            resu[1].map((card) => Card.FromJSON(card))
         ])
-        console.log(answers)
+        let j = 0
+        document.getElementById("modcardcontainer").appendChild(quest.toHTML("♥ Frase",true))
+        const BlankSpace = () => {
+            for(let i = 0; i<answers[j][1].length;i++)
+            {
+                const y = quest.text.textContent
+                const u = y.replace("_",answers[j][1][i].value)
+                quest.text.innerText = u
+            }
+        }
+        BlankSpace()
         document.getElementById("askerview").style.display = "none"
         document.getElementById("choosewinner").style.display = "flex"
+        document.getElementById("ava").addEventListener("click",()=>{
+            if(j+1 > answers.length - 1)
+                return
+            j++
+            quest.text.innerText = quest.value
+            BlankSpace()
+        })
+        document.getElementById("indi").addEventListener("click",()=>{
+            if(j-1 < 0)
+                return
+            j--
+            quest.text.innerText = quest.value
+            BlankSpace()
+        })
+        const temp = () => {
+            Server.emit("endRound",{id : answers[j][0].unicid})
+            document.getElementById("submitta").disabled = true
+        }
+        document.getElementById("submitta").addEventListener("click", temp)
+    })
+
+    Server.on("whoWon",(data) => {
+        if(user.IsAsking)
+        {
+            document.getElementById("askerview").style.display = "none"
+            document.getElementById("winround").style.display = "flex"
+        }
+        else
+        {
+            document.getElementById("waitround").style.display = "none"
+            document.getElementById("winround").style.display = "flex"
+        }
+        document.getElementById("whowon").innerText = data.winner + " + 5✨" 
+        document.getElementById("whomess").innerText = data.lastwinner + "lo ha scelto come vincitore"
+        user = User.fromJSON(data.user)
+        if(user.IsAsking)
+        {
+            document.getElementById("restartRoom").style.display = "flex"
+        }
+        else
+        {
+             document.getElementById("restartRoom").style.display = "none"
+        }
+    })
+
+    Server.on("NotPossibleUser",()=>{
+        alert("Non puoi nominare questo vincitore scem* ✨")
+        document.getElementById("submitta").disabled = false
+    })
+
+    Server.on("reload",()=>{
+        window.location.reload()
     })
 })

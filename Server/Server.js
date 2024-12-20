@@ -146,7 +146,7 @@ webserver.on("connection",(socket) => {
     socket.on("endRound",(data) => {
         try
         {
-            const room = Rooms.FindRoom(data.roomId)
+            const room = Rooms.FindRoomByUser(socket.id)
             if(!room)
             {
                 webserver.to(socket.id).emit("error", "Not exist")
@@ -157,8 +157,13 @@ webserver.on("connection",(socket) => {
                 webserver.to(socket.id).emit("error", "No you idiot")
                 return
             }
-            room.EndRound(data.id)
-            webserver.to(room.id).emit('whoWon', {winner : room.Asker.toJSON(), lastwinner : room.LastAsker.toJSON()})
+            const op = room.EndRound(data.id)
+            if(op == true)
+            {
+                webserver.to(socket.id).emit("NotPossibleUser","Die")
+                return
+            }
+            webserver.to(room.id).emit('whoWon', {user : room.FindUser(socket.id).toJSON(), winner : room.Asker.name, lastwinner : room.LastAsker.name})
         }
         catch(error)
         {
@@ -208,6 +213,7 @@ webserver.on("connection",(socket) => {
         try
         {
             console.log("User : " + socket.id + " disconnected")
+            webserver.to(socket.id).emit('reload')
             const room = Rooms.FindRoomByUser(socket.id)
             if(room) 
             {

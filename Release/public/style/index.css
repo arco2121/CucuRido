@@ -367,8 +367,9 @@ input[type="text"]:active
     justify-content: flex-start;
     overflow-y: scroll;
     border-radius: 30px;
-    padding: 5px;
+    padding: 5px 0px;
     margin-top: 10px;
+    width: 92%;
 }
 #onkai
 {
@@ -393,9 +394,26 @@ input[type="text"]:active
 {
     background-color: var(--revcolor);
 }
+#cardscon
+{
+    border: solid black 5px;
+}
 .selectd
 {
     background-color: #b8ffb0;
+}
+.ori
+{
+    flex-direction: row;
+}
+.orifizio
+{
+    background-color: var(--revcolor);
+    width: 150px;
+}
+#whowon
+{
+    width: 90%;
 }
 @media (orientation : portrait) or (min-height : 400px) {
     .window

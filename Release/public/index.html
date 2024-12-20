@@ -73,7 +73,6 @@
     </div>
     <div class="sub-window" id="waitround">
       <div class="half">
-        <h2>Aspetta</h2>
         <h5>Wait (✋theydontloveulikeiloveu) gli altri...</h5>
         <h5>Aspetta che tutti finiscano di rispondere<br>e il vincitore venga proclamato</h5>
       </div>
@@ -95,8 +94,27 @@
         </div>
       </div>
     </div>
-    <div class="sub-window" id="choosewinner"></div>
-    <div class="sub-window" id="winround"></div>
+    <div class="sub-window" id="choosewinner">
+      <div class="half nodo">
+        <div class="container" id="modcardcontainer"></div>
+      </div>
+      <div class="half nodo">
+        <div class="half nodo ori">
+          <button class="orifizio" id="indi"><</button>
+          <button class="orifizio" id="ava">></button>
+        </div>
+        <button id="submitta">Conferma</button>
+      </div>
+    </div>
+    <div class="sub-window" id="winround">
+      <div class="half">
+        <h2 id="whowon"></h2>
+        <h5 id="whomess"></h5>
+      </div>
+      <div class="half">
+        <button id="restartRoom">Nuovo Round</button>
+      </div>
+    </div>
   </div>
   <audio src="audio/client.mp3" loop id="music"></audio>
   <script type="module" src="script/FireConfig.js"></script>
