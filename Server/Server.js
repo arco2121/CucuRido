@@ -163,9 +163,9 @@ webserver.on("connection",(socket) => {
                 webserver.to(socket.id).emit("NotPossibleUser","Die")
                 return
             }
-            const user = room.FindUser(socket.id)
-            console.log(room)
-            webserver.to(room.id).emit('whoWon', {user : user.toJSON(), winner : room.Asker.name, lastwinner : room.LastAsker.name})
+            room.users.forEach((user) => {
+                webserver.to(user.unicid).emit('whoWon', {user: user.toJSON(), winner: room.Asker.name, lastwinner: room.LastAsker.name})
+            });
         }
         catch(error)
         {

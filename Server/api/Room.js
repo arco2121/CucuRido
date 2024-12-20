@@ -2634,7 +2634,7 @@ class Room
         const user = this.FindUser(idunic)
         if(!user)
         {
-          return null
+          return false
         }
         user.point += points
         this.Asker.IsAsking = false
@@ -2647,7 +2647,7 @@ class Room
             answers: [],
             isRound: false,
         }
-        return this.Asker
+        return true
     }
 
     ResultGame()
