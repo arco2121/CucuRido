@@ -6,6 +6,7 @@ let userPfp = 1
 let GetAnsw
 let backtime = 1500
 let user = new User("default",User.RandomId(32))
+document.getElementById("inputname").value = getRandomNamea()
 const imgUserPath = (n) => {
     return "./img/userimg/" + n + '.jpg'
 }
@@ -104,7 +105,7 @@ Server.on("connected",(data)=>{
     document.getElementById("createRoom").addEventListener("click",()=>{
         document.getElementById("home").style.display = "none"
         document.getElementById("askname").style.display = "flex"
-        document.getElementById("inputname").value = localStorage.getItem("lastName") || ""
+        //document.getElementById("inputname").value = localStorage.getItem("lastName") || ""
         const temp = ()=>{
             if(document.getElementById("inputname").value != "")
             {

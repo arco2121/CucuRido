@@ -80,6 +80,10 @@ const nounsAndAdjectives = {
       "Mariano",
       "Lancillotto",
       "Vernelia",
+      "Marcantonio",
+      "Perpetua",
+      "Cassiopea",
+      "Papa Francesco"
     ],
     adjectives: [
       "Vibrante",
@@ -138,6 +142,12 @@ const nounsAndAdjectives = {
       "Dissacrante",
       "Elefante",
       "Feticista",
+      "Sconvolgente",
+      "Saltasburellante",
+      "Necromante",
+      "Che picchia i bambini",
+      "Che deruba le vecchie",
+      "Pluriomicida"
     ],
 }
 
@@ -146,5 +156,5 @@ const getRandomNamea = () => {
 }
 
 const getRandomPfp = () => {
-    return Math.floor(Math.random() * (36-1) + 1)
+    return Math.floor(Math.random() * (37-1) + 1)
 }
