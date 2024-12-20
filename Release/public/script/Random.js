@@ -80,6 +80,10 @@ const nounsAndAdjectives = {
       "Mariano",
       "Lancillotto",
       "Vernelia",
+      "Marcantonio",
+      "Perpetua",
+      "Cassiopea",
+      "Papa Francesco"
     ],
     adjectives: [
       "Vibrante",
@@ -138,6 +142,12 @@ const nounsAndAdjectives = {
       "Dissacrante",
       "Elefante",
       "Feticista",
+      "Sconvolgente",
+      "Saltasburellante",
+      "Necromante",
+      "Che picchia i bambini",
+      "Che deruba le vecchie",
+      "Pluriomicida"
     ],
 }
 
