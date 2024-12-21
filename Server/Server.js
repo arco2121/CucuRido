@@ -228,7 +228,7 @@ webserver.on("connection",(socket) => {
     })
 
     socket.on("endGame", () => {
-        const room = Rooms.FindRoom(data.roomId)
+        const room = Rooms.FindRoomByUser(socket.id)
         if(!room)
         {
             webserver.to(socket.id).emit("error", "Not exist")

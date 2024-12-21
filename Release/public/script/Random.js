@@ -153,13 +153,16 @@ const nounsAndAdjectives = {
 
 const getRandomNamea = () => {
   const u = Math.floor(Math.random() * nounsAndAdjectives.adjectives.length)
-  return nounsAndAdjectives.names[Math.floor(Math.random() * nounsAndAdjectives.names.length)] + 
-  " " + 
-  (nounsAndAdjectives.adjectives[u][0].toLowerCase() + 
-  nounsAndAdjectives.adjectives[u].slice(1));
-
+  return nounsAndAdjectives.names[Math.floor(Math.random() * nounsAndAdjectives.names.length)] + " " + (nounsAndAdjectives.adjectives[u][0].toLowerCase() + nounsAndAdjectives.adjectives[u].slice(1))
 }
 
-const getRandomPfp = () => {
-    return Math.floor(Math.random() * (37-1) + 1)
+const getRandomPfp = (old) => {
+    while(true)
+    {
+        const y = Math.floor(Math.random() * (37-1) + 1)
+        if(y != old)
+        {
+            return y
+        }
+    }
 }

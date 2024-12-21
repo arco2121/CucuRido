@@ -8,7 +8,7 @@ let skibidi
 let backtime = 500
 let quest
 let esplodi
-let alreadyuser
+let alreadyconnected = false
 let user = new User("default",User.RandomId(32))
 document.getElementById("inputname").value = getRandomNamea()
 const imgUserPath = (n) => {
@@ -45,6 +45,11 @@ const Server = io("https://cucu-ridu.onrender.com");
 })()
 
 Server.on("connected",(data)=>{
+    if(alreadyconnected)
+    {
+        window.location.reload()
+    }
+    alreadyconnected = true
     console.log("User : " + data)
     setTimeout(()=>{
         document.getElementById("inputname").value = getRandomNamea()
@@ -160,7 +165,7 @@ Server.on("connected",(data)=>{
     /*AskName*/
     document.getElementById("randomName").addEventListener("click",()=>{
         document.getElementById("inputname").value = getRandomNamea()
-        userPfp = getRandomPfp()
+        userPfp = getRandomPfp(userPfp)
         document.getElementById("imguserk").src = imgUserPath(userPfp)
     })
 
@@ -182,12 +187,16 @@ Server.on("connected",(data)=>{
     document.getElementById("closedroom").addEventListener("click",() => {
         window.location.reload()
     })
+
+    document.getElementById("userimg").addEventListener("click",() => {
+        Server.emit("infoRoom")
+    })
     
     /*Events*/
     Server.on("roomCreated",(data) => {
         roomCode = data.roomId
         user = User.fromJSON(data.user)
-        document.getElementById("startRoom").style.display = "block"
+        document.getElementById("startRoom").style.display = "flex"
         document.getElementById("roomidview").innerText = "Codice Stanza\n\n" + roomCode
         Server.emit("numberRoom")
         esplodi = setInterval(()=>{
@@ -234,6 +243,7 @@ Server.on("connected",(data)=>{
         document.getElementById("userimg").src = imgUserPath(user.img)
         document.getElementById("username").innerText = user.name
         document.getElementById("usert").style.display = "flex"
+        document.getElementById("pointsa").style.display = "flex"
         const card = Card.FromJSON(data.question)
         quest = card
         if(user.IsAsking)
@@ -367,6 +377,7 @@ Server.on("connected",(data)=>{
             }
         }
         BlankSpace()
+        document.getElementById("submitta").disabled = false
         document.getElementById("askerview").style.display = "none"
         document.getElementById("choosewinner").style.display = "flex"
         document.getElementById("ava").addEventListener("click",()=>{
@@ -409,12 +420,12 @@ Server.on("connected",(data)=>{
             document.getElementById("winround").style.display = "flex"
         }
         document.getElementById("imgwon").src = imgUserPath(data.winner.img)
-        document.getElementById("whowon").innerText = data.winner.name + "\nha vinto ✨"
+        document.getElementById("whowon").innerText = data.winner.name + "\nha vinto il round"
         document.getElementById("whomess").innerText = data.lastwinner + "\nha decretato il vincitor* di questo round"
         user = User.fromJSON(data.user)
         if(user.IsAsking)
         {
-            document.getElementById("restartRoom").style.display = "block"
+            document.getElementById("restartRoom").style.display = "flex"
         }
         else
         {
@@ -461,7 +472,30 @@ Server.on("connected",(data)=>{
     })
 
     Server.on("infoRoomed",(data) => {
-       
+        document.getElementById("codeshare").innerText = "Codice Stanza\n\n" + data.room.id
+        if(user.admin)
+        {
+            document.getElementById("chiu").addEventListener("click",()=>{
+                document.querySelector(".over").style.display = "none"
+                document.getElementById("userpop").style.display = "none"
+                Server.emit("endGame")
+            })
+        }
+        else
+        {
+            document.getElementById("chiu").style.display = "none"
+        }
+        document.getElementById("delte").addEventListener("click",()=>{
+            window.location.reload()
+        })
+        while(document.getElementById("conter").firstChild)
+        {
+            document.getElementById("conter").removeChild(document.getElementById("conter").firstChild)
+        }
+        data.room.users.sort((a,b) => b.point - a.point).forEach(usera => {
+            const user = User.fromJSON(usera)
+            document.getElementById("conter").appendChild(user.toHTML())
+        })
     })
 
     Server.on("roomClosed",() => {
@@ -471,6 +505,16 @@ Server.on("connected",(data)=>{
     Server.on("reload",()=>{
         window.location.reload()
     })
+
+    setInterval(()=>{
+        let lastp = -1
+        if(user != undefined && user != null && lastp != user.point)
+        {
+            document.getElementById("pointsa").innerText = "Round Vinti : " + user.point
+            lastp = user.point
+        }
+        console.log(lastp,user.point)
+    },100)
 })
 
 window.addEventListener("beforeunload",()=>{

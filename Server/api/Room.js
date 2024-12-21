@@ -2760,8 +2760,7 @@ class Room
     {
         return {
             id : this.id,
-            users : this.users.map(u => u.toJSON()),
-            asker : this.Asker.toJSON()
+            users : this.users.map(u => u.toJSON())
         }
     }
 }

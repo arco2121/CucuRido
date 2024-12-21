@@ -33,7 +33,7 @@
     </div>
     <div class="half">
       <div class="half">
-        <input id="inputname" disabled type="text">
+        <input id="inputname" type="text">
       </div>
       <div class="half">
         <button id="chooseName">Conferma</button>
@@ -56,6 +56,7 @@
   </div>
   <div class="window" id="roomlobby">
     <div class="endhalf">
+      <h5 class="jask" id="pointsa"></h5>
       <div id="usert" class="taguser">
         <h5 id="username"></h5>
         <img id="userimg" width="30px" height="30px">
@@ -137,7 +138,17 @@
       <button id="closedroom">Esci</button>
     </div>
   </div>
-  <div class="popwindow" id="userPop"></div>
+  <div class="over"></div>
+  <div class="popwindow" id="userpop">
+    <div class="part">
+      <h2 id="codeshare"></h2>
+    </div>
+    <div class="part ori">
+      <button class="gogo" id="delte">Esci</button>
+      <button class="gogo" id="chiu">Termina Partita</button>
+    </div>
+    <div id="conter" class="part"></div>
+  </div>
   <audio src="audio/client.mp3" loop id="music"></audio>
   <script type="module" src="script/FireConfig.js"></script>
   <script src="script/Random.js"></script>

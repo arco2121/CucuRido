@@ -31,6 +31,30 @@ class User
         }
     }
 
+    toHTML()
+    {
+        const userCart = document.createElement('div')
+        userCart.classList.add('usercart')
+        const part1 = document.createElement('div')
+        part1.classList.add('part');
+        const h5Part1 = document.createElement('h5')
+        h5Part1.textContent = '✦ Utente';
+        part1.appendChild(h5Part1);
+        userCart.appendChild(part1)
+        const part2 = document.createElement('div')
+        part2.classList.add('part', 'ori', 'klg');
+        const h5Funk1 = document.createElement('h5')
+        h5Funk1.classList.add('funk');
+        h5Funk1.textContent = this.name
+        const h5Funk2 = document.createElement('h5')
+        h5Funk2.classList.add('funk');
+        h5Funk2.textContent = this.point;
+        part2.appendChild(h5Funk1);
+        part2.appendChild(h5Funk2);
+        userCart.appendChild(part2)
+        return userCart
+    }
+
     static RandomId(len)
     {
         let temp = ""
