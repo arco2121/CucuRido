@@ -7,6 +7,7 @@ let GetAnsw
 let backtime = 1500
 let quest
 let esplodi
+let alreadyuser
 let user = new User("default",User.RandomId(32))
 document.getElementById("inputname").value = getRandomNamea()
 const imgUserPath = (n) => {
@@ -187,6 +188,7 @@ Server.on("connected",(data)=>{
         user = User.fromJSON(data.user)
         document.getElementById("startRoom").style.display = "block"
         document.getElementById("roomidview").innerText = "Codice Stanza\n\n" + roomCode
+        Server.emit("numberRoom")
         esplodi = setInterval(()=>{
             Server.emit("numberRoom")
         },1500)
@@ -206,6 +208,7 @@ Server.on("connected",(data)=>{
         user = User.fromJSON(data.user)
         document.getElementById("startRoom").style.display = "none"
         document.getElementById("roomidview").innerText = "Codice Stanza\n\n" + roomCode
+        Server.emit("numberRoom")
         esplodi = setInterval(()=>{
             Server.emit("numberRoom")
         },1500)
@@ -433,7 +436,16 @@ Server.on("connected",(data)=>{
        
     })
 
+    Server.on("roomClosed",() => {
+       document.getElementById("roomClosed").style.display = "flex"
+    })
+
     Server.on("reload",()=>{
         window.location.reload()
     })
+})
+
+window.addEventListener("beforeunload",()=>{
+    Server.disconnect()
+    window.location.reload()
 })
