@@ -83,6 +83,17 @@ body
         opacity: 100%;
     }
 }
+@keyframes onkaia
+{
+    0%
+    {
+        opacity: 0%;
+    }
+    100%
+    {
+        opacity: 50%;
+    }
+}
 
 #home
 {
@@ -408,7 +419,7 @@ input[type="text"]:active
 #endgame
 {
     display: none;
-    z-index: 8;
+    z-index: 100;
     animation: subwin 0.2s ; 
 }
 .reversecard
@@ -476,7 +487,8 @@ input[type="text"]:active
     background-color: black;
     opacity: 0%;
     position: fixed;
-    z-index: 13;
+    z-index: 56;
+    animation: onkaia 0.2s forwards;
 }
 .gogo
 {
@@ -518,12 +530,12 @@ input[type="text"]:active
 {
     display: flex;
     overflow-y: scroll;
-    height: 400px;
+    height: -webkit-fill-available;
 }
 #userpop
 {
     display: none;
-    z-index: 15;
+    z-index: 66;
     animation: win 0.2s;
 }
 @media (orientation : portrait) or (min-height : 400px) {

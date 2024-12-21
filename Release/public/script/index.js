@@ -9,6 +9,7 @@ let backtime = 500
 let quest
 let esplodi
 let alreadyconnected = false
+let lastp = -1
 let user = new User("default",User.RandomId(32))
 document.getElementById("inputname").value = getRandomNamea()
 const imgUserPath = (n) => {
@@ -190,6 +191,11 @@ Server.on("connected",(data)=>{
 
     document.getElementById("userimg").addEventListener("click",() => {
         Server.emit("infoRoom")
+    })
+
+    document.querySelector(".over").addEventListener("click",()=>{
+        document.querySelector(".over").style.display = "none"
+        document.getElementById("userpop").style.display = "none"
     })
     
     /*Events*/
@@ -496,10 +502,19 @@ Server.on("connected",(data)=>{
             const user = User.fromJSON(usera)
             document.getElementById("conter").appendChild(user.toHTML())
         })
+        document.querySelector(".over").style.display = "flex"
+        document.getElementById("userpop").style.display = "flex"
     })
 
     Server.on("roomClosed",() => {
        document.getElementById("roomClosed").style.display = "flex"
+    })
+
+    Server.on("playerLeft",(len) => {
+        if(len < 3)
+        {
+            window.location.reload()
+        }
     })
 
     Server.on("reload",()=>{
@@ -507,13 +522,11 @@ Server.on("connected",(data)=>{
     })
 
     setInterval(()=>{
-        let lastp = -1
         if(user != undefined && user != null && lastp != user.point)
         {
             document.getElementById("pointsa").innerText = "Round Vinti : " + user.point
             lastp = user.point
         }
-        console.log(lastp,user.point)
     },100)
 })
 
