@@ -2474,7 +2474,7 @@ const QuestionsArr = [
   ]
 ]
 const Alpha = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890"
-const points = 5
+const points = 1
 
 class RoomPool
 {

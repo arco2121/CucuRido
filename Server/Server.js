@@ -198,7 +198,7 @@ webserver.on("connection",(socket) => {
                 return
             }
             room.users.forEach((user) => {
-                webserver.to(user.unicid).emit('whoWon', {user: user.toJSON(), winner: room.Asker.name, lastwinner: room.LastAsker.name})
+                webserver.to(user.unicid).emit('whoWon', {user: user.toJSON(), winner: room.Asker.toJSON(), lastwinner: room.LastAsker.name})
             });
         }
         catch(error)

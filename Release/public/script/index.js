@@ -5,7 +5,7 @@ let roomCode = ""
 let userPfp = 1
 let GetAnsw
 let skibidi
-let backtime = 1500
+let backtime = 500
 let quest
 let esplodi
 let alreadyuser
@@ -52,7 +52,7 @@ Server.on("connected",(data)=>{
         document.getElementById("imguserk").src = imgUserPath(userPfp)
         document.getElementById("load").style.display = "none"
         document.getElementById("home").style.display = "flex"
-    },1500)
+    },500)
 
     let check = false
     let time = 0
@@ -63,7 +63,7 @@ Server.on("connected",(data)=>{
             {
                 clearInterval(internet)
                 window.location.reload()
-                time = 15000
+                time = 5000
             }
             setTimeout(()=>{
                 document.getElementById("offline").style.display = "none"
@@ -192,7 +192,7 @@ Server.on("connected",(data)=>{
         Server.emit("numberRoom")
         esplodi = setInterval(()=>{
             Server.emit("numberRoom")
-        },1500)
+        },500)
         document.getElementById("roomidview").addEventListener("click",()=>{
             navigator.clipboard.writeText(roomCode).then(()=>{
                 alert("Copied to Clipboard")
@@ -212,7 +212,7 @@ Server.on("connected",(data)=>{
         Server.emit("numberRoom")
         esplodi = setInterval(()=>{
             Server.emit("numberRoom")
-        },1500)
+        },500)
         document.getElementById("roomidview").addEventListener("click",()=>{
             navigator.clipboard.writeText(roomCode).then(()=>{
                 alert("Copied to Clipboard")
@@ -246,11 +246,12 @@ Server.on("connected",(data)=>{
             GetAnsw = setInterval(()=>{
                 Server.emit("getAnswers")
             },backtime)
+            card.spacehtml.innerText = "0/0"
             skibidi = setInterval(()=>{
                 Server.emit("answersRoom")
-            },1500)
+            },500)
             Server.on("answersRoomed",(data) => {
-                card.spacehtml.innerText = data.number + "/" + data.room
+                card.spacehtml.innerText = data.number + "/" + (data.room - 1)
             })
             document.getElementById("askerview").style.display = "flex"
         }
@@ -315,6 +316,7 @@ Server.on("connected",(data)=>{
     Server.on("downUsers",()=>{
         alert("Aspetta che entrino altre persone... Silly✨")
         document.getElementById("startRoom").disabled = false
+        document.getElementById("submitta").disabled = false
     })
 
     Server.on("roomNotExist",() => {
@@ -330,7 +332,7 @@ Server.on("connected",(data)=>{
     })
 
     Server.on("answersYet",()=>{
-        backtime = Math.random() * (2001 - 1500) + 1500
+        backtime = Math.random() * (1001 - 500) + 500
     })
 
     Server.on("gettedAnswers",(data) => {
@@ -347,10 +349,20 @@ Server.on("connected",(data)=>{
         }
         document.getElementById("modcardcontainer").appendChild(quest.toHTML("♥ Frase",true))
         const BlankSpace = () => {
+            document.getElementById("nquest").innerText = j+1 + "/" + answers.length
+            document.getElementById("submitta").disabled = true
             for(let i = 0; i<answers[j][1].length;i++)
             {
                 const y = quest.text.textContent
-                const u = y.replace("_",answers[j][1][i].value)
+                let u = ""
+                if(y.indexOf("_") == 0)
+                {
+                    u = y.replace("_",answers[j][1][i].value)
+                }
+                else
+                {
+                    u = y.replace("_",answers[j][1][i].value[0].toLowerCase() + answers[j][1][i].value.slice(1))
+                }
                 quest.text.innerText = u
             }
         }
@@ -396,7 +408,8 @@ Server.on("connected",(data)=>{
             document.getElementById("waitround").style.display = "none"
             document.getElementById("winround").style.display = "flex"
         }
-        document.getElementById("whowon").innerText = data.winner + "\nha vinto✨"
+        document.getElementById("imgwon").src = imgUserPath(data.winner.img)
+        document.getElementById("whowon").innerText = data.winner.name + "\nha vinto ✨"
         document.getElementById("whomess").innerText = data.lastwinner + "\nha decretato il vincitor* di questo round"
         user = User.fromJSON(data.user)
         if(user.IsAsking)
