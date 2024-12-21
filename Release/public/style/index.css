@@ -389,7 +389,9 @@ input[type="text"]:active
 .scroll
 {
     flex-direction: column;
-    height:-webkit-fill-available;
+    height: -moz-available; 
+    height: -webkit-fill-available; 
+    height: fill-available;
     justify-content: flex-start;
     overflow-y: scroll;
     border-radius: 30px;
@@ -530,7 +532,9 @@ input[type="text"]:active
 {
     display: flex;
     overflow-y: scroll;
-    height: -webkit-fill-available;
+    height: -moz-available; 
+    height: -webkit-fill-available; 
+    height: fill-available;
 }
 #userpop
 {
