@@ -240,7 +240,6 @@ webserver.on("connection",(socket) => {
             return
         }
         const result = room.ResultGame()
-        console.log(result)
         webserver.to(room.id).emit('gameEnded', {result : result.map((u) => u.toJSON())})
         Rooms.Destroy(room.id)
         console.log("Room : " + room.id + " destroyed")

@@ -465,6 +465,7 @@ Server.on("connected",(data)=>{
                 u += User.fromJSON(user).name + ", "
             } 
         }
+        document.getElementById("esplosione").innerText = u
         document.getElementById("endgame").style.display = "flex"
     })
 
