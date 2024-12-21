@@ -333,6 +333,7 @@ Server.on("connected",(data)=>{
         alert("Aspetta che entrino altre persone... Silly✨")
         document.getElementById("startRoom").disabled = false
         document.getElementById("submitta").disabled = false
+        document.getElementById("restartRoom").disabled = false
     })
 
     Server.on("roomNotExist",() => {
@@ -446,6 +447,8 @@ Server.on("connected",(data)=>{
         document.getElementById("notaskerview").style.display = "none"
         document.getElementById("choosewinner").style.display = "none"
         document.getElementById("winround").style.display = "none"
+        document.querySelector(".over").style.display = "none"
+        document.getElementById("userpop").style.display = "none"
         let u = ""
         if(data.result.length <= 1)
         {
@@ -508,7 +511,9 @@ Server.on("connected",(data)=>{
     })
 
     Server.on("roomClosed",() => {
-       document.getElementById("roomClosed").style.display = "flex"
+        document.querySelector(".over").style.display = "none"
+        document.getElementById("userpop").style.display = "none"
+        document.getElementById("roomClosed").style.display = "flex"
     })
 
     Server.on("playerLeft",(len) => {

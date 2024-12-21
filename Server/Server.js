@@ -253,7 +253,6 @@ webserver.on("connection",(socket) => {
             const room = Rooms.FindRoomByUser(socket.id)
             if(room) 
             {
-                webserver.to(room.id).emit('playerLeft',room.users.length)
                 if (room.Asker.unicid == socket.id || room.admin.unicid == socket.id) 
                 {
                     webserver.to(room.id).emit('roomClosed')
@@ -261,6 +260,7 @@ webserver.on("connection",(socket) => {
                     console.log("Room : " + room.id + " destroyed")
                     return
                 }
+                webserver.to(room.id).emit('playerLeft',room.users.length-1)
                 room.DestroyUser(socket.id)
             }
         }
