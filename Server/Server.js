@@ -100,10 +100,10 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("infoRoom",(data) => {
+    socket.on("infoRoom",() => {
         try
         {
-            const room = Rooms.FindRoom(data.roomId)
+            const room = Rooms.FindRoomByUser(socket.id)
             if(!room)
             {
                 webserver.to(socket.id).emit("error", "Not exist")
@@ -117,10 +117,10 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("numberRoom",(data) => {
+    socket.on("numberRoom",() => {
         try
         {
-            const room = Rooms.FindRoom(data.roomId)
+            const room = Rooms.FindRoomByUser(socket.id)
             if(!room)
             {
                 webserver.to(socket.id).emit("error", "Not exist")

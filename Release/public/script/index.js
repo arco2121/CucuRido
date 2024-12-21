@@ -221,6 +221,7 @@ Server.on("connected",(data)=>{
     })
 
     Server.on("questionRe",(data)=>{
+        clearInterval(esplodi)
         document.getElementById("submitta").disabled = false
         document.getElementById("restartRoom").disabled = false
         document.getElementById("winround").style.display = "none"
@@ -425,7 +426,7 @@ Server.on("connected",(data)=>{
     })
 
     Server.on("numberRoomed",(data) => {
-        document.getElementById("morirediocane").innerText = "Giocatori presenti : " + data.room.users.length
+        document.getElementById("morirediocane").innerText = "Giocatori presenti : " + data.room
     })
 
     Server.on("infoRoomed",(data) => {
