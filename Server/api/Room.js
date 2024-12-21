@@ -1675,7 +1675,7 @@ const AnswerArr = [
     0
   ],
   [
-    "Paolo bonolis",
+    "Paolo Bonolis",
     0
   ],
   [
@@ -1879,7 +1879,51 @@ const AnswerArr = [
     0
   ],
   [
-    "Un cane che lecca il gelato spalmato sulle tue palle",
+    "Un cane che leccail gelato spalmato sulle tue palle",
+    0
+  ],
+  [
+    "Istigare le nuove generazioni alla bulimia",
+    0
+  ],
+  [
+    "Scambiare di culla i neonati all'ospedale",
+    0
+  ],
+  [
+    "Sganciare un'altra bomba atomica su Hiroshima",
+    0
+  ],
+  [
+    "Ted Bundy e le sue mirabolanti avventure",
+    0
+  ],
+  [
+    "Una scoreggia bagnata e letale",
+    0
+  ],
+  [
+    "Il gran cazzone di satana",
+    0
+  ],
+  [
+    "La vagina della madonna che gocciola arcobaleno liquido",
+    0
+  ],
+  [
+    "La propaganda neonazista",
+    0
+  ],
+  [
+    "Praticare BDSM con Matteo Salvini",
+    0
+  ],
+  [
+    "Il sesso non protetto con le nutrie di parco Querini",
+    0
+  ],
+  [
+    "Sentirsi una vera baddie quando si ha la ciola",
     0
   ]
 ]
@@ -1965,7 +2009,7 @@ const QuestionsArr = [
     2
   ],
   [
-    "Nello spettacolo di ieri io ho interpretato _ che _ , il pubblico è stato così commosso che ha deciso di _",
+    "Nello spettacolo di ieri io ho interpretato _ che aveva il ruolo di _ , il pubblico è stato così commosso che ha deciso di _",
     3
   ],
   [
@@ -1997,7 +2041,7 @@ const QuestionsArr = [
     1
   ],
   [
-    "_ sono il nemico della società, basterebbe _ e il mondo sarebbe migliore",
+    "_ è il nemico della società, basterebbe _ e il mondo sarebbe migliore",
     2
   ],
   [
@@ -2109,7 +2153,7 @@ const QuestionsArr = [
     1
   ],
   [
-    "Soluzione per un appartamento perfetto? _",
+    "Soluzione per un appuntamento perfetto? _",
     1
   ],
   [
@@ -2161,7 +2205,7 @@ const QuestionsArr = [
     1
   ],
   [
-    "L'imputato, colpevole di aver _ , era in realtà innocente",
+    "L'imputato, colpevole di _ , era in realtà innocente",
     1
   ],
   [
@@ -2193,7 +2237,7 @@ const QuestionsArr = [
     1
   ],
   [
-    "L'undicesimo comandamento, mai citato nei libri di chiesa, mi pare che sia riguardo a _, ma non ne sono certo",
+    "L'undicesimo comandamento, mai citato nei libri di chiesa, dice di _ .",
     1
   ],
   [
@@ -2253,7 +2297,7 @@ const QuestionsArr = [
     1
   ],
   [
-    "Sulla tomba voglio scrivere 'ho vissuto una vita fatta di sesso, droga e _'",
+    "Sulla mis tomba voglio sia scritto 'ha vissuto una vita fatta di sesso, droga e _'",
     1
   ],
   [
@@ -2265,7 +2309,7 @@ const QuestionsArr = [
     2
   ],
   [
-    "_ MA È INACETTABILE, DISONESTO, IL PEGGIO DEL PEGGIO!",
+    "_ ... MA È INACETTABILE, DISONESTO, IL PEGGIO DEL PEGGIO!",
     1
   ],
   [
@@ -2293,11 +2337,11 @@ const QuestionsArr = [
     1
   ],
   [
-    "Il cast del film che ha vinto gli Oscar aveva _ e _ ,  era una storia d'amore, finita male",
+    "Il cast del film che ha vinto gli Oscar aveva _ e _ . Era una storia d'amore, finita male",
     2
   ],
   [
-    "Ho trovato come sorpresa nell'uovo di pasqua _",
+    "Ho trovato _ come sorpresa nell'uovo di pasqua",
     1
   ],
   [
@@ -2353,6 +2397,14 @@ const QuestionsArr = [
     1
   ],
   [
+    "_ è brat",
+    1
+  ],
+  [
+    "_ - core",
+    1
+  ],
+  [
     "_ non è demure, ma Brat",
     1
   ],
@@ -2397,7 +2449,7 @@ const QuestionsArr = [
     1
   ],
   [
-    "Non so con cosa verrà combattuto la terza guerra mondiale, ma nella quarta si useranno _",
+    "Non so con cosa verrà combattuto la terza guerra mondiale, ma nella quarta si userà _",
     1
   ],
   [
@@ -2441,7 +2493,7 @@ const QuestionsArr = [
     1
   ],
   [
-    "_ è la cosa più emo che abbiamo mai fatto",
+    "_ è la cosa più emo che abbia mai fatto",
     1
   ],
   [
@@ -2470,6 +2522,74 @@ const QuestionsArr = [
   ],
   [
     "_ . Per il meme",
+    1
+  ],
+  [
+    "_ mi ha fatto capire di essere omosessuale",
+    1
+  ],
+  [
+    "_ ... La migliore esperienza sessuale della mia vita",
+    1
+  ],
+  [
+    "_ . Il capitolo segreto del diario di Anna Frank",
+    1
+  ],
+  [
+    "_ . Triste come un cane cieco che si schianta contro un muro",
+    1
+  ],
+  [
+    "_ come repellente per i testimoni di geova alla porta",
+    1
+  ],
+  [
+    "_ ... un'icona!",
+    1
+  ],
+  [
+    "_ per rimandare gli albanesi a casa loro",
+    1
+  ],
+  [
+    "_ . Aiutiamoli a casa loro!",
+    1
+  ],
+  [
+    "_ ! QUALCUNO CHIAMI IL 118!",
+    1
+  ],
+  [
+    "_ scritto in grande sui manifesti cittadini.",
+    1
+  ],
+  [
+    "_ non è considerabile una molestia, è sotto i 10 secondi",
+    1
+  ],
+  [
+    "La definizione di ' _  ' nel dizionario Treccani è ' _ '",
+    2
+  ],
+  [
+    "_ : SMASH!",
+    1
+  ],
+  [
+    "_ : lo insegnavano ad educazione sessuale",
+    1
+  ],
+  [
+    "'C'era una volta _ ... '. Che storia memorabile!",
+    1
+  ],
+  [
+    "_ : healing my inner child.",
+    1
+  ],
+  [
+    "Il più bel ricordo d'infanzia che ho? _",
     1
   ]
 ]
