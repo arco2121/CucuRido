@@ -234,6 +234,12 @@ input[type="text"]:active
     z-index: 2;
     animation: subwin 0.2s ;
 }
+#roomClosed
+{
+    display: none;
+    z-index: 20;
+    animation: subwin 0.2s ;
+}
 #load
 {
     z-index: 0;
@@ -387,7 +393,13 @@ input[type="text"]:active
 #choosewinner
 {
     display: none;
-    z-index: 6;
+    z-index: 7;
+    animation: subwin 0.2s ; 
+}
+#endgame
+{
+    display: none;
+    z-index: 8;
     animation: subwin 0.2s ; 
 }
 .reversecard
@@ -414,6 +426,35 @@ input[type="text"]:active
 #whowon
 {
     width: 90%;
+}
+#esplosione
+{
+    width: 90%;
+}
+.popwindow
+{
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    position: fixed;
+    width: 90%;
+    height: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: var(--color);
+    animation: win 0.3s;
+    z-index: 15;
+}
+.over
+{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0%;
+    position: fixed;
+    z-index: 13;
 }
 @media (orientation : portrait) or (min-height : 400px) {
     .window

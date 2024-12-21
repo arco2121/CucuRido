@@ -6,6 +6,7 @@ let userPfp = 1
 let GetAnsw
 let backtime = 1500
 let quest
+let esplodi
 let user = new User("default",User.RandomId(32))
 document.getElementById("inputname").value = getRandomNamea()
 const imgUserPath = (n) => {
@@ -171,6 +172,14 @@ Server.on("connected",(data)=>{
         Server.emit("startRound")
         document.getElementById("restartRoom").disabled = true
     })
+
+    document.getElementById("tohome").addEventListener("click",() => {
+        window.location.reload()
+    })
+
+    document.getElementById("closedroom").addEventListener("click",() => {
+        window.location.reload()
+    })
     
     /*Events*/
     Server.on("roomCreated",(data) => {
@@ -178,6 +187,9 @@ Server.on("connected",(data)=>{
         user = User.fromJSON(data.user)
         document.getElementById("startRoom").style.display = "block"
         document.getElementById("roomidview").innerText = "Codice Stanza\n\n" + roomCode
+        esplodi = setInterval(()=>{
+            Server.emit("numberRoom")
+        },1500)
         document.getElementById("roomidview").addEventListener("click",()=>{
             navigator.clipboard.writeText(roomCode).then(()=>{
                 alert("Copied to Clipboard")
@@ -194,6 +206,9 @@ Server.on("connected",(data)=>{
         user = User.fromJSON(data.user)
         document.getElementById("startRoom").style.display = "none"
         document.getElementById("roomidview").innerText = "Codice Stanza\n\n" + roomCode
+        esplodi = setInterval(()=>{
+            Server.emit("numberRoom")
+        },1500)
         document.getElementById("roomidview").addEventListener("click",()=>{
             navigator.clipboard.writeText(roomCode).then(()=>{
                 alert("Copied to Clipboard")
@@ -206,6 +221,9 @@ Server.on("connected",(data)=>{
     })
 
     Server.on("questionRe",(data)=>{
+        document.getElementById("submitta").disabled = false
+        document.getElementById("restartRoom").disabled = false
+        document.getElementById("winround").style.display = "none"
         document.getElementById("waittostart").style.display = "none"
         document.getElementById("startRoom").disabled = false
         document.getElementById("userimg").src = imgUserPath(user.img)
@@ -215,6 +233,10 @@ Server.on("connected",(data)=>{
         quest = card
         if(user.IsAsking)
         {
+            while(document.getElementById("cardcontainer").firstChild)
+            {
+                document.getElementById("cardcontainer").removeChild(document.getElementById("cardcontainer").firstChild)
+            }
             document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Frase"))
             GetAnsw = setInterval(()=>{
                 Server.emit("getAnswers")
@@ -224,7 +246,15 @@ Server.on("connected",(data)=>{
         else 
         {
             let answers = Array(card.space).fill(null)
+            while(document.getElementById("questioncontainer").firstChild)
+            {
+                document.getElementById("questioncontainer").removeChild(document.getElementById("questioncontainer").firstChild)
+            }
             document.getElementById("questioncontainer").appendChild(card.toHTML("♥ Frase",true))
+            while(document.getElementById("cardscon").firstChild)
+            {
+                document.getElementById("cardscon").removeChild(document.getElementById("cardscon").firstChild)
+            }
             user.cards.cards.forEach(ele => {
                 const apt = ele.toHTML("✦ Risposta",null,true)
                 document.getElementById("cardscon").appendChild(apt)
@@ -299,6 +329,10 @@ Server.on("connected",(data)=>{
             resu[1].map((card) => Card.FromJSON(card))
         ])
         let j = 0
+        while(document.getElementById("modcardcontainer").firstChild)
+        {
+            document.getElementById("modcardcontainer").removeChild(document.getElementById("modcardcontainer").firstChild)
+        }
         document.getElementById("modcardcontainer").appendChild(quest.toHTML("♥ Frase",true))
         const BlankSpace = () => {
             for(let i = 0; i<answers[j][1].length;i++)
@@ -344,11 +378,11 @@ Server.on("connected",(data)=>{
             document.getElementById("winround").style.display = "flex"
         }
         document.getElementById("whowon").innerText = data.winner + "\n+ 5✨" 
-        document.getElementById("whomess").innerText = data.lastwinner + "ha decretato ellæ come vincitore"
+        document.getElementById("whomess").innerText = data.lastwinner + " ha decretato il vincitor* di questo round"
         user = User.fromJSON(data.user)
         if(user.IsAsking)
         {
-            document.getElementById("restartRoom").style.display = "flex"
+            document.getElementById("restartRoom").style.display = "block"
         }
         else
         {
@@ -356,9 +390,46 @@ Server.on("connected",(data)=>{
         }
     })
 
+    Server.on("gameEnded",(data) => {
+        document.getElementById("waittostart").style.display = "none"
+        document.getElementById("waitround").style.display = "none"
+        document.getElementById("askerview").style.display = "none"
+        document.getElementById("notaskerview").style.display = "none"
+        document.getElementById("choosewinner").style.display = "none"
+        document.getElementById("winround").style.display = "none"
+        let u = ""
+        if(data.result.length <= 1)
+        {
+            document.getElementById("dio").innerText = "Ha vinto :"
+            u = User.fromJSON(data.result[0]).name 
+        }
+        else
+        {
+            document.getElementById("dio").innerText = "Hanno vinto :"
+            for(let i = 1; i<data.result.length;i++)
+            {
+                if(i+1 == data.length-1)
+                {
+                    u += User.fromJSON(user).name
+                    break
+                }
+                u += User.fromJSON(user).name + ", "
+            } 
+        }
+        document.getElementById("endgame").style.display = "flex"
+    })
+
     Server.on("NotPossibleUser",()=>{
         alert("Non puoi nominare questo vincitore scem* ✨")
         document.getElementById("submitta").disabled = false
+    })
+
+    Server.on("numberRoomed",(data) => {
+        document.getElementById("morirediocane").innerText = "Giocatori presenti : " + data.room.users.length
+    })
+
+    Server.on("infoRoomed",(data) => {
+       
     })
 
     Server.on("reload",()=>{

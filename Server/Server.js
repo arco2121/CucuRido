@@ -117,6 +117,23 @@ webserver.on("connection",(socket) => {
         }
     })
 
+    socket.on("numberRoom",(data) => {
+        try
+        {
+            const room = Rooms.FindRoom(data.roomId)
+            if(!room)
+            {
+                webserver.to(socket.id).emit("error", "Not exist")
+                return
+            }
+            webserver.to(socket.id).emit('numberRoomed', {room : room.users.length})
+        }
+        catch(error)
+        {
+            console.log(error)
+        }
+    })
+
     socket.on("getAnswers",() => {
         try
         {
