@@ -7,7 +7,7 @@ class User
         this.name = name
         this.unicid = unicid
         this.point = 0
-        this.img = Math.floor(Math.random() * (37-1) + 1)
+        this.img = Math.floor(Math.random() * (38-1) + 1)
         this.cards = new Deck()
         this.IsAsking = false
         this.admin = false
