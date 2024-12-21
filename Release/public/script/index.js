@@ -355,6 +355,9 @@ Server.on("connected",(data)=>{
             j++
             quest.text.innerText = quest.value
             BlankSpace()
+            setTimeout(()=>{
+                document.getElementById("submitta").disabled = false
+            },200)
         })
         document.getElementById("indi").addEventListener("click",()=>{
             if(j-1 < 0)
@@ -362,12 +365,14 @@ Server.on("connected",(data)=>{
             j--
             quest.text.innerText = quest.value
             BlankSpace()
+            setTimeout(()=>{
+                document.getElementById("submitta").disabled = false
+            },200)
         })
-        const temp = () => {
+        document.getElementById("submitta").addEventListener("click", () => {
             Server.emit("endRound",{id : answers[j][0].unicid})
             document.getElementById("submitta").disabled = true
-        }
-        document.getElementById("submitta").addEventListener("click", temp)
+        })
     })
 
     Server.on("whoWon",(data) => {
@@ -381,8 +386,8 @@ Server.on("connected",(data)=>{
             document.getElementById("waitround").style.display = "none"
             document.getElementById("winround").style.display = "flex"
         }
-        document.getElementById("whowon").innerText = data.winner + "\n+ 5✨" 
-        document.getElementById("whomess").innerText = data.lastwinner + " ha decretato il vincitor* di questo round"
+        document.getElementById("whowon").innerText = data.winner + "\nha vinto✨"
+        document.getElementById("whomess").innerText = data.lastwinner + "\nha decretato il vincitor* di questo round"
         user = User.fromJSON(data.user)
         if(user.IsAsking)
         {
