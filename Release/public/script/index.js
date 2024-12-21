@@ -1,5 +1,5 @@
 /*App StartUp*/
-const colors = ["#fff5b3","#d6ebfe","#fed6e2"]
+const colors = ["#FED6E2", "#FFD2C1", "#FFF5B3", "#E9FFC1", "#C1FFF0", "#D6EBFE", "#DEC1FF"]
 const logoCount = 7
 let roomCode = ""
 let userPfp = 1

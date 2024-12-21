@@ -38,7 +38,7 @@ class User
         const part1 = document.createElement('div')
         part1.classList.add('part');
         const h5Part1 = document.createElement('h5')
-        h5Part1.textContent = '✦ Utente';
+        h5Part1.textContent = '✦ Utente ✦';
         part1.appendChild(h5Part1);
         userCart.appendChild(part1)
         const part2 = document.createElement('div')
