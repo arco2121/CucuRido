@@ -4,6 +4,7 @@ const logoCount = 7
 let roomCode = ""
 let userPfp = 1
 let GetAnsw
+let skibidi
 let backtime = 1500
 let quest
 let esplodi
@@ -245,6 +246,12 @@ Server.on("connected",(data)=>{
             GetAnsw = setInterval(()=>{
                 Server.emit("getAnswers")
             },backtime)
+            skibidi = setInterval(()=>{
+                Server.emit("answersRoom")
+            },1500)
+            Server.on("answersRoomed",(data) => {
+                card.spacehtml.innerText = data.number + "/" + data.room
+            })
             document.getElementById("askerview").style.display = "flex"
         }
         else 
@@ -328,6 +335,7 @@ Server.on("connected",(data)=>{
 
     Server.on("gettedAnswers",(data) => {
         clearInterval(GetAnsw)
+        clearInterval(skibidi)
         let answers = data.answers.map((resu) => [
             User.fromJSON(resu[0]),
             resu[1].map((card) => Card.FromJSON(card))
@@ -370,8 +378,10 @@ Server.on("connected",(data)=>{
             },200)
         })
         document.getElementById("submitta").addEventListener("click", () => {
-            Server.emit("endRound",{id : answers[j][0].unicid})
             document.getElementById("submitta").disabled = true
+            setTimeout(()=>{
+                Server.emit("endRound",{id : answers[j][0].unicid})
+            },150)
         })
     })
 
