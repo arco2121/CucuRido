@@ -424,10 +424,6 @@ input[type="text"]:active
     z-index: 100;
     animation: subwin 0.2s ; 
 }
-.reversecard
-{
-    background-color: var(--revcolor);
-}
 #cardscon
 {
     border: solid black 5px;
@@ -527,13 +523,19 @@ input[type="text"]:active
 {
     display: flex;
     overflow-y: scroll;
-    height: 400px;
+    height: 250px;
 }
 #userpop
 {
     display: none;
     z-index: 66;
     animation: win 0.2s;
+}
+.reversecard
+{
+    background-color: var(--revcolor);
+    min-height: 300px;
+    min-height: fit-content;
 }
 @media (orientation : portrait) or (min-height : 400px) {
     .window
