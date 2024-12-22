@@ -223,7 +223,7 @@ Server.on("connected",(data)=>{
         roomCode = data.roomId
         user = User.fromJSON(data.user)
         document.getElementById("startRoom").style.display = "none"
-        document.getElementById("roomidview").innerText = "Codice Stanza\n\n" + roomCode
+        document.getElementById("roomidview").innerText = "Codice Stanza\n" + roomCode
         Server.emit("numberRoom")
         esplodi = setInterval(()=>{
             Server.emit("numberRoom")
@@ -450,7 +450,7 @@ Server.on("connected",(data)=>{
         document.querySelector(".over").style.display = "none"
         document.getElementById("userpop").style.display = "none"
         let u = ""
-        if(data.result.length <= 1)
+        if(data.result.length == 1)
         {
             document.getElementById("dio").innerText = "Ha vinto :"
             u = User.fromJSON(data.result[0]).name 
@@ -458,7 +458,7 @@ Server.on("connected",(data)=>{
         else
         {
             document.getElementById("dio").innerText = "Hanno vinto :"
-            for(let i = 1; i<data.result.length;i++)
+            for(let i = 0; i<data.result.length;i++)
             {
                 if(i+1 == data.length-1)
                 {

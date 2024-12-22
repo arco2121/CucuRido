@@ -492,11 +492,6 @@ input[type="text"]:active
     z-index: 56;
     animation: onkaia 0.2s forwards;
 }
-.gogo
-{
-    height: 100px;
-    width: 200px;
-}
 .ori
 {
     flex-direction: row;
@@ -532,9 +527,7 @@ input[type="text"]:active
 {
     display: flex;
     overflow-y: scroll;
-    height: -moz-available; 
-    height: -webkit-fill-available; 
-    height: fill-available;
+    height: 400px;
 }
 #userpop
 {

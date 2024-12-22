@@ -2772,8 +2772,22 @@ class Room
 
     ResultGame()
     {
-        const maxPoints = Math.max(...this.users.map(user => user.point))
-        return this.users.filter(user => user.point == maxPoints)
+        let max = 0
+        this.users.forEach(element => {
+          if(element.point > max)
+          {
+            max = element.point
+          }
+        })
+        let resul = []
+        for(let i = 0; i<this.users.length;i++)
+        {
+          if(this.users[i].point == max)
+          {
+            resul.push(this.users[i])
+          }
+        }
+        return resul
     }
 
     ReceiveAnswer(idunic,indexcards)
