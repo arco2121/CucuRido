@@ -2599,6 +2599,10 @@ const QuestionsArr = [
   [
     "Il più bel ricordo d'infanzia che ho? _",
     1
+  ],
+  [
+    "_ . MOMENTO MOMENTO MOMENTO!",
+    1
   ]
 ]
 const Alpha = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890"
