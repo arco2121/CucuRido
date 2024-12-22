@@ -1531,7 +1531,7 @@ const AnswerArr = [
     0
   ],
   [
-    "Impalato dal dio bestia",
+    "Essere impalato dal dio bestia",
     0
   ],
   [
@@ -1924,6 +1924,10 @@ const AnswerArr = [
   ],
   [
     "Sentirsi una vera baddie quando si ha la ciola",
+    0
+  ],
+  [
+    "La mia patong",
     0
   ]
 ]
