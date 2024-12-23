@@ -469,7 +469,7 @@ Server.on("connected",(data)=>{
             document.getElementById("dio").innerText = "Hanno vinto :"
             for(let i = 0; i<data.result.length;i++)
             {
-                if(i+1 == data.length-1)
+                if(i == data.length-1)
                 {
                     u += User.fromJSON(user).name
                     break
