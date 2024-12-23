@@ -252,18 +252,15 @@ webserver.on("connection",(socket) => {
             const room = Rooms.FindRoomByUser(socket.id)
             if(room) 
             {
-               if(socket.id)
-               {
-                    if (room.Asker.unicid == socket.id || room.admin.unicid == socket.id) 
-                    {
-                        webserver.to(room.id).emit('roomClosed')
-                        Rooms.Destroy(room.id)
-                        console.log("Room : " + room.id + " destroyed")
-                        return
-                    }
-                    webserver.to(room.id).emit('playerLeft',room.users.length-1)
-                    room.DestroyUser(socket.id)
-               }
+                if (room.Asker.unicid == socket.id || room.admin.unicid == socket.id) 
+                {
+                    webserver.to(room.id).emit('roomClosed')
+                    Rooms.Destroy(room.id)
+                    console.log("Room : " + room.id + " destroyed")
+                    return
+                }
+                webserver.to(room.id).emit('playerLeft',room.users.length-1)
+                room.DestroyUser(socket.id)
             }
         }
         catch(error)
