@@ -71,17 +71,10 @@ Server.on("connected",(data)=>{
         document.getElementById("home").style.display = "flex"
     },500)
 
-    let check = false
     let time = 0
     const internet = setInterval(()=>{
         if(navigator.onLine)
         {
-            if(check)
-            {
-                clearInterval(internet)
-                window.location.reload()
-                time = 5000
-            }
             setTimeout(()=>{
                 document.getElementById("offline").style.display = "none"
             },time)
@@ -546,6 +539,6 @@ Server.on("connected",(data)=>{
 })
 
 window.addEventListener("beforeunload",()=>{
-    Server.disconnect()
+    Server.emit("destroyed")
     window.location.reload()
 })

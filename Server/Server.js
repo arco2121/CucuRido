@@ -262,7 +262,7 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("disconnect",() => {
+    socket.on("destroyed",() => {
         try
         {
             console.log("User : " + socket.id + " disconnected")
