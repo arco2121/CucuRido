@@ -244,6 +244,24 @@ webserver.on("connection",(socket) => {
         console.log("Room : " + room.id + " destroyed")
     })
 
+    socket.on("reconnect",(data) => {
+        try
+        {
+            const room = Room.FindRoomByUser(data.oldid)
+            if(room)
+            {
+                const user = room.FindUser(data.oldid)
+                user.unicid = socket.id
+                socket.join(room.id)
+                console.log("User : " + socket.id + " reconnected")
+            }
+        }
+        catch(error)
+        {
+            console.log(error)
+        }
+    })
+
     socket.on("disconnect",() => {
         try
         {

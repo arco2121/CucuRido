@@ -2,6 +2,7 @@
 const colors = ["#FED6E2", "#FFD2C1", "#FFF5B3", "#E9FFC1", "#C1FFF0", "#D6EBFE", "#DEC1FF"]
 const logoCount = 7
 let roomCode = ""
+let oldid = ""
 let userPfp = 1
 let GetAnsw
 let skibidi
@@ -57,8 +58,9 @@ const Server = io("https://cucu-ridu.onrender.com");
 Server.on("connected",(data)=>{
     if(alreadyconnected)
     {
-        //window.location.reload()
+        Server.emit("reconnect",{oldid : oldid,newid : data})
     }
+    oldid = data
     alreadyconnected = true
     console.log("User : " + data)
     setTimeout(()=>{
