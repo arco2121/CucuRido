@@ -535,7 +535,36 @@ Server.on("connected",(data)=>{
             document.getElementById("pointsa").innerText = "Round Vinti : " + user.point
             lastp = user.point
         }
-    },100)
+    },100);
+
+    (() => {
+        let con = 0, desc = 0, oki = false
+        setInterval(()=>{
+            if(con >= desc)
+            {
+                document.getElementById("waity").style.display = "none"
+                if(oki)
+                {
+                    con = 0
+                    desc = 0
+                    oki = false
+                }
+            }
+            else
+            {
+                document.getElementById("waity").style.display = "flex"
+                oki = true
+            }
+        },100)
+
+        Server.on("playerReconnected",()=>{
+            con++
+        })
+
+        Server.on("playerDisconnected",()=>{
+            desc++
+        })
+    })()
 })
 
 window.addEventListener("beforeunload",()=>{

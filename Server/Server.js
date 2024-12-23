@@ -253,12 +253,28 @@ webserver.on("connection",(socket) => {
                 const user = room.FindUser(data.oldid)
                 user.unicid = socket.id
                 socket.join(room.id)
+                webserver.to(room.id).emit('playerReconnected')
                 console.log("User : " + socket.id + " reconnected")
             }
         }
         catch(error)
         {
             console.log(error)
+        }
+    })
+
+    socket.on("disconnect",() => {
+        try
+        {
+            const room = Rooms.FindRoomByUser(socket.id)
+            if(room) 
+            {
+                webserver.to(room.id).emit('playerDisconnected')
+            }
+        }
+        catch(err)
+        {
+            console.log(err)
         }
     })
 
