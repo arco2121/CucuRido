@@ -460,14 +460,14 @@ Server.on("connected",(data)=>{
         else
         {
             document.getElementById("dio").innerText = "Hanno vinto :"
+            console.log(data.result)
             for(let i = 0; i<data.result.length;i++)
             {
                 if(i == data.length-1)
                 {
-                    u += User.fromJSON(user).name
-                    break
+                    u += User.fromJSON(data.result[i]).name
                 }
-                u += User.fromJSON(user).name + ", "
+                u += User.fromJSON(data.result[i]).name + ", "
             } 
         }
         document.getElementById("esplosione").innerText = u
