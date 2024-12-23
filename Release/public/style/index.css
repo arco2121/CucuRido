@@ -218,6 +218,12 @@ input[type="text"]:active
     z-index: 9999;
     animation: win 0.2s ;
 }
+#waity
+{
+    display: none;
+    z-index: 9997;
+    animation: win 0.2s ;
+}
 #askname
 {
     display: none;
