@@ -24,10 +24,10 @@ webserver.on("connection",(socket) => {
     webserver.to(socket.id).emit("connected",socket.id)
     console.log("User : " + socket.id + " connected")
     
-    socket.on("createRoom",(data) => {
+    socket.on("createRoom",async (data) => {
         try
         {
-            const room = Rooms.Create(data.name,socket.id,data.img)
+            const room = await Rooms.Create(data.name,socket.id,data.img)
             socket.join(room.id)
             console.log("Room : " + room.id + " created")
             webserver.to(socket.id).emit("roomCreated",{roomId : room.id, user : room.admin.toJSON()})
@@ -38,16 +38,16 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("joinRoom",(data) => {
+    socket.on("joinRoom",async (data) => {
         try
         {
-            const room = Rooms.FindRoom(data.roomId)
+            const room = await Rooms.FindRoom(data.roomId)
             if(!room)
             {
                 webserver.to(socket.id).emit("roomNotExist", "Not exist")
                 return
             }
-            const user = room.Add(data.name,socket.id,data.img)
+            const user = await room.Add(data.name,socket.id,data.img)
             if(!user)
             {
                 webserver.to(socket.id).emit("alreadyRound", "Not now")
@@ -64,10 +64,10 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("startRound", () => {
+    socket.on("startRound", async () => {
         try
         {
-            const room = Rooms.FindRoomByUser(socket.id)
+            const room = await Rooms.FindRoomByUser(socket.id)
             if(!room)
             {
                 webserver.to(socket.id).emit("error", "Not exist")
@@ -78,7 +78,7 @@ webserver.on("connection",(socket) => {
                 webserver.to(socket.id).emit("error", "No you idiot")
                 return
             }
-            const resp = room.StartRound()
+            const resp = await room.StartRound()
             if(resp == false)
             {
                 webserver.to(socket.id).emit("downUsers", "Not now")
@@ -86,9 +86,9 @@ webserver.on("connection",(socket) => {
             }
             else if(resp == null)
             {
-                const result = room.ResultGame()
+                const result = await room.ResultGame()
                 webserver.to(room.id).emit('gameEnded', {result : result.map((u) => u.toJSON())})
-                Rooms.Destroy(room.id)
+                await Rooms.Destroy(room.id)
                 console.log("Room : " + room.id + " destroyed")
             }
             webserver.to(room.id).emit('questionRe', {question : room.CurrentRound.question.toJSON()})
@@ -100,10 +100,10 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("infoRoom",() => {
+    socket.on("infoRoom",async () => {
         try
         {
-            const room = Rooms.FindRoomByUser(socket.id)
+            const room = await Rooms.FindRoomByUser(socket.id)
             if(!room)
             {
                 webserver.to(socket.id).emit("error", "Not exist")
@@ -117,10 +117,10 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("numberRoom",() => {
+    socket.on("numberRoom",async () => {
         try
         {
-            const room = Rooms.FindRoomByUser(socket.id)
+            const room = await Rooms.FindRoomByUser(socket.id)
             if(!room)
             {
                 webserver.to(socket.id).emit("error", "Not exist")
@@ -134,10 +134,10 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("answersRoom",() => {
+    socket.on("answersRoom",async () => {
         try
         {
-            const room = Rooms.FindRoomByUser(socket.id)
+            const room = await Rooms.FindRoomByUser(socket.id)
             if(!room)
             {
                 webserver.to(socket.id).emit("error", "Not exist")
@@ -151,7 +151,7 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("getAnswers",() => {
+    socket.on("getAnswers",async () => {
         try
         {
             const room = Rooms.FindRoomByUser(socket.id)
@@ -177,10 +177,10 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("endRound",(data) => {
+    socket.on("endRound", async (data) => {
         try
         {
-            const room = Rooms.FindRoomByUser(socket.id)
+            const room = await Rooms.FindRoomByUser(socket.id)
             if(!room)
             {
                 webserver.to(socket.id).emit("error", "Not exist")
@@ -191,7 +191,7 @@ webserver.on("connection",(socket) => {
                 webserver.to(socket.id).emit("error", "No you idiot")
                 return
             }
-            const op = room.EndRound(data.id)
+            const op = await room.EndRound(data.id)
             if(!op)
             {
                 webserver.to(socket.id).emit("NotPossibleUser","Die")
@@ -207,16 +207,16 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("receiveAnswer",(data) => {
+    socket.on("receiveAnswer",async (data) => {
         try
         {
-            const room = Rooms.FindRoomByUser(socket.id)
+            const room = await Rooms.FindRoomByUser(socket.id)
             if(!room)
             {
                 webserver.to(socket.id).emit("error", "Not exist")
                 return
             }
-            room.ReceiveAnswer(socket.id,data.indexcards)
+            await room.ReceiveAnswer(socket.id,data.indexcards)
             const user = room.FindUser(socket.id)
             console.log("User : " + socket.id + " replyed")
             webserver.to(socket.id).emit('receivedAnswer', {user : user.toJSON()})
@@ -227,8 +227,8 @@ webserver.on("connection",(socket) => {
         }
     })
 
-    socket.on("endGame", () => {
-        const room = Rooms.FindRoomByUser(socket.id)
+    socket.on("endGame", async () => {
+        const room = await Rooms.FindRoomByUser(socket.id)
         if(!room)
         {
             webserver.to(socket.id).emit("error", "Not exist")
@@ -239,29 +239,29 @@ webserver.on("connection",(socket) => {
             webserver.to(socket.id).emit("error", "No you idiot")
             return
         }
-        const result = room.ResultGame()
+        const result = await room.ResultGame()
         webserver.to(room.id).emit('gameEnded', {result : result.map((u) => u.toJSON())})
         Rooms.Destroy(room.id)
         console.log("Room : " + room.id + " destroyed")
     })
 
-    socket.on("disconnect",() => {
+    socket.on("disconnect",async () => {
         try
         {
             console.log("User : " + socket.id + " disconnected")
             webserver.to(socket.id).emit('reload')
-            const room = Rooms.FindRoomByUser(socket.id)
+            const room = await Rooms.FindRoomByUser(socket.id)
             if(room) 
             {
                 if (room.Asker.unicid == socket.id || room.admin.unicid == socket.id) 
                 {
                     webserver.to(room.id).emit('roomClosed')
-                    Rooms.Destroy(room.id)
+                    await Rooms.Destroy(room.id)
                     console.log("Room : " + room.id + " destroyed")
                     return
                 }
                 webserver.to(room.id).emit('playerLeft',room.users.length-1)
-                room.DestroyUser(socket.id)
+                await room.DestroyUser(socket.id)
             }
         }
         catch(error)
@@ -272,6 +272,6 @@ webserver.on("connection",(socket) => {
 
 })
 
-server.listen(port, () => {
+server.listen(port, async () => {
     console.log("Server : http://localhost:" + port)
 })

@@ -393,7 +393,7 @@ input[type="text"]:active
     height: -webkit-fill-available; 
     height: fill-available;
     justify-content: flex-start;
-    overflow-y: scroll;
+    overflow-y: auto;
     border-radius: 30px;
     padding: 5px 0px;
     margin-top: 10px;
@@ -433,10 +433,6 @@ input[type="text"]:active
 {
     display: none;
 }
-.selectd
-{
-    background-color: #b8ffb0;
-}
 .orifizio
 {
     background-color: var(--revcolor);
@@ -468,6 +464,7 @@ input[type="text"]:active
     border: solid black 5px;
     border-radius: 30px;
     transform-origin: top left;
+    overflow: scroll;
 }
 .part
 {
@@ -534,8 +531,12 @@ input[type="text"]:active
 .reversecard
 {
     background-color: var(--revcolor);
-    min-height: 300px;
+    min-height: 200px;
     min-height: fit-content;
+}
+.selectd
+{
+    background-color: #b8ffb0;
 }
 @media (orientation : portrait) or (min-height : 400px) {
     .window

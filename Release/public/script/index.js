@@ -43,6 +43,15 @@ const Server = io("https://cucu-ridu.onrender.com");
     document.documentElement.style.setProperty("--color",color)
     document.documentElement.style.setProperty("--revcolor",revColor)
     document.getElementById("logo").src = logoPath
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) 
+    {
+        document.querySelectorAll('*').forEach(element => {
+            if(element.tagName != "IMG" && element.id != "userpop")
+            {
+                element.style.overflow = 'visible';
+            }
+        });
+    }
 })()
 
 Server.on("connected",(data)=>{
@@ -409,9 +418,7 @@ Server.on("connected",(data)=>{
         })
         document.getElementById("submitta").addEventListener("click", () => {
             document.getElementById("submitta").disabled = true
-            setTimeout(()=>{
-                Server.emit("endRound",{id : answers[j][0].unicid})
-            },150)
+            Server.emit("endRound",{id : answers[j][0].unicid})
         })
     })
 

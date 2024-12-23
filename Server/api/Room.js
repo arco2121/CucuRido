@@ -2615,7 +2615,7 @@ class RoomPool
         this.rooms = []
     }
 
-    Create(adminName,adminid,img)
+    async Create(adminName,adminid,img)
     {
         while(true)
         {
@@ -2628,7 +2628,7 @@ class RoomPool
         }
     }
 
-    Destroy(roomid)
+    async Destroy(roomid)
     {
         const i = this.Find(roomid)
         if(i != -1)
@@ -2645,7 +2645,7 @@ class RoomPool
         }
     }
 
-    Find(roomid)
+    async Find(roomid)
     {
         for(let i = 0; i<this.rooms.length;i++)
         {
@@ -2657,7 +2657,7 @@ class RoomPool
         return -1
     }
 
-    FindRoom(roomid)
+    async FindRoom(roomid)
     {
         for(let i = 0; i<this.rooms.length;i++)
         {
@@ -2669,7 +2669,7 @@ class RoomPool
         return null
     }
 
-    FindRoomByUser(socketId) 
+    async FindRoomByUser(socketId) 
     {
       for (let i = 0; i<this.rooms.length;i++)
       {
@@ -2717,7 +2717,7 @@ class Room
         }
     }
 
-    Add(name,id,pfp)
+    async Add(name,id,pfp)
     {
         if(this.CurrentRound.isRound)
         {
@@ -2729,7 +2729,7 @@ class Room
         return user
     }
 
-    StartRound()
+    async StartRound()
     {
         if(this.users.length > 2)
         {
@@ -2749,7 +2749,7 @@ class Room
         }
     }
 
-    GetAnswers()
+    async GetAnswers()
     {
         if(this.CurrentRound.count == this.users.length-1 && this.CurrentRound.isRound)
         {
@@ -2761,7 +2761,7 @@ class Room
         }
     }
 
-    EndRound(idunic)
+    async EndRound(idunic)
     {
         const user = this.FindUser(idunic)
         if(!user)
@@ -2782,7 +2782,7 @@ class Room
         return true
     }
 
-    ResultGame()
+    async ResultGame()
     {
         let max = 0
         this.users.forEach(element => {
@@ -2802,7 +2802,7 @@ class Room
         return resul
     }
 
-    ReceiveAnswer(idunic,indexcards)
+    async ReceiveAnswer(idunic,indexcards)
     {
         const use = this.FindUser(idunic)
         if(!use || this.CurrentRound.answers.find(ele => ele[0].unicid == idunic))
@@ -2827,7 +2827,7 @@ class Room
         this.CurrentRound.count++
     }
 
-    RandomId(len)
+    async RandomId(len)
     {
         let temp = ""
         let prev = ""
@@ -2844,7 +2844,7 @@ class Room
         return temp
     }
 
-    Find(userid)
+    async Find(userid)
     {
         for(let i = 0; i<this.users.length;i++)
         {
@@ -2856,7 +2856,7 @@ class Room
         return -1
     }
 
-    FindUser(idunic) 
+    async FindUser(idunic) 
     {
         for(let i = 0; i < this.users.length; i++) 
         {
@@ -2868,7 +2868,7 @@ class Room
         return null
     }
 
-    DestroyUser(userid)
+    async DestroyUser(userid)
     {
         const i = this.Find(userid)
         if(i != -1)
@@ -2902,7 +2902,7 @@ class Room
         }
     }
 
-    infoJSON()
+    async infoJSON()
     {
         return {
             id : this.id,
