@@ -247,7 +247,7 @@ webserver.on("connection",(socket) => {
     socket.on("reconnect",(data) => {
         try
         {
-            const room = Room.FindRoomByUser(data.oldid)
+            const room = Rooms.FindRoomByUser(data.oldid)
             if(room)
             {
                 const user = room.FindUser(data.oldid)
