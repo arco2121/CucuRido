@@ -57,7 +57,7 @@ const Server = io("https://cucu-ridu.onrender.com");
 Server.on("connected",(data)=>{
     if(alreadyconnected)
     {
-        window.location.reload()
+        //window.location.reload()
     }
     alreadyconnected = true
     console.log("User : " + data)
