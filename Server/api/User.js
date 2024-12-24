@@ -8,7 +8,7 @@ class User
     {
         this.name = name
         this.unicid = User.RandomId(32)
-        this.sockeid = socketid
+        this.socketid = socketid
         this.point = 0
         this.img = pfp
         this.cards = new Deck()
@@ -31,7 +31,7 @@ class User
             IsAsking: this.IsAsking,
             admin: this.admin,
             img : this.img,
-            socketid : this.sockeid
+            socketid : this.socketid
         }
     }
 

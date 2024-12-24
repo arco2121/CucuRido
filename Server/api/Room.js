@@ -2901,7 +2901,7 @@ class Room
     {
         for(let i = 0; i < this.users.length; i++) 
         {
-            if(idunic == this.users[i].sockeid) 
+            if(idunic == this.users[i].socketid) 
             {
                 return this.users[i]
             }
