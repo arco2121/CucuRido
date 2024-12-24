@@ -229,9 +229,9 @@ Server.on("connected",(data)=>{
         user = User.fromJSON(data.user)
         document.getElementById("startRoom").style.display = "none"
         document.getElementById("roomidview").innerText = "Codice Stanza\n" + roomCode
-        Server.emit("numberRoom")
+        Server.emit("numberRoom",{id : user.unicid})
         esplodi = setInterval(()=>{
-            Server.emit("numberRoom")
+            Server.emit("numberRoom",{id : user.unicid})
         },500)
         document.getElementById("roomidview").addEventListener("click",()=>{
             navigator.clipboard.writeText(roomCode).then(()=>{
