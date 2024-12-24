@@ -4,10 +4,11 @@ const Alpha = "QWERTYUIOPASDFGHJKLZXCVBNM1256789qwertypaufghjklzcvbnm*/&%$!"
 
 class User
 {
-    constructor(name, unicid,pfp)
+    constructor(name,socketid,pfp)
     {
         this.name = name
-        this.unicid = unicid
+        this.unicid = User.RandomId(32)
+        this.sockeid = socketid
         this.point = 0
         this.img = pfp
         this.cards = new Deck()
@@ -29,7 +30,8 @@ class User
             cards: this.cards.toJSON(),
             IsAsking: this.IsAsking,
             admin: this.admin,
-            img : this.img
+            img : this.img,
+            socketid : this.sockeid
         }
     }
 
@@ -52,7 +54,19 @@ class User
 
     static fromJSON(data) 
     {
-        const user = new User(data.name, data.unicid);
+        if(data.admin == true)
+        {
+            const user = new Admin(data.name,data.socketid,data.img);
+            user.unicid = data.unicid;
+            user.point = data.point;
+            user.cards = Deck.fromJSON(data.cards.cards)
+            user.IsAsking = data.IsAsking;
+            user.admin = data.admin;
+            user.img = data.img
+            return user;
+        }
+        const user = new Guest(data.name,data.socketid,data.img);
+        user.unicid = data.unicid;
         user.point = data.point;
         user.cards = Deck.fromJSON(data.cards.cards)
         user.IsAsking = data.IsAsking;
@@ -63,18 +77,18 @@ class User
 }
 class Admin extends User
 {
-    constructor(name,unicid,pfp)
+    constructor(name,soc,pfp)
     {
-        super(name,unicid,pfp)
+        super(name,soc,pfp)
         this.IsAsking = true
         this.admin = true
     }
 }
 class Guest extends User
 {
-    constructor(name,unicid,pfp)
+    constructor(name,soc,pfp)
     {
-        super(name,unicid,pfp)
+        super(name,soc,pfp)
     }
 }
 

@@ -7,7 +7,19 @@ const AnswerArr = [
     0
   ],
   [
-    "Il BDSM selvaggio e occulto",
+    "GattoBoy e Geco",
+    0
+  ],
+  [
+    "Una bomba in gola",
+    0
+  ],
+  [
+    "Una triciclo a propulsione",
+    0
+  ],
+  [
+    "Il BDSM occulto",
     0
   ],
   [
@@ -2678,6 +2690,11 @@ class RoomPool
           {
               return this.rooms[i]
           }
+          const socket = this.rooms[i].FindSocket(socketId)
+          if(socket) 
+          {
+              return this.rooms[i]
+          }
       }
       return null
     }
@@ -2685,10 +2702,10 @@ class RoomPool
 
 class Room
 {
-    constructor(adminName,adminid,img) 
+    constructor(adminName,socketid,img) 
     {
         this.id = this.RandomId(6)
-        this.admin = new Admin(adminName,adminid,img)
+        this.admin = new Admin(adminName,socketid,img)
         let temp = []
         for(let i = 0; i<QuestionsArr.length;i++)
         {
@@ -2717,13 +2734,13 @@ class Room
         }
     }
 
-    Add(name,id,pfp)
+    Add(name,socketid,pfp)
     {
         if(this.CurrentRound.isRound)
         {
             return null
         }
-        const user = new Guest(name,id, pfp)
+        const user = new Guest(name,socketid,pfp)
         user.cards.Insert(this.Answers.Pick(11))
         this.users.push(user)
         return user
@@ -2861,6 +2878,18 @@ class Room
         for(let i = 0; i < this.users.length; i++) 
         {
             if(idunic == this.users[i].unicid) 
+            {
+                return this.users[i]
+            }
+        }
+        return null
+    }
+
+    FindSocket(idunic) 
+    {
+        for(let i = 0; i < this.users.length; i++) 
+        {
+            if(idunic == this.users[i].sockeid) 
             {
                 return this.users[i]
             }

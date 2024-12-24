@@ -11,7 +11,7 @@ let quest
 let esplodi
 let alreadyconnected = false
 let lastp = -1
-let user = new User("default",User.RandomId(32))
+let user
 document.getElementById("inputname").value = getRandomNamea()
 const imgUserPath = (n) => {
     return "./img/userimg/" + n + '.jpg'
@@ -58,11 +58,12 @@ const Server = io("https://cucu-ridu.onrender.com");
 Server.on("connected",(data)=>{
     if(alreadyconnected)
     {
-        Server.emit("reconnect",{oldid : oldid,newid : data})
+        Server.emit("reconnect",{oldid : oldid})
     }
     oldid = data
     alreadyconnected = true
     console.log("User : " + data)
+    user = new User("name",data,0)
     setTimeout(()=>{
         document.getElementById("inputname").value = getRandomNamea()
         userPfp = getRandomPfp()
@@ -176,12 +177,12 @@ Server.on("connected",(data)=>{
 
     /*StartRound*/
     document.getElementById("startRoom").addEventListener("click",()=>{
-        Server.emit("startRound")
+        Server.emit("startRound",{id : user.unicid})
         document.getElementById("startRoom").disabled = true
     })
 
     document.getElementById("restartRoom").addEventListener("click",() => {
-        Server.emit("startRound")
+        Server.emit("startRound",{id : user.unicid})
         document.getElementById("restartRoom").disabled = true
     })
 
@@ -194,7 +195,7 @@ Server.on("connected",(data)=>{
     })
 
     document.getElementById("userimg").addEventListener("click",() => {
-        Server.emit("infoRoom")
+        Server.emit("infoRoom",{id : user.unicid})
     })
 
     document.querySelector(".over").addEventListener("click",()=>{
@@ -208,9 +209,9 @@ Server.on("connected",(data)=>{
         user = User.fromJSON(data.user)
         document.getElementById("startRoom").style.display = "flex"
         document.getElementById("roomidview").innerText = "Codice Stanza\n\n" + roomCode
-        Server.emit("numberRoom")
+        Server.emit("numberRoom",{id : user.unicid})
         esplodi = setInterval(()=>{
-            Server.emit("numberRoom")
+            Server.emit("numberRoom",{id : user.unicid})
         },500)
         document.getElementById("roomidview").addEventListener("click",()=>{
             navigator.clipboard.writeText(roomCode).then(()=>{
@@ -264,11 +265,11 @@ Server.on("connected",(data)=>{
             }
             document.getElementById("cardcontainer").appendChild(card.toHTML("♥ Frase"))
             GetAnsw = setInterval(()=>{
-                Server.emit("getAnswers")
+                Server.emit("getAnswers",{id : user.unicid})
             },backtime)
             card.spacehtml.innerText = "0/0"
             skibidi = setInterval(()=>{
-                Server.emit("answersRoom")
+                Server.emit("answersRoom",{id : user.unicid})
             },500)
             Server.on("answersRoomed",(data) => {
                 card.spacehtml.innerText = data.number + "/" + (data.room - 1)
@@ -319,7 +320,7 @@ Server.on("connected",(data)=>{
                     alert("Completa la selezione delle risposte abort* ✨")
                     return
                 }
-                Server.emit("receiveAnswer",{indexcards : answers})
+                Server.emit("receiveAnswer",{id : user.unicid,indexcards : answers})
                 document.getElementById("replyCard").removeEventListener("click",tem)
             }
             document.getElementById("replyCard").addEventListener("click",tem)
@@ -413,7 +414,7 @@ Server.on("connected",(data)=>{
         })
         document.getElementById("submitta").addEventListener("click", () => {
             document.getElementById("submitta").disabled = true
-            Server.emit("endRound",{id : answers[j][0].unicid})
+            Server.emit("endRound",{id : user.unicid, winid : answers[j][0].unicid})
         })
     })
 
@@ -490,7 +491,7 @@ Server.on("connected",(data)=>{
             document.getElementById("chiu").addEventListener("click",()=>{
                 document.querySelector(".over").style.display = "none"
                 document.getElementById("userpop").style.display = "none"
-                Server.emit("endGame")
+                Server.emit("endGame",{id : user.unicid})
             })
         }
         else
@@ -568,6 +569,6 @@ Server.on("connected",(data)=>{
 })
 
 window.addEventListener("beforeunload",()=>{
-    Server.emit("destroyed")
+    Server.emit("destroyed",{id : user.unicid})
     window.location.reload()
 })
