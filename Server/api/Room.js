@@ -2788,23 +2788,27 @@ class Room
 
     EndRound(idunic)
     {
-        const user = this.FindUser(idunic)
-        if(!user)
+        if(this.CurrentRound.isRound)
         {
-          return false
+          const user = this.FindUser(idunic)
+          if(!user)
+          {
+            return false
+          }
+          user.point += points
+          this.Asker.IsAsking = false
+          this.LastAsker = this.Asker
+          user.IsAsking = true
+          this.Asker = user
+          this.CurrentRound = {
+              count: 0,
+              question: null,
+              answers: [],
+              isRound: false,
+          }
+          return true
         }
-        user.point += points
-        this.Asker.IsAsking = false
-        this.LastAsker = this.Asker
-        user.IsAsking = true
-        this.Asker = user
-        this.CurrentRound = {
-            count: 0,
-            question: null,
-            answers: [],
-            isRound: false,
-        }
-        return true
+        return false
     }
 
     ResultGame()
