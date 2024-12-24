@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 /*Gestione utente*/
 webserver.on("connection",(socket) => {
-    webserver.to(data.id).emit("connected",socket.id)
+    webserver.to(socket.id).emit("connected",socket.id)
     console.log("User : " + socket.id + " connected")
     
     socket.on("createRoom",(data) => {
