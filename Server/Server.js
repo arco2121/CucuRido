@@ -247,7 +247,7 @@ webserver.on("connection",(socket) => {
     socket.on("reconnect",(data) => {
         try
         {
-            const room = Rooms.FindRoomByUser(data.oldid)
+            const room = Rooms.FindRoomByUser(data.id)
             if(room)
             {
                 const user = room.FindSocket(data.oldid)
@@ -266,7 +266,7 @@ webserver.on("connection",(socket) => {
     socket.on("disconnect",() => {
         try
         {
-            const room = Rooms.FindRoomByUser(socket.id)
+            const room = Rooms.FindRoomBySocket(socket.id)
             if(room) 
             {
                 webserver.to(room.id).emit('playerDisconnected')

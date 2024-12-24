@@ -58,7 +58,7 @@ const Server = io("https://cucu-ridu.onrender.com");
 Server.on("connected",(data)=>{
     if(alreadyconnected)
     {
-        Server.emit("reconnect",{oldid : oldid})
+        Server.emit("reconnect",{id : user.unicid, oldid : oldid})
     }
     oldid = data
     alreadyconnected = true
@@ -566,6 +566,10 @@ Server.on("connected",(data)=>{
             desc++
         })
     })()
+
+    Server.on("reconnected",(data)=>{   
+        user = User.fromJSON(data.user)
+    })
 })
 
 window.addEventListener("beforeunload",()=>{

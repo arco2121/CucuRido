@@ -2689,9 +2689,17 @@ class RoomPool
           if (user) 
           {
               return this.rooms[i]
-          }
-          const socket = this.rooms[i].FindSocket(socketId)
-          if(socket) 
+          } 
+      }
+      return null
+    }
+
+    FindRoomBySocket(socketId) 
+    {
+      for (let i = 0; i<this.rooms.length;i++)
+      {
+          const user = this.rooms[i].FindSocket(socketId)
+          if (user) 
           {
               return this.rooms[i]
           }
