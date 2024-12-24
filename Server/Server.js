@@ -254,6 +254,7 @@ webserver.on("connection",(socket) => {
                 user.socketid = socket.id
                 socket.join(room.id)
                 webserver.to(room.id).emit('playerReconnected')
+                webserver.to(socket.id).emit('reconnected', {user : user.toJSON()})
                 console.log("User : " + socket.id + " reconnected")
             }
         }
