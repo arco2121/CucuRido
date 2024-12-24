@@ -76,7 +76,7 @@ Server.on("connected",(data)=>{
         document.getElementById("load").style.display = "none"
         document.getElementById("home").style.display = "flex"
     },500)  
-})
+});
 
 /*Homepage*/
 (() => {
