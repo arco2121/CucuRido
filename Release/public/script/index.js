@@ -61,11 +61,11 @@ const Server = io("https://cucu-ridu.onrender.com",{
 
 Server.on("connected",(data)=>{
     document.getElementById("offline").style.display = "none"
-    if(alreadyconnected)
+    if(alreadyconnected || localStorage.getItem("lastPlay"))
     {
-        Server.emit("reconnect",{id : user.unicid, oldid : oldid})
+        Server.emit("reconnect",{id : user.unicid, oldid : localStorage.getItem("oldid")})
     }
-    oldid = data
+    localStorage.setItem("oldid",data)
     alreadyconnected = true
     console.log("User : " + data)
     user = new User("name",data,0)
@@ -219,7 +219,7 @@ Server.on("joinedRoom",(data) => {
     roomCode = data.roomId
     user = User.fromJSON(data.user)
     document.getElementById("startRoom").style.display = "none"
-    document.getElementById("roomidview").innerText = "Codice Stanza\n" + roomCode
+    document.getElementById("roomidview").innerText = "Codice Stanza\n\n" + roomCode
     Server.emit("numberRoom",{id : user.unicid})
     esplodi = setInterval(()=>{
         Server.emit("numberRoom",{id : user.unicid})
@@ -476,7 +476,7 @@ Server.on("numberRoomed",(data) => {
 })
 
 Server.on("infoRoomed",(data) => {
-    document.getElementById("codeshare").innerText = "Codice Stanza\n\n" + data.room.id
+    document.getElementById("codeshare").innerText = "Codice Stanza\n" + data.room.id
     if(user.admin)
     {
         document.getElementById("chiu").addEventListener("click",()=>{
@@ -518,6 +518,7 @@ Server.on("playerLeft",(len) => {
 })
 
 Server.on("reload",()=>{
+    localStorage.removeItem("lastPlay")
     window.location.reload()
 })
 
@@ -558,7 +559,7 @@ setInterval(()=>{
     })
 })()
 
-Server.on("reconnected",(data)=>{   
+Server.on("reconnected",(data)=>{ 
     user = User.fromJSON(data.user)
     roomCode = data.roomId
 })
@@ -568,6 +569,9 @@ Server.on("disconnect",() => {
 })
 
 window.addEventListener("beforeunload",()=>{
-    Server.emit("destroyed",{id : user.unicid})
-    window.location.reload()
+    const statoFinestre = {};
+    document.querySelectorAll('.window, .sub-window, .popwindow').forEach((finestra) => {
+        statoFinestre[finestra.id] = window.getComputedStyle(finestra).display !== 'none'
+    });
+    localStorage.setItem('lastPlay', JSON.stringify(statoFinestre))
 })
