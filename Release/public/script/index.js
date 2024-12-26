@@ -61,7 +61,7 @@ const Server = io("https://cucu-ridu.onrender.com",{
 
 Server.on("connected",(data)=>{
     document.getElementById("offline").style.display = "none"
-    if(alreadyconnected || localStorage.getItem("lastPlay"))
+    if(alreadyconnected)
     {
         Server.emit("reconnect",{id : user.unicid, oldid : localStorage.getItem("oldid")})
     }
@@ -518,7 +518,6 @@ Server.on("playerLeft",(len) => {
 })
 
 Server.on("reload",()=>{
-    localStorage.removeItem("lastPlay")
     window.location.reload()
 })
 
@@ -569,9 +568,5 @@ Server.on("disconnect",() => {
 })
 
 window.addEventListener("beforeunload",()=>{
-    const statoFinestre = {};
-    document.querySelectorAll('.window, .sub-window, .popwindow').forEach((finestra) => {
-        statoFinestre[finestra.id] = window.getComputedStyle(finestra).display !== 'none'
-    });
-    localStorage.setItem('lastPlay', JSON.stringify(statoFinestre))
+    Server.emit("destroyed",{id : user.unicid})
 })
