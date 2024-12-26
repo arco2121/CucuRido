@@ -254,7 +254,7 @@ webserver.on("connection",(socket) => {
                 user.socketid = socket.id
                 socket.join(room.id)
                 webserver.to(room.id).emit('playerReconnected')
-                webserver.to(socket.id).emit('reconnected', {user : user.toJSON()})
+                webserver.to(socket.id).emit('reconnected', {user : user.toJSON(), roomId : room.id})
                 console.log("User : " + socket.id + " reconnected")
             }
         }
@@ -295,7 +295,7 @@ webserver.on("connection",(socket) => {
                     return
                 }
                 webserver.to(room.id).emit('playerLeft',room.users.length-1)
-                room.DestroyUser(data.id)
+                room.DestroyUser(data.id);
             }
         }
         catch(error)

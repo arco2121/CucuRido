@@ -106,7 +106,7 @@ Server.on("connected",(data)=>{
             }
         }
     })
-})()
+})();
 
 document.getElementById("createRoom").addEventListener("click",()=>{
     document.getElementById("home").style.display = "none"
@@ -560,6 +560,7 @@ setInterval(()=>{
 
 Server.on("reconnected",(data)=>{   
     user = User.fromJSON(data.user)
+    roomCode = data.roomId
 })
 
 Server.on("disconnect",() => {
