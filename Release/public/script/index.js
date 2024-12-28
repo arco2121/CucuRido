@@ -48,7 +48,7 @@ const Server = io("https://cucu-ridu.onrender.com",{
     document.documentElement.style.setProperty("--color",color)
     document.documentElement.style.setProperty("--revcolor",revColor)
     document.getElementById("logo").src = logoPath
-    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) 
+    if (!CSS.supports('-webkit-appearance', 'none')) 
     {
         document.querySelectorAll('*').forEach(element => {
             if(element.tagName != "IMG" && element.id != "userpop")
