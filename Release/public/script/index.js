@@ -48,12 +48,20 @@ const Server = io("https://cucu-ridu.onrender.com",{
     document.documentElement.style.setProperty("--color",color)
     document.documentElement.style.setProperty("--revcolor",revColor)
     document.getElementById("logo").src = logoPath
-    if (!navigator.userAgent.includes("Chrome") || navigator.userAgent.includes("Edg"))
+    if (!navigator.userAgent.includes("Chrome") || !navigator.userAgent.includes("Edg"))
     {
         document.querySelectorAll('*').forEach(element => {
             if(element.tagName != "IMG" && element.id != "userpop")
             {
-                element.style.overflow = 'visible';
+                element.style.overflow = 'visible'
+            }
+            if(element.id != "roomlobby" || element.id != "waittostart")
+            {
+                element.style.justifyContent = "flex-start"
+            }
+            if(element.classList.contains("scroll"))
+            {
+                element.style.maxHeight = "auto"
             }
         });
     }
