@@ -48,7 +48,7 @@ const Server = io("https://cucu-ridu.onrender.com",{
     document.documentElement.style.setProperty("--color",color)
     document.documentElement.style.setProperty("--revcolor",revColor)
     document.getElementById("logo").src = logoPath
-    if (!CSS.supports('-webkit-appearance', 'none')) 
+    if (!navigator.userAgent.includes("Chrome") || navigator.userAgent.includes("Edg"))
     {
         document.querySelectorAll('*').forEach(element => {
             if(element.tagName != "IMG" && element.id != "userpop")
@@ -568,9 +568,5 @@ Server.on("disconnect",() => {
 })
 
 window.addEventListener("beforeunload",()=>{
-    Server.emit("destroyed",{id : user.unicid})
-})
-
-window.addEventListener("unload",()=>{
     Server.emit("destroyed",{id : user.unicid})
 })
