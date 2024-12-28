@@ -52,6 +52,7 @@ const Server = io("https://cucu-ridu.onrender.com",{
     {
         const rule = "not(img):not(#userpop) { overflow: visible; #roomlobby, #notaskerview {justify-content: flex-start;} @media(orientation: landscape) and (max-height : 600px){.scroll { max-height: auto; } #notaskerview{ align-items : flex-start; }} #userpop{justify-content: flex-start;}"
         const style = document.createElement("style")
+        style.innerHTML = rule
         document.head.appendChild(style)
     }
 })()
