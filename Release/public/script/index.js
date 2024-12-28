@@ -570,3 +570,7 @@ Server.on("disconnect",() => {
 window.addEventListener("beforeunload",()=>{
     Server.emit("destroyed",{id : user.unicid})
 })
+
+window.addEventListener("unload",()=>{
+    Server.emit("destroyed",{id : user.unicid})
+})
