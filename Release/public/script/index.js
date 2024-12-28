@@ -50,20 +50,9 @@ const Server = io("https://cucu-ridu.onrender.com",{
     document.getElementById("logo").src = logoPath
     if (!navigator.userAgent.includes("Chrome") || !navigator.userAgent.includes("Edg"))
     {
-        document.querySelectorAll('*').forEach(element => {
-            if(element.tagName != "IMG" && element.id != "userpop")
-            {
-                element.style.overflow = 'visible'
-            }
-            if(element.id != "roomlobby" || element.id != "waittostart")
-            {
-                element.style.justifyContent = "flex-start"
-            }
-            if(element.classList.contains("scroll"))
-            {
-                element.style.maxHeight = "auto"
-            }
-        });
+        const rule = "not(img):not(#userpop) { overflow: visible; #roomlobby, #notaskerview {justify-content: flex-start;} @media(orientation: landscape) and (max-height : 600px){.scroll { max-height: auto; } #notaskerview{ align-items : flex-start; }} #userpop{justify-content: flex-start;}"
+        const style = document.createElement("style")
+        document.head.appendChild(style)
     }
 })()
 
