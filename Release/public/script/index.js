@@ -50,10 +50,32 @@ const Server = io("https://cucu-ridu.onrender.com",{
     document.getElementById("logo").src = logoPath
     if (!navigator.userAgent.includes("Chrome") || !navigator.userAgent.includes("Edg"))
     {
-        const rule = "not(img):not(#userpop) { overflow: visible; #roomlobby, #notaskerview {justify-content: flex-start;} @media(orientation: landscape) and (max-height : 600px){.scroll { max-height: auto; } #notaskerview{ align-items : flex-start; }} #userpop{justify-content: flex-start;}"
-        const style = document.createElement("style")
-        style.innerHTML = rule
-        document.head.appendChild(style)
+        const rule = `
+            :not(img):not(#userpop) {
+                overflow: visible;
+            }
+            #roomlobby, #notaskerview {
+                justify-content: flex-start;
+            }
+            @media (orientation: landscape) and (max-height: 600px) {
+                .scroll {
+                    max-height: auto;
+                }
+                #notaskerview {
+                    align-items: flex-start;
+                }
+            }
+            #userpop {
+                justify-content: flex-start;
+            }
+            #conter
+            {
+                height: auto;
+            }
+        `;
+        const style = document.createElement("style");
+        style.innerHTML = rule;
+        document.head.appendChild(style);
     }
 })()
 
