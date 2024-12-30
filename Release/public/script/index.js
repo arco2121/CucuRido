@@ -585,8 +585,31 @@ Server.on("reconnected",(data)=>{
 
 Server.on("disconnect",() => {
     document.getElementById("offline").style.display = "flex"
-})
+});
 
-window.addEventListener("popstate",(e)=>{
-    Server.emit("disconnect",{id : user.unicid})
-})
+(() => {
+    let alr = true
+
+    const endSession = () => {
+        if(alr)
+        {
+            Server.emit("destroyed",{id : user.unicid})
+            alr = false
+        }
+    }
+
+    window.addEventListener("unload", () => {
+        endSession()
+    })
+
+    window.addEventListener("pagehide", (event) => {
+        if (!event.persisted) 
+        {
+            endSession()
+        }
+    })
+
+    window.addEventListener("beforeunload", () => {
+        endSession()
+    })
+})()
