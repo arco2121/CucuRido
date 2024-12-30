@@ -5,7 +5,7 @@ const {Server} = require("socket.io")
 const app = express()
 const server = http.createServer(app)
 const webserver = new Server(server,{cors: {
-    origin: "https://cucuridu.web.app/*",
+    origin: "https://cucuridu.web.app",
     methods: ["GET", "POST"],
 }})
 

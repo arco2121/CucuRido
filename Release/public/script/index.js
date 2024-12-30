@@ -18,8 +18,8 @@ const imgUserPath = (n) => {
 }
 const Server = io("https://cucu-ridu.onrender.com",{
     reconnection: true,
-    reconnectionDelay: 1,
-    reconnectionDelayMax: 2, 
+    reconnectionDelay: 100,
+    reconnectionDelayMax: 120, 
 });
 (() => {
     const color = colors[Math.floor(Math.random() * (colors.length))]
