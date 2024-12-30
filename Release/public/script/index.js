@@ -588,28 +588,30 @@ Server.on("disconnect",() => {
 });
 
 (() => {
-    let alr = true
-
+    let alr = true;
     const endSession = () => {
-        if(alr)
+        if (alr) 
         {
-            Server.emit("destroyed",{id : user.unicid})
-            alr = false
+            Server.emit("destroyed", { id: user.unicid });
+            alr = false;
         }
-    }
-
-    window.addEventListener("unload", () => {
-        endSession()
-    })
-
+    };
+    const isMobile = /android|ipad|iphone|ipod|windows phone|blackberry|opera mini/i.test(navigator.userAgent) && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    if (isMobile) 
+    {
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) 
+            {
+                endSession();
+                window.location.reload();
+            }
+        });
+    } 
+    window.addEventListener("unload", endSession);
     window.addEventListener("pagehide", (event) => {
-        if (!event.persisted) 
-        {
-            endSession()
+        if (!event.persisted) {
+            endSession();
         }
-    })
-
-    window.addEventListener("beforeunload", () => {
-        endSession()
-    })
-})()
+    });
+    window.addEventListener("beforeunload", endSession);
+})();
