@@ -2748,10 +2748,16 @@ class Room
         {
             return null
         }
-        const user = new Guest(name,socketid,pfp)
-        user.cards.Insert(this.Answers.Pick(11))
-        this.users.push(user)
-        return user
+        while(true)
+        {
+            const user = new Guest(name,socketid,pfp)
+            if(this.Find(user.unicid) == -1)
+            {
+              user.cards.Insert(this.Answers.Pick(11))
+              this.users.push(user)
+              return user
+            }
+        }
     }
 
     StartRound()
