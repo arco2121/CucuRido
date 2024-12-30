@@ -257,20 +257,6 @@ webserver.on("connection",(socket) => {
                 webserver.to(socket.id).emit('reconnected', {user : user.toJSON(), roomId : room.id})
                 console.log("User : " + socket.id + " reconnected")
             }
-            else
-            {
-                console.log("User : " + data.id + " disconnected")
-                if (room.Asker.unicid == data.id || room.admin.unicid == data.id) 
-                {
-                    webserver.to(room.id).emit('roomClosed')
-                    Rooms.Destroy(room.id)
-                    console.log("Room : " + room.id + " destroyed")
-                    return
-                }
-                webserver.to(room.id).emit('playerLeft',room.users.length-1)
-                room.DestroyUser(data.id)
-                webserver.to(socket.id).emit('reload', "Not found")
-            }
         }
         catch(error)
         {

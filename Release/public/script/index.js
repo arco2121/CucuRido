@@ -587,6 +587,9 @@ Server.on("disconnect",() => {
     document.getElementById("offline").style.display = "flex"
 })
 
-window.addEventListener("beforeunload",()=>{
-    Server.emit("destroyed",{id : user.unicid})
+window.addEventListener("pagehide",(e)=>{
+    if(!e.persisted)
+    {
+        Server.emit("disconnect",{id : user.unicid})
+    }
 })
