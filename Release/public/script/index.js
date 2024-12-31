@@ -24,9 +24,9 @@ const Server = io("https://cucu-ridu.onrender.com",{
     reconnectionDelayMax: 120, 
 });
 const sendHeartbeat = () => {
-    if (socket.connected) 
+    if (Server.connected) 
     {
-        socket.emit("heartbeat");
+        Server.emit("heartbeat");
     } 
     else 
     {
@@ -609,7 +609,7 @@ Server.on("disconnect",() => {
     isServerAlive = false;
 });
 
-(() => {
+/*(() => {
     let alr = true;
     const endSession = () => {
         if (alr) 
@@ -625,4 +625,4 @@ Server.on("disconnect",() => {
         }
     });
     window.addEventListener("beforeunload", endSession);
-})();
+})();*/

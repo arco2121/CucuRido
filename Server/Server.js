@@ -327,7 +327,7 @@ setInterval(() => {
             {
                 try
                 {
-                    console.log("User : " + data.id + " disconnected")
+                    console.log("User : " + user.unicid + " disconnected")
                     webserver.to(user.socketid).emit('reload')
                     if(room) 
                     {
