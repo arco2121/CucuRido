@@ -257,7 +257,7 @@ input[type="text"]:active
 #roomClosed
 {
     display: none;
-    z-index: 20;
+    z-index: 9998;
     animation: subwin 0.2s ;
 }
 #load
