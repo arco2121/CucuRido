@@ -301,7 +301,6 @@ webserver.on("connection",(socket) => {
         try
         {
             console.log("User : " + data.id + " disconnected")
-            webserver.to(data.id).emit('reload')
             const room = Rooms.FindRoomByUser(data.id)
             if(room) 
             {
@@ -328,7 +327,7 @@ setInterval(() => {
     const now = Date.now();
     Rooms.rooms.forEach(room => {
         room.users.forEach(user => {
-            if (now - user.heartbeat > 20000) 
+            if (now - user.heartbeat > 10000) 
             {
                 try
                 {

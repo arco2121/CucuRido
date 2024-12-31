@@ -60,7 +60,7 @@ const sendHeartbeat = () => {
     document.documentElement.style.setProperty("--color",color)
     document.documentElement.style.setProperty("--revcolor",revColor)
     document.getElementById("logo").src = logoPath
-    if (!navigator.userAgent.includes("Chrome") || !navigator.userAgent.includes("Edg"))
+    if (!navigator.userAgent.includes("Chrome") && !navigator.userAgent.includes("Edg") && !navigator.userAgent.includes("Chromium"))
     {
         const rule = `
             :not(img):not(#userpop) {
@@ -612,7 +612,7 @@ Server.on("disconnect",() => {
     isServerAlive = false;
 });
 
-/*(() => {
+(() => {
     let alr = true;
     const endSession = () => {
         if (alr) 
@@ -628,4 +628,4 @@ Server.on("disconnect",() => {
         }
     });
     window.addEventListener("beforeunload", endSession);
-})();*/
+})();
