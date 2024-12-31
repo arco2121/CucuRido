@@ -215,7 +215,7 @@ input[type="text"]:active
 #offline
 {
     display: none;
-    z-index: 9999;
+    z-index: 99999;
     animation: win 0.2s ;
 }
 #waity
@@ -417,7 +417,7 @@ input[type="text"]:active
 #winround
 {
     display: none;
-    z-index: 6;
+    z-index: 9999;
     animation: subwin 0.2s ; 
 }
 #choosewinner
