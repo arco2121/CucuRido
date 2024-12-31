@@ -323,7 +323,7 @@ setInterval(() => {
     const now = Date.now();
     Rooms.rooms.forEach(room => {
         room.users.forEach(user => {
-            if (now - user.heartbeat > 20000) 
+            if (now - user.heartbeat > 30000) 
             {
                 try
                 {

@@ -20,8 +20,8 @@ const imgUserPath = (n) => {
 }
 const Server = io("https://cucu-ridu.onrender.com",{
     reconnection: true,
-    reconnectionDelay: 100,
-    reconnectionDelayMax: 120, 
+    reconnectionDelay: 10,
+    reconnectionDelayMax: 12, 
 });
 const sendHeartbeat = () => {
     if (Server.connected) 
