@@ -259,6 +259,7 @@ webserver.on("connection",(socket) => {
             }
             else
             {
+                console.log("DIO")
                 webserver.to(socket.id).emit('reload')
             }
         }
@@ -276,7 +277,6 @@ webserver.on("connection",(socket) => {
             if(user)
             {
                 user.heartbeat = Date.now()
-                console.log("Heart : " + socket.id)
             }
         }
         socket.emit("heartbeat_ack");
@@ -328,12 +328,11 @@ setInterval(() => {
     const now = Date.now();
     Rooms.rooms.forEach(room => {
         room.users.forEach(user => {
-            if (now - user.heartbeat > 10000) 
+            if (now - user.heartbeat > 20000) 
             {
                 try
                 {
                     console.log("User : " + user.unicid + " disconnected")
-                    webserver.to(user.socketid).emit('reload')
                     if(room) 
                     {
                         if (room.Asker.unicid == user.unicid || room.admin.unicid == user.unicid) 
