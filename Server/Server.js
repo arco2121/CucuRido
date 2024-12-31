@@ -5,7 +5,7 @@ const {Server} = require("socket.io")
 const app = express()
 const server = http.createServer(app)
 const webserver = new Server(server,{cors: {
-    origin: /*"https://cucuridu.web.app",*/"*",
+    origin: "https://cucuridu.web.app",
     methods: ["GET", "POST"],
 }})
 
@@ -259,7 +259,7 @@ webserver.on("connection",(socket) => {
             }
             else
             {
-                webserver.to(user.socketid).emit('reload')
+                webserver.to(socket.id).emit('reload')
             }
         }
         catch(error)
@@ -327,7 +327,7 @@ setInterval(() => {
     const now = Date.now();
     Rooms.rooms.forEach(room => {
         room.users.forEach(user => {
-            if (now - user.heartbeat > 30000) 
+            if (now - user.heartbeat > 20000) 
             {
                 try
                 {
@@ -353,7 +353,7 @@ setInterval(() => {
             }
         })
     })
-},5000)
+},2000)
 
 server.listen(port, () => {
     console.log("Server : http://localhost:" + port)
