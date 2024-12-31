@@ -12,6 +12,8 @@ let esplodi
 let alreadyconnected = false
 let lastp = -1
 let user
+let heartbeatInterval;
+let isServerAlive = true;
 document.getElementById("inputname").value = getRandomNamea()
 const imgUserPath = (n) => {
     return "./img/userimg/" + n + '.jpg'
@@ -21,6 +23,16 @@ const Server = io("https://cucu-ridu.onrender.com",{
     reconnectionDelay: 100,
     reconnectionDelayMax: 120, 
 });
+const sendHeartbeat = () => {
+    if (socket.connected) 
+    {
+        socket.emit("heartbeat");
+    } 
+    else 
+    {
+        isServerAlive = false;
+    }
+};
 (() => {
     const color = colors[Math.floor(Math.random() * (colors.length))]
     const logoPath = "./img/logoimg/" + Math.floor(Math.random() * (logoCount - 1) + 1) + ".png"
@@ -80,7 +92,9 @@ const Server = io("https://cucu-ridu.onrender.com",{
 })()
 
 Server.on("connected",(data)=>{
+    isServerAlive = true
     document.getElementById("offline").style.display = "none"
+    heartbeatInterval = setInterval(sendHeartbeat, 5000);
     if(alreadyconnected)
     {
         Server.emit("reconnect",{id : user.unicid, oldid : localStorage.getItem("oldid")})
@@ -97,6 +111,12 @@ Server.on("connected",(data)=>{
         document.getElementById("home").style.display = "flex"
     },500)  
 });
+
+Server.on("heartbeat_ack", () => {
+    isServerAlive = true;
+});
+
+
 
 /*Homepage*/
 (() => {
@@ -585,6 +605,8 @@ Server.on("reconnected",(data)=>{
 
 Server.on("disconnect",() => {
     document.getElementById("offline").style.display = "flex"
+    clearInterval(heartbeatInterval);
+    isServerAlive = false;
 });
 
 (() => {
@@ -596,17 +618,6 @@ Server.on("disconnect",() => {
             alr = false;
         }
     };
-    const isMobile = /android|ipad|iphone|ipod|windows phone|blackberry|opera mini/i.test(navigator.userAgent) && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-    if (isMobile) 
-    {
-        document.addEventListener("visibilitychange", () => {
-            if (document.hidden) 
-            {
-                endSession();
-                window.location.reload();
-            }
-        });
-    } 
     window.addEventListener("unload", endSession);
     window.addEventListener("pagehide", (event) => {
         if (!event.persisted) {

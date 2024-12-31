@@ -5,7 +5,7 @@ const {Server} = require("socket.io")
 const app = express()
 const server = http.createServer(app)
 const webserver = new Server(server,{cors: {
-    origin: "https://cucuridu.web.app",
+    origin: /*"https://cucuridu.web.app",*/"*",
     methods: ["GET", "POST"],
 }})
 
@@ -264,6 +264,19 @@ webserver.on("connection",(socket) => {
         }
     })
 
+    socket.on("heartbeat", () => {
+        const room = Rooms.FindRoomBySocket(socket.id)
+        if(room)
+        {
+            const user = room.FindSocket(socket.id)
+            if(user)
+            {
+                user.heartbeat = Date.now()
+            }
+        }
+        socket.emit("heartbeat_ack");
+    });
+
     socket.on("disconnect",() => {
         try
         {
@@ -305,6 +318,38 @@ webserver.on("connection",(socket) => {
     })
 
 })
+
+setInterval(() => {
+    const now = Date.now();
+    Rooms.rooms.forEach(room => {
+        room.users.forEach(user => {
+            if (now - user.heartbeat > 10000) 
+            {
+                try
+                {
+                    console.log("User : " + data.id + " disconnected")
+                    webserver.to(user.socketid).emit('reload')
+                    if(room) 
+                    {
+                        if (room.Asker.unicid == user.unicid || room.admin.unicid == user.unicid) 
+                        {
+                            webserver.to(room.id).emit('roomClosed')
+                            Rooms.Destroy(room.id)
+                            console.log("Room : " + room.id + " destroyed")
+                            return
+                        }
+                        webserver.to(room.id).emit('playerLeft',room.users.length-1)
+                        room.DestroyUser(user.unicid);
+                    }
+                }
+                catch(error)
+                {
+                    console.log(error)
+                }
+            }
+        })
+    })
+},2000)
 
 server.listen(port, () => {
     console.log("Server : http://localhost:" + port)

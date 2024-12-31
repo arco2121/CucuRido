@@ -14,6 +14,7 @@ class User
         this.cards = new Deck()
         this.IsAsking = false
         this.admin = false
+        this.heartbeat = Date.now()
     }
 
     Is()
@@ -31,7 +32,8 @@ class User
             IsAsking: this.IsAsking,
             admin: this.admin,
             img : this.img,
-            socketid : this.socketid
+            socketid : this.socketid,
+            heartbeat : this.heartbeat
         }
     }
 
@@ -63,6 +65,7 @@ class User
             user.IsAsking = data.IsAsking;
             user.admin = data.admin;
             user.img = data.img
+            user.heartbeat = data.heartbeat
             return user;
         }
         const user = new Guest(data.name,data.socketid,data.img);
@@ -72,6 +75,7 @@ class User
         user.IsAsking = data.IsAsking;
         user.admin = data.admin;
         user.img = data.img
+        user.heartbeat = data.heartbeat
         return user;
     }
 }
