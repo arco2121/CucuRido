@@ -257,6 +257,10 @@ webserver.on("connection",(socket) => {
                 webserver.to(socket.id).emit('reconnected', {user : user.toJSON(), roomId : room.id})
                 console.log("User : " + socket.id + " reconnected")
             }
+            else
+            {
+                webserver.to(user.socketid).emit('reload')
+            }
         }
         catch(error)
         {
@@ -349,7 +353,7 @@ setInterval(() => {
             }
         })
     })
-},2000)
+},5000)
 
 server.listen(port, () => {
     console.log("Server : http://localhost:" + port)
