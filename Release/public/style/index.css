@@ -546,7 +546,7 @@ input[type="text"]:active
 {
     background-color: #b8ffb0;
 }
-@media (orientation : portrait) {
+@media (orientation : portrait) or (min-height : 750px) {
     .window
     {
         flex-direction: column;
@@ -556,14 +556,14 @@ input[type="text"]:active
         flex-direction: column;
     }
 }
-@media (orientation : landscape)
+@media (orientation : landscape) and (min-height : 700px)
 {
     .nodo
     {
         width: 50%;
     }    
 }
-@media(orientation: landscape)
+@media(orientation: landscape) and (max-height : 700px)
 {
     #roomlobby
     {

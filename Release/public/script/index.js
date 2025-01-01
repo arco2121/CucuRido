@@ -620,11 +620,5 @@ Server.on("disconnect",() => {
             alr = false;
         }
     };
-    window.addEventListener("unload", endSession);
-    window.addEventListener("pagehide", (event) => {
-        if (!event.persisted) {
-            endSession();
-        }
-    });
     window.addEventListener("beforeunload", endSession);
 })();
