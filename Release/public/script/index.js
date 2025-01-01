@@ -94,7 +94,7 @@ const sendHeartbeat = () => {
 Server.on("connected",(data)=>{
     isServerAlive = true
     document.getElementById("offline").style.display = "none"
-    heartbeatInterval = setInterval(sendHeartbeat, 2000);
+    heartbeatInterval = setInterval(sendHeartbeat, 5000);
     if(alreadyconnected)
     {
         Server.emit("reconnect",{id : user.unicid, oldid : localStorage.getItem("oldid")})
@@ -570,7 +570,7 @@ setInterval(()=>{
     }
 },100);
 
-(() => {
+/*(() => {
     let con = 0, desc = 0, oki = false
     setInterval(()=>{
         if(con >= desc)
@@ -597,7 +597,7 @@ setInterval(()=>{
     Server.on("playerDisconnected",()=>{
         desc++
     })
-})()
+})()*/
 
 Server.on("reconnected",(data)=>{ 
     user = User.fromJSON(data.user)
